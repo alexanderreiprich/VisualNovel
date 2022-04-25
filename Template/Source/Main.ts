@@ -9,7 +9,7 @@ namespace Template {
     puzzle: {
       duration: 1,
       alpha: "Transitions/puzzle.png",
-      edge: 1
+      edge: 2
     }
   };
 
@@ -56,4 +56,7 @@ namespace Template {
     // start the sequence
     ƒS.Progress.go(scenes);
   }
+
+  let uiElement: HTMLElement = document.querySelector("[type=interface]");
+  dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
 }
