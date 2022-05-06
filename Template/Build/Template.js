@@ -3,9 +3,10 @@ var Template;
 (function (Template) {
     async function BeachScene() {
         Template.ƒS.Sound.fade(Template.sound.beach, 0.04, 2, true);
+        Template.ƒS.Sound.fade(Template.sound.music, 0.1, 5, true);
         Template.ƒS.Sound.play(Template.sound.seagull, 0.05, false);
-        Template.ƒS.Sound.fade(Template.sound.swimming, 0.2, 5, true);
-        Template.ƒS.Sound.play(Template.sound.people, 0.35, true);
+        Template.ƒS.Sound.fade(Template.sound.swimming, 0.1, 5, true);
+        Template.ƒS.Sound.play(Template.sound.people, 0.25, true);
         await Template.ƒS.Location.show(Template.locations.beach);
         await Template.ƒS.update();
     }
