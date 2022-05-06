@@ -2,11 +2,10 @@
 var Template;
 (function (Template) {
     async function BeachScene() {
-        let text;
         Template.ƒS.Sound.fade(Template.sound.beach, 0.1, 2, true);
         Template.ƒS.Sound.fade(Template.sound.music, 0.1, 5, true);
-        Template.ƒS.Sound.fade(Template.sound.seagull, 0.02, 5, true);
-        Template.ƒS.Sound.fade(Template.sound.swimming, 0.08, 5, true);
+        Template.ƒS.Sound.play(Template.sound.seagull, 0.05, false);
+        Template.ƒS.Sound.fade(Template.sound.swimming, 0.2, 5, true);
         await Template.ƒS.Location.show(Template.locations.beach);
         await Template.ƒS.update();
     }
