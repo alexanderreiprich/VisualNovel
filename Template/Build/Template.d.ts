@@ -21,6 +21,7 @@ declare namespace Template {
         seagull: string;
         swimming: string;
         music: string;
+        people: string;
     };
     let locations: {
         nightcity: {

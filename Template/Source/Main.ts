@@ -22,8 +22,8 @@ namespace Template {
     click: "Pfad",
     seagull: "Audio/Seagulls.mp3",
     swimming: "Audio/swimming.mp3",
-    music: "Audio/music.mp3"
-
+    music: "Audio/music.mp3",
+    people: "Audio/clubambiente.mp3"
   };
 
   export let locations = {

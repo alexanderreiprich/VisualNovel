@@ -3,9 +3,9 @@ var Template;
 (function (Template) {
     async function BeachScene() {
         Template.ƒS.Sound.fade(Template.sound.beach, 0.04, 2, true);
-        Template.ƒS.Sound.fade(Template.sound.music, 0.1, 5, true);
         Template.ƒS.Sound.play(Template.sound.seagull, 0.05, false);
         Template.ƒS.Sound.fade(Template.sound.swimming, 0.2, 5, true);
+        Template.ƒS.Sound.play(Template.sound.people, 0.35, true);
         await Template.ƒS.Location.show(Template.locations.beach);
         await Template.ƒS.update();
     }
@@ -86,7 +86,8 @@ var Template;
         click: "Pfad",
         seagull: "Audio/Seagulls.mp3",
         swimming: "Audio/swimming.mp3",
-        music: "Audio/music.mp3"
+        music: "Audio/music.mp3",
+        people: "Audio/clubambiente.mp3"
     };
     Template.locations = {
         nightcity: {
