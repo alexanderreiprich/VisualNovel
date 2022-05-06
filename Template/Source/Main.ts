@@ -21,7 +21,8 @@ namespace Template {
     // sfx
     click: "Pfad",
     seagull: "Audio/Seagulls.mp3",
-    swimming: "Audio/swimming.mp3"
+    swimming: "Audio/swimming.mp3",
+    music: "Audio/music.mp3"
 
   };
 

@@ -20,6 +20,7 @@ declare namespace Template {
         click: string;
         seagull: string;
         swimming: string;
+        music: string;
     };
     let locations: {
         nightcity: {

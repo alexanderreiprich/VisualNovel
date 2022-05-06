@@ -3,7 +3,8 @@ var Template;
 (function (Template) {
     async function BeachScene() {
         let text;
-        Template.ƒS.Sound.fade(Template.sound.beach, 0.1, 5, true);
+        Template.ƒS.Sound.fade(Template.sound.beach, 0.1, 2, true);
+        Template.ƒS.Sound.fade(Template.sound.music, 0.1, 5, true);
         Template.ƒS.Sound.fade(Template.sound.seagull, 0.02, 5, true);
         Template.ƒS.Sound.fade(Template.sound.swimming, 0.08, 5, true);
         await Template.ƒS.Location.show(Template.locations.beach);
@@ -85,7 +86,8 @@ var Template;
         // sfx
         click: "Pfad",
         seagull: "Audio/Seagulls.mp3",
-        swimming: "Audio/swimming.mp3"
+        swimming: "Audio/swimming.mp3",
+        music: "Audio/music.mp3"
     };
     Template.locations = {
         nightcity: {
