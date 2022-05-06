@@ -16,15 +16,23 @@ namespace Template {
   export let sound = {
     // themes
     nightclub: "Audio/nightclub.ogg",
+    beach: "Audio/beach.mp3",
 
     // sfx
-    click: "Pfad"
+    click: "Pfad",
+    seagull: "Audio/Seagulls.mp3",
+    swimming: "Audio/swimming.mp3"
+
   };
 
   export let locations = {
     nightcity: {
       name: "Nightcity",
       background: "Images/Backgrounds/Nightcity.png"
+    },
+    beach: {
+      name: "Beach",
+      background: "Images/Backgrounds/beach1.jpg"
     }
   };
 
@@ -43,6 +51,50 @@ namespace Template {
     }
   };
 
+  // Menu
+  // Buttons
+  let ingameMenuButtons = {
+    save: "Save",
+    load: "Load",
+    close: "Close",
+    credits: "Credits"
+  };
+
+  let gameMenu: ƒS.Menu;
+  //ƒS.Speech.setTickerDelays();
+ // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
+  let menuIsOpen: boolean = true;
+
+  async function buttonFunctionalities(_option: string): Promise<void> {
+    console.log(_option);
+    switch(_option) {
+      case ingameMenuButtons.save:
+        await ƒS.Progress.save();
+        break;
+      case ingameMenuButtons.load:
+        await ƒS.Progress.load();
+        break;
+      case ingameMenuButtons.close:
+        gameMenu.close();
+        menuIsOpen = false;
+        break;
+      case ingameMenuButtons.credits:
+        showCredits();
+        break;
+    }
+  }
+
+  export function showCredits(): void {
+    
+    // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
+    // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
+
+    ƒS.Text.print("wee woo");
+  }
+
+  // Menu Shortcuts
+  // document.addEventListener();
+
   export let dataForSave = { // everything that is supposed to be saved
     nameProtagonist: ""
   };
@@ -50,7 +102,7 @@ namespace Template {
   window.addEventListener("load", start);
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
-      { scene: ExampleScene, name: "ExampleScene" }
+      { scene: BeachScene, name: "BeachScene" }
     ];
 
     // start the sequence

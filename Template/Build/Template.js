@@ -1,6 +1,18 @@
 "use strict";
 var Template;
 (function (Template) {
+    async function BeachScene() {
+        let text;
+        Template.ƒS.Sound.fade(Template.sound.beach, 0.1, 5, true);
+        Template.ƒS.Sound.fade(Template.sound.seagull, 0.02, 5, true);
+        Template.ƒS.Sound.fade(Template.sound.swimming, 0.08, 5, true);
+        await Template.ƒS.Location.show(Template.locations.beach);
+        await Template.ƒS.update();
+    }
+    Template.BeachScene = BeachScene;
+})(Template || (Template = {}));
+var Template;
+(function (Template) {
     async function ExampleScene() {
         console.log("FudgeStory Template Scene starting");
         let text = {
@@ -47,7 +59,6 @@ var Template;
             case firstDialogueElementAnswers.iSayCoolio:
                 await Template.ƒS.Character.show(Template.characters.aisaka, Template.characters.aisaka.pose.happy, Template.ƒS.positions.bottomcenter);
                 await Template.ƒS.Speech.tell(Template.characters.aisaka, "Coolio.🤠");
-                await Template.ƒS.update();
                 Template.ƒS.Speech.clear();
                 break;
         }
@@ -70,13 +81,20 @@ var Template;
     Template.sound = {
         // themes
         nightclub: "Audio/nightclub.ogg",
+        beach: "Audio/beach.mp3",
         // sfx
-        click: "Pfad"
+        click: "Pfad",
+        seagull: "Audio/Seagulls.mp3",
+        swimming: "Audio/swimming.mp3"
     };
     Template.locations = {
         nightcity: {
             name: "Nightcity",
             background: "Images/Backgrounds/Nightcity.png"
+        },
+        beach: {
+            name: "Beach",
+            background: "Images/Backgrounds/beach1.jpg"
         }
     };
     Template.characters = {
@@ -93,13 +111,51 @@ var Template;
             }
         }
     };
+    // Menu
+    // Buttons
+    let ingameMenuButtons = {
+        save: "Save",
+        load: "Load",
+        close: "Close",
+        credits: "Credits"
+    };
+    let gameMenu;
+    //ƒS.Speech.setTickerDelays();
+    // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
+    let menuIsOpen = true;
+    async function buttonFunctionalities(_option) {
+        console.log(_option);
+        switch (_option) {
+            case ingameMenuButtons.save:
+                await Template.ƒS.Progress.save();
+                break;
+            case ingameMenuButtons.load:
+                await Template.ƒS.Progress.load();
+                break;
+            case ingameMenuButtons.close:
+                gameMenu.close();
+                menuIsOpen = false;
+                break;
+            case ingameMenuButtons.credits:
+                showCredits();
+                break;
+        }
+    }
+    function showCredits() {
+        // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
+        // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
+        Template.ƒS.Text.print("wee woo");
+    }
+    Template.showCredits = showCredits;
+    // Menu Shortcuts
+    // document.addEventListener();
     Template.dataForSave = {
         nameProtagonist: ""
     };
     window.addEventListener("load", start);
     function start(_event) {
         let scenes = [
-            { scene: Template.ExampleScene, name: "ExampleScene" }
+            { scene: Template.BeachScene, name: "BeachScene" }
         ];
         // start the sequence
         Template.ƒS.Progress.go(scenes);

@@ -1,4 +1,7 @@
 declare namespace Template {
+    function BeachScene(): ƒS.SceneReturn;
+}
+declare namespace Template {
     function ExampleScene(): ƒS.SceneReturn;
 }
 declare namespace Template {
@@ -13,10 +16,17 @@ declare namespace Template {
     };
     let sound: {
         nightclub: string;
+        beach: string;
         click: string;
+        seagull: string;
+        swimming: string;
     };
     let locations: {
         nightcity: {
+            name: string;
+            background: string;
+        };
+        beach: {
             name: string;
             background: string;
         };
@@ -35,6 +45,7 @@ declare namespace Template {
             };
         };
     };
+    function showCredits(): void;
     let dataForSave: {
         nameProtagonist: string;
     };
