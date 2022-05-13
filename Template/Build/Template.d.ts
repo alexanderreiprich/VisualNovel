@@ -47,6 +47,44 @@ declare namespace Template {
             };
         };
     };
+    let items: {
+        sword: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        book: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        paper: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        phone: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        pen: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        clock: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+    };
     function showCredits(): void;
     let dataForSave: {
         nameProtagonist: string;

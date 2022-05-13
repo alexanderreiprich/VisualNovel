@@ -7,7 +7,7 @@ var Template;
         Template.ƒS.Sound.play(Template.sound.seagull, 0.05, false);
         Template.ƒS.Sound.fade(Template.sound.swimming, 0.1, 5, true);
         Template.ƒS.Sound.play(Template.sound.people, 0.15, true);
-        await Template.ƒS.Location.show(Template.locations.beach);
+        await Template.ƒS.Location.show(Template.locations.nightcity);
         await Template.ƒS.update();
     }
     Template.BeachScene = BeachScene;
@@ -114,6 +114,44 @@ var Template;
             }
         }
     };
+    Template.items = {
+        sword: {
+            name: "Sword",
+            description: "A sharp sword.",
+            image: "Images/Items/sword.png",
+            static: true
+        },
+        book: {
+            name: "Book",
+            description: "A book, with a lot of information inside.",
+            image: "Images/Items/book.png",
+            static: true
+        },
+        paper: {
+            name: "Paper",
+            description: "Something to write on.",
+            image: "Images/Items/paper.png",
+            static: false
+        },
+        phone: {
+            name: "Phone",
+            description: "The newest model of the yPhone.",
+            image: "Images/Items/phone.png",
+            static: true
+        },
+        pen: {
+            name: "Pen",
+            description: "Something to write with.",
+            image: "Images/Items/pen.png",
+            static: true
+        },
+        clock: {
+            name: "Clock",
+            description: "Tells you the time.",
+            image: "Images/Items/clock.png",
+            static: true
+        }
+    };
     // Menu
     // Buttons
     let ingameMenuButtons = {
@@ -123,6 +161,7 @@ var Template;
         credits: "Credits"
     };
     let gameMenu;
+    // gameMenu = ƒS.Menu.create(ingameMenuButtons, buttonFunctionalities, "gameMenu");
     //ƒS.Speech.setTickerDelays();
     // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
     let menuIsOpen = true;
@@ -151,7 +190,40 @@ var Template;
     }
     Template.showCredits = showCredits;
     // Menu Shortcuts
-    // document.addEventListener();
+    window.addEventListener("keydown", hndKeyPress);
+    let inventoryOpen;
+    async function hndKeyPress(_event) {
+        switch (_event.code) {
+            case Template.ƒ.KEYBOARD_CODE.I:
+                if (!inventoryOpen) {
+                    Template.ƒS.Inventory.open();
+                    inventoryOpen = true;
+                }
+                else {
+                    Template.ƒS.Inventory.close();
+                    inventoryOpen = false;
+                }
+                break;
+            case Template.ƒ.KEYBOARD_CODE.G:
+                Template.ƒS.Inventory.add(Template.items.sword);
+                break;
+            case Template.ƒ.KEYBOARD_CODE.A:
+                Template.ƒS.Inventory.add(Template.items.paper);
+                break;
+            case Template.ƒ.KEYBOARD_CODE.S:
+                Template.ƒS.Inventory.add(Template.items.pen);
+                break;
+            case Template.ƒ.KEYBOARD_CODE.D:
+                Template.ƒS.Inventory.add(Template.items.clock);
+                break;
+            case Template.ƒ.KEYBOARD_CODE.F:
+                Template.ƒS.Inventory.add(Template.items.book);
+                break;
+            case Template.ƒ.KEYBOARD_CODE.H:
+                Template.ƒS.Inventory.add(Template.items.phone);
+                break;
+        }
+    }
     Template.dataForSave = {
         nameProtagonist: ""
     };

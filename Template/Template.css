@@ -23,3 +23,48 @@ dialog[type=splash] {
 dialog[type=splash]>img#FudgeStoryLogo {
   width: 100%;
 }
+
+dialog[type=inventory] {
+  background-color: lightblue;
+  border: 6px;
+  border-color: lightcyan;
+  border-style: solid;
+}
+
+dialog[type="inventory"] > p{
+  font-size: xx-large;
+  font-weight: bold;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+dialog[type="inventory"] > ul > li{
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  flex-direction: row;
+  margin-bottom: 70px;
+  margin-top: 70px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+dialog[type="inventory"] > ul > li > amount{
+  padding-left: 10px;
+  font-size: small;
+}
+
+dialog[type="inventory"] > ul > li > description{
+  color: black;
+  padding-left: 50px;
+  padding-right: 100px;
+}
+
+dialog[type="inventory"] > ul > li > name{
+  padding-right: 10px;
+  font-size: large;
+  font-style: bold;
+}
+
+dialog[type="inventory"] img{
+  position: absolute;
+  right: 0;
+}

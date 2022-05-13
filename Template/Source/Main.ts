@@ -52,6 +52,45 @@ namespace Template {
     }
   };
 
+  export let items = {
+    sword: {
+      name: "Sword",
+      description: "A sharp sword.",
+      image: "Images/Items/sword.png",
+      static: true
+    },
+    book: {
+      name: "Book",
+      description: "A book, with a lot of information inside.",
+      image: "Images/Items/book.png",
+      static: true
+    },
+    paper: {
+      name: "Paper",
+      description: "Something to write on.",
+      image: "Images/Items/paper.png",
+      static: false
+    },
+    phone: {
+      name: "Phone",
+      description: "The newest model of the yPhone.",
+      image: "Images/Items/phone.png",
+      static: true
+    },
+    pen: {
+      name: "Pen",
+      description: "Something to write with.",
+      image: "Images/Items/pen.png",
+      static: true
+    },
+    clock: {
+      name: "Clock",
+      description: "Tells you the time.",
+      image: "Images/Items/clock.png",
+      static: true
+    }
+  };
+
   // Menu
   // Buttons
   let ingameMenuButtons = {
@@ -62,13 +101,14 @@ namespace Template {
   };
 
   let gameMenu: ƒS.Menu;
+  // gameMenu = ƒS.Menu.create(ingameMenuButtons, buttonFunctionalities, "gameMenu");
   //ƒS.Speech.setTickerDelays();
- // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
+  // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
   let menuIsOpen: boolean = true;
 
   async function buttonFunctionalities(_option: string): Promise<void> {
     console.log(_option);
-    switch(_option) {
+    switch (_option) {
       case ingameMenuButtons.save:
         await ƒS.Progress.save();
         break;
@@ -86,7 +126,7 @@ namespace Template {
   }
 
   export function showCredits(): void {
-    
+
     // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
     // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
 
@@ -94,7 +134,42 @@ namespace Template {
   }
 
   // Menu Shortcuts
-  // document.addEventListener();
+  window.addEventListener("keydown", hndKeyPress);
+
+  let inventoryOpen: boolean;
+
+  async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
+    switch (_event.code) {
+      case ƒ.KEYBOARD_CODE.I:
+        if (!inventoryOpen) {
+          ƒS.Inventory.open();
+          inventoryOpen = true;
+        }
+        else {
+          ƒS.Inventory.close();
+          inventoryOpen = false;
+        }
+        break;
+      case ƒ.KEYBOARD_CODE.G:
+        ƒS.Inventory.add(items.sword);
+        break;
+      case ƒ.KEYBOARD_CODE.A:
+        ƒS.Inventory.add(items.paper);
+        break;
+      case ƒ.KEYBOARD_CODE.S:
+        ƒS.Inventory.add(items.pen);
+        break;
+      case ƒ.KEYBOARD_CODE.D:
+        ƒS.Inventory.add(items.clock);
+        break;
+      case ƒ.KEYBOARD_CODE.F:
+        ƒS.Inventory.add(items.book);
+        break;
+      case ƒ.KEYBOARD_CODE.H:
+        ƒS.Inventory.add(items.phone);
+        break;
+    }
+  }
 
   export let dataForSave = { // everything that is supposed to be saved
     nameProtagonist: ""
