@@ -1,0 +1,204 @@
+declare namespace Endabgabe {
+    function BeachScene(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function ExampleScene(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    export import ƒ = FudgeCore;
+    export import ƒS = FudgeStory;
+    let transitions: {
+        puzzle: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+    };
+    let sound: {
+        nightclub: string;
+        beach: string;
+        click: string;
+        seagull: string;
+        swimming: string;
+        music: string;
+        people: string;
+    };
+    let locations: {
+        nightcity: {
+            name: string;
+            background: string;
+        };
+        beach: {
+            name: string;
+            background: string;
+        };
+        home_bedroom: {
+            name: string;
+            background: string;
+        };
+        home_table: {
+            name: string;
+            background: string;
+        };
+        home_door: {
+            name: string;
+            background: string;
+        };
+        home_path: {
+            name: string;
+            background: string;
+        };
+        forest_path_before: {
+            name: string;
+            background: string;
+        };
+        forest_path_into: {
+            name: string;
+            background: string;
+        };
+        cat_search_forest: {
+            name: string;
+            background: string;
+        };
+        cat_search_field: {
+            name: string;
+            background: string;
+        };
+        cat_search_bush: {
+            name: string;
+            background: string;
+        };
+        split_castle_forest: {
+            name: string;
+            background: string;
+        };
+        split_forest: {
+            name: string;
+            background: string;
+        };
+        split_lake: {
+            name: string;
+            background: string;
+        };
+        lake_entrance: {
+            name: string;
+            background: string;
+        };
+        lake: {
+            name: string;
+            background: string;
+        };
+        lake_polluted_water: {
+            name: string;
+            background: string;
+        };
+        lake_rocks: {
+            name: string;
+            background: string;
+        };
+        lake_bridge: {
+            name: string;
+            background: string;
+        };
+        deep_forest_entrance: {
+            name: string;
+            background: string;
+        };
+        deep_forest_split: {
+            name: string;
+            background: string;
+        };
+        deep_forest_split_bridge: {
+            name: string;
+            background: string;
+        };
+        deep_forest_split_path: {
+            name: string;
+            background: string;
+        };
+        clearing_ground: {
+            name: string;
+            background: string;
+        };
+        clearing_center: {
+            name: string;
+            background: string;
+        };
+        clearing_trees: {
+            name: string;
+            background: string;
+        };
+        evening_walk: {
+            name: string;
+            background: string;
+        };
+    };
+    let characters: {
+        narrator: {
+            name: string;
+        };
+        protagonist: {
+            name: string;
+        };
+        catname: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                angry: string;
+                happy: string;
+                neutral: string;
+                sad: string;
+                curious: string;
+                surprised: string;
+            };
+        };
+        aisaka: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                angry: string;
+                happy: string;
+                upset: string;
+            };
+        };
+    };
+    let items: {
+        rock: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+        book: {
+            name: string;
+            description: string;
+            image: string;
+            static: boolean;
+        };
+    };
+    let ingameMenuButtons: {
+        inventory: string;
+        save: string;
+        load: string;
+        close: string;
+        credits: string;
+    };
+    function buttonFunctionalities(_option: string): Promise<void>;
+    function showCredits(): void;
+    let dataForSave: {
+        nameProtagonist: string;
+        studiesProtagonist: string;
+        encounteredAnyAnimal: boolean;
+        encounteredCat: boolean;
+        encounteredFox: boolean;
+        encounteredTurtle: boolean;
+        encounteredDeer: boolean;
+        travelWithCat: boolean;
+    };
+}
+declare namespace Endabgabe {
+    function Scene(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function WakingUp(): ƒS.SceneReturn;
+}
