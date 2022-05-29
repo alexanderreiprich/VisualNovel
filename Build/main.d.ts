@@ -24,14 +24,6 @@ declare namespace Endabgabe {
         people: string;
     };
     let locations: {
-        nightcity: {
-            name: string;
-            background: string;
-        };
-        beach: {
-            name: string;
-            background: string;
-        };
         home_bedroom: {
             name: string;
             background: string;
@@ -45,6 +37,10 @@ declare namespace Endabgabe {
             background: string;
         };
         home_path: {
+            name: string;
+            background: string;
+        };
+        home_path_close: {
             name: string;
             background: string;
         };
@@ -152,13 +148,16 @@ declare namespace Endabgabe {
                 surprised: string;
             };
         };
-        aisaka: {
+        june: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
                 angry: string;
                 happy: string;
-                upset: string;
+                neutral: string;
+                surprised: string;
+                uncomfortable: string;
+                concerned: string;
             };
         };
     };
@@ -180,7 +179,6 @@ declare namespace Endabgabe {
         inventory: string;
         save: string;
         load: string;
-        close: string;
         credits: string;
     };
     function buttonFunctionalities(_option: string): Promise<void>;
@@ -200,5 +198,29 @@ declare namespace Endabgabe {
     function Scene(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
+    function Template(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function IgnoreTheCat(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function MeetingAgain(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function PetTheCat(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function ScareTheCat(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function TravelWithCat(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function TravelWithoutCat(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
     function WakingUp(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function ForestAlone(): ƒS.SceneReturn;
 }

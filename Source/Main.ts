@@ -27,14 +27,6 @@ namespace Endabgabe {
   };
 
   export let locations = {
-    nightcity: {
-      name: "Nightcity",
-      background: "Images/Backgrounds/Nightcity.png"
-    },
-    beach: {
-      name: "Beach",
-      background: "Images/Backgrounds/beach1.jpg"
-    },
     home_bedroom: {
       name: "Bedroom",
       background: ""
@@ -45,11 +37,15 @@ namespace Endabgabe {
     },
     home_door: {
       name: "Door",
-      background: ""
+      background: "Images/Backgrounds/home_door.png"
     },
     home_path: {
       name: "Path Behind Your Home",
-      background: ""
+      background: "Images/Backgrounds/home_path.png"
+    },
+    home_path_close: {
+      name: "Path Behind Your Home",
+      background: "Images/Backgrounds/home_path_close.png"
     },
     forest_path_before: {
       name: "Path before entering the forest",
@@ -142,10 +138,10 @@ namespace Endabgabe {
       name: ""
     },
     protagonist: {
-      name: ""
+      name: "You"
     },
     catname: {
-      name: "",
+      name: "CATNAME",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         angry: "Images/Characters/cat_angry.png",
@@ -156,13 +152,18 @@ namespace Endabgabe {
         surprised: "Images/Characters/cat_surprised.png"
       }
     },
-    aisaka: {
-      name: "Aisaka",
+    june: {
+      name: "June",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
-      pose: {
-        angry: "Images/Characters/aisaka_angry.png",
-        happy: "Images/Characters/aisaka_happy.png",
-        upset: "Images/Characters/aisaka_upset.png"
+      pose : {
+        angry: "Images/Characters/fox_mad.png",
+        happy: "Images/Characters/fox_laughing.png",
+        neutral: "Images/Characters/fox_neutral.png",
+        //sad: "Images/Characters/fox_sad.png",
+        //curious: "Images/Characters/fox_curious.png",
+        surprised: "Images/Characters/fox_surprised.png",
+        uncomfortable: "Images/Characters/fox_uncomfortable.png",
+        concerned: "Images/Characters/fox_concerned.png"
       }
     }
   };
@@ -188,7 +189,6 @@ namespace Endabgabe {
     inventory: "Inventory",
     save: "Save",
     load: "Load",
-    close: "Close",
     credits: "Credits"
   };
 

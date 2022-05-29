@@ -48,6 +48,24 @@ speech {
   margin-bottom: 50px;
 }
 
+speech name {
+  position: relative;
+  font-weight: 700;
+  background-color: white;
+  bottom: 50px;
+  border-style: solid;
+  border-radius: 15px;
+  border-width: 5px;
+  border-color: gray;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+speech content {
+  position: absolute;
+  left: 50px;
+}
+
 dialog[type=splash] {
   margin: 0px;
   padding: 0px;

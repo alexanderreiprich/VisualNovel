@@ -13,19 +13,19 @@ namespace Endabgabe {
       }
     };
     ƒS.Sound.fade(sound.nightclub, 0.2, 5, true);
-    await ƒS.Location.show(locations.nightcity);
+    await ƒS.Location.show(locations.home_table);
 
     await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
-    await ƒS.Location.show(locations.nightcity);
-    await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.angry, ƒS.positions.bottomleft);
+    await ƒS.Location.show(locations.home_table);
+    await ƒS.Character.show(characters.catname, characters.catname.pose.angry, ƒS.positions.bottomleft);
 
     await ƒS.update();
 
-    await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0001);
+    await ƒS.Speech.tell(characters.catname, text.Aisaka.T0001);
     ƒS.Speech.clear();
     await ƒS.update(3);
-    await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0002);
-    await ƒS.Speech.tell(characters.aisaka, text.Aisaka.T0003);
+    await ƒS.Speech.tell(characters.catname, text.Aisaka.T0002);
+    await ƒS.Speech.tell(characters.catname, text.Aisaka.T0003);
 
     ƒS.Speech.hide();
     // ƒS.Character.hide(characters.aisaka);
@@ -43,18 +43,18 @@ namespace Endabgabe {
     switch (firstDialogueElement) {
       case firstDialogueElementAnswers.iSayOk: 
         // continue path here
-        await ƒS.Speech.tell(characters.aisaka, "Okay.");
+        await ƒS.Speech.tell(characters.catname, "Okay.");
         ƒS.Speech.clear();
         break;
 
       case firstDialogueElementAnswers.iSayYes: 
-        await ƒS.Speech.tell(characters.aisaka, "Yes.");
+        await ƒS.Speech.tell(characters.catname, "Yes.");
         ƒS.Speech.clear();
         break;
 
       case firstDialogueElementAnswers.iSayCoolio: 
-        await ƒS.Character.show(characters.aisaka, characters.aisaka.pose.happy, ƒS.positions.bottomcenter);
-        await ƒS.Speech.tell(characters.aisaka, "Coolio.🤠");
+        await ƒS.Character.show(characters.catname, characters.catname.pose.happy, ƒS.positions.bottomcenter);
+        await ƒS.Speech.tell(characters.catname, "Coolio.🤠");
         ƒS.Speech.clear();
         break;
 
