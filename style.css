@@ -46,6 +46,11 @@ speech {
   padding: 15px;
   margin: 130px;
   margin-bottom: 50px;
+
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 speech name {

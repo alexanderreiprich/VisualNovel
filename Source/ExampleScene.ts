@@ -17,15 +17,15 @@ namespace Endabgabe {
 
     await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
     await ƒS.Location.show(locations.home_table);
-    await ƒS.Character.show(characters.catname, characters.catname.pose.angry, ƒS.positions.bottomleft);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomleft);
 
     await ƒS.update();
 
-    await ƒS.Speech.tell(characters.catname, text.Aisaka.T0001);
+    await ƒS.Speech.tell(characters.tommy, text.Aisaka.T0001);
     ƒS.Speech.clear();
     await ƒS.update(3);
-    await ƒS.Speech.tell(characters.catname, text.Aisaka.T0002);
-    await ƒS.Speech.tell(characters.catname, text.Aisaka.T0003);
+    await ƒS.Speech.tell(characters.tommy, text.Aisaka.T0002);
+    await ƒS.Speech.tell(characters.tommy, text.Aisaka.T0003);
 
     ƒS.Speech.hide();
     // ƒS.Character.hide(characters.aisaka);
@@ -43,18 +43,18 @@ namespace Endabgabe {
     switch (firstDialogueElement) {
       case firstDialogueElementAnswers.iSayOk: 
         // continue path here
-        await ƒS.Speech.tell(characters.catname, "Okay.");
+        await ƒS.Speech.tell(characters.tommy, "Okay.");
         ƒS.Speech.clear();
         break;
 
       case firstDialogueElementAnswers.iSayYes: 
-        await ƒS.Speech.tell(characters.catname, "Yes.");
+        await ƒS.Speech.tell(characters.tommy, "Yes.");
         ƒS.Speech.clear();
         break;
 
       case firstDialogueElementAnswers.iSayCoolio: 
-        await ƒS.Character.show(characters.catname, characters.catname.pose.happy, ƒS.positions.bottomcenter);
-        await ƒS.Speech.tell(characters.catname, "Coolio.🤠");
+        await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+        await ƒS.Speech.tell(characters.tommy, "Coolio.🤠");
         ƒS.Speech.clear();
         break;
 

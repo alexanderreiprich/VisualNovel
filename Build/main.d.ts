@@ -136,7 +136,13 @@ declare namespace Endabgabe {
         protagonist: {
             name: string;
         };
-        catname: {
+        cat: {
+            name: string;
+        };
+        fox: {
+            name: string;
+        };
+        tommy: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {
@@ -223,4 +229,7 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function ForestAlone(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function ForestWithCat(): ƒS.SceneReturn;
 }

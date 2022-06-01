@@ -3,6 +3,7 @@ namespace Endabgabe {
     console.log("- - - Scene 1: Waking Up - - -");
     let gameMenu = ƒS.Menu.create(ingameMenuButtons, buttonFunctionalities, "gameMenu");
     gameMenu.open();
+  
     let text = {
       Narrator: {
         T0001: "You open your eyes. The sun is already up and shining through your window. It is warm outside and not a single cloud obstructs the beautiful blue sky on this summer morning.",
@@ -84,13 +85,13 @@ namespace Endabgabe {
 
     let cat = await ƒS.Menu.getInput(catAnswer, "decision");
 
-    switch (cat) {
+    switch (cat) { // TODO: ist das der richtige Weg um zwischen Szenen zu switchen?
       case catAnswer.pet:
-        return PetTheCat();
+        return "PetTheCat";
       case catAnswer.scare:
-        return ScareTheCat();
+        return "ScareTheCat";
       case catAnswer.ignore:
-        return IgnoreTheCat();
+        return "IgnoreTheCat";
     }
   }
 }

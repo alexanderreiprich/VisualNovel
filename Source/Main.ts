@@ -140,8 +140,14 @@ namespace Endabgabe {
     protagonist: {
       name: "You"
     },
-    catname: {
-      name: "CATNAME",
+    cat: {
+      name: "Cat"
+    },
+    fox: {
+      name: "Fox"
+    },
+    tommy: {
+      name: "Tommy",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         angry: "Images/Characters/cat_angry.png",
@@ -256,9 +262,20 @@ namespace Endabgabe {
   window.addEventListener("load", start);
   function start(_event: Event): void {
     let scenes: ƒS.Scenes = [
-      { scene: WakingUp, name: "WakingUp" }
-    ];
+      // Chapter 1 - Home
+      { scene: WakingUp, name: "WakingUp", id: "WakingUp" },
+      { scene: PetTheCat, name: "PetTheCat", id: "PetTheCat" },
+      { scene: ScareTheCat, name: "ScareTheCat", id: "ScareTheCat" },
+      { scene: IgnoreTheCat, name: "IgnoreTheCat", id: "IgnoreTheCat" },
+      { scene: MeetingAgain, name: "MeetingAgain", id: "MeetingAgain" },
+      { scene: TravelWithCat, name: "TravelWithCat", id: "TravelWithCat" },
+      { scene: TravelWithoutCat, name: "TravelWithoutCat", id: "TravelWithoutCat" },
 
+      // Chapter 2 - Forest
+      { scene: ForestAlone, name: "ForestAlone", id: "ForestAlone" },
+      { scene: ForestWithCat, name: "ForestWithCat", id: "ForestWithCat" }
+    ];
+    // TODO: Wie kann man spezifische Szenen spielen?
     // start the sequence
     ƒS.Progress.go(scenes);
   }
