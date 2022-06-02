@@ -49,35 +49,35 @@ namespace Endabgabe {
     },
     forest_path_before: {
       name: "Path before entering the forest",
-      background: ""
+      background: "Images/Backgrounds/forest_path_before.png"
     },
     forest_path_into: {
       name: "Path that leads into the forest",
-      background: ""
+      background: "Images/Backgrounds/forest_path_into.png"
     },
     cat_search_forest: {
       name: "Forest where you search for the cat",
-      background: ""
+      background: "Images/Backgrounds/split_forest.png"
     },
     cat_search_field: {
       name: "Field where you search for the cat",
-      background: ""
+      background: "Images/Backgrounds/cat_search_fields.png"
     },
     cat_search_bush: {
       name: "Bush where you search for the cat",
-      background: ""
+      background: "Images/Backgrounds/cat_search_bush.png"
     },
     split_castle_forest: {
       name: "Split where you either go to the castle or into the forest",
-      background: ""
+      background: "Images/Backgrounds/split_castle_forest.png"
     },
     split_forest: {
       name: "Left path of the split",
-      background: ""
+      background: "Images/Backgrounds/split_forest.png"
     },
     split_lake: {
       name: "Right path of the split",
-      background: ""
+      background: "Images/Backgrounds/split_lake.png"
     },
     lake_entrance: {
       name: "Lake on first arrival",
@@ -139,6 +139,9 @@ namespace Endabgabe {
     },
     protagonist: {
       name: "You"
+    },
+    questionmark: {
+      name: "???"
     },
     cat: {
       name: "Cat"
@@ -273,7 +276,19 @@ namespace Endabgabe {
 
       // Chapter 2 - Forest
       { scene: ForestAlone, name: "ForestAlone", id: "ForestAlone" },
-      { scene: ForestWithCat, name: "ForestWithCat", id: "ForestWithCat" }
+      { scene: ForestWithCat, name: "ForestWithCat", id: "ForestWithCat" },
+      { scene: MeetFox, name: "MeetFox", id: "MeetFox" },
+      { scene: BefriendFox, name: "BefriendFox", id: "BefriendFox" },
+      //{ scene: DontBefriendFox, name: "DontBefriendFox", id: "DontBefriendFox" },
+      //{ scene: BefriendFoxFirstEncounter, name: "BefriendFoxFirstEncounter", id: "BefriendFoxFirstEncounter" },
+      { scene: IntoDeepForest, name: "IntoDeepForest", id: "IntoDeepForest" }
+            
+
+      // Chapter 3 - Lake
+
+      // Chapter 4 - Deep Forest
+
+      // Chapter 5 - Clearing
     ];
     // TODO: Wie kann man spezifische Szenen spielen?
     // start the sequence

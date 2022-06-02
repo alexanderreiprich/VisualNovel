@@ -136,6 +136,9 @@ declare namespace Endabgabe {
         protagonist: {
             name: string;
         };
+        questionmark: {
+            name: string;
+        };
         cat: {
             name: string;
         };
@@ -228,8 +231,17 @@ declare namespace Endabgabe {
     function WakingUp(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
+    function BefriendFox(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
     function ForestAlone(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
     function ForestWithCat(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function IntoDeepForest(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function MeetFox(): ƒS.SceneReturn;
 }

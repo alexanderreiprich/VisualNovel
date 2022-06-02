@@ -18,7 +18,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
 
-    return MeetingAgain();
+    return "MeetingAgain";
     
   }
 }
