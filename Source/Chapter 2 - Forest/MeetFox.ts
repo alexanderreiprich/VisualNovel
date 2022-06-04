@@ -20,7 +20,7 @@ namespace Endabgabe {
           T0002: "Huh, is this the cat that I saw earlier?",
           T0006: "Sorry, I didn't mean to…",
           T0008: "What? What are you talking about?",
-          T0012: "I won't hurt you, I promise. Why would I even do that?",
+          T0012: "I won't hurt you, I promise. Why would I even do that?"
         },
         Fox: {
           T0007: "Don't come closer, or else I will bite you!",

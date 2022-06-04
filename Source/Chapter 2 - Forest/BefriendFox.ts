@@ -13,7 +13,7 @@ namespace Endabgabe {
           T0028: "The fox stopped in the middle of the sentence, turning its head into the direction of a small family, that is approaching you.",
           T0029: "Without any further more words spoken, and in the blink of an eye, the fox hushed back into the bushes.",
           T0031: "A little girl is running towards you. In her arms is a small cat that seems familiar to you.",
-          T0034: "The girl lowers the cat on the ground, which quickly walked towards you and into your arms.",
+          T0034: "The girl lowers the cat on the ground, which quickly walked towards you and into your arms."
 
         },
         Protagonist: {
@@ -155,6 +155,9 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0042);
       await ƒS.Speech.tell(characters.cat, text.Cat.T0043);
 
+      dataForSave.encounteredAnyAnimal = true;
+      dataForSave.encounteredFox = true;
+
       return "";
     
     }
@@ -283,6 +286,9 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0033);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0034);
     
+      dataForSave.encounteredAnyAnimal = true;
+      dataForSave.encounteredFox = true;
+
       return "";
 
     }

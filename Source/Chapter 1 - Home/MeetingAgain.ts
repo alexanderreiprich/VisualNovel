@@ -109,6 +109,9 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0021);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0022);
 
+    dataForSave.encounteredAnyAnimal = true;
+    dataForSave.encounteredCat = true;
+
     let travelWithCatAnswer = {
       accept: "Say Yes and take the cat with you",
       decline: "Decline and carry on alone"

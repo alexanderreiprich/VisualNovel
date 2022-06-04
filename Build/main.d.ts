@@ -240,6 +240,12 @@ declare namespace Endabgabe {
     function BefriendFox(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
+    function BefriendFoxFirstEncounter(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function DontBefriendFox(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
     function ForestAlone(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {

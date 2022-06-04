@@ -282,8 +282,8 @@ namespace Endabgabe {
       { scene: ForestWithCat, name: "ForestWithCat", id: "ForestWithCat" },
       { scene: MeetFox, name: "MeetFox", id: "MeetFox" },
       { scene: BefriendFox, name: "BefriendFox", id: "BefriendFox" },
-      //{ scene: DontBefriendFox, name: "DontBefriendFox", id: "DontBefriendFox" },
-      //{ scene: BefriendFoxFirstEncounter, name: "BefriendFoxFirstEncounter", id: "BefriendFoxFirstEncounter" },
+      { scene: DontBefriendFox, name: "DontBefriendFox", id: "DontBefriendFox" },
+      { scene: BefriendFoxFirstEncounter, name: "BefriendFoxFirstEncounter", id: "BefriendFoxFirstEncounter" },
       { scene: IntoDeepForest, name: "IntoDeepForest", id: "IntoDeepForest" },
 
 
