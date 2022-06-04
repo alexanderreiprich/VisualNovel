@@ -85,7 +85,7 @@ namespace Endabgabe {
 
     let cat = await ƒS.Menu.getInput(catAnswer, "decision");
 
-    switch (cat) { // TODO: ist das der richtige Weg um zwischen Szenen zu switchen?
+    switch (cat) { 
       case catAnswer.pet:
         return "PetTheCat";
       case catAnswer.scare:

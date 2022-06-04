@@ -1,4 +1,9 @@
 namespace Endabgabe {
+
+/*   function clickResponse(): void {
+    console.log("AYO");
+  } */
+
   export async function MeetingAgain(): ƒS.SceneReturn {
     console.log("- - - Scene 3: Meeting again - - -");
     let gameMenu = ƒS.Menu.create(ingameMenuButtons, buttonFunctionalities, "gameMenu");
@@ -35,6 +40,12 @@ namespace Endabgabe {
         T0021: "You tell me, I don't know either. It just happened. So, can I come with you now? It is so boring here, please let me come with you!"
       }
     };
+
+/*     let newDiv: HTMLDivElement = document.createElement("div");
+    newDiv.classList.add("musicplayer");
+    newDiv.addEventListener("click", clickResponse);
+    document.getElementById("append").appendChild(newDiv);
+    console.log("appended"); */
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_path);
@@ -107,8 +118,10 @@ namespace Endabgabe {
 
     switch (travelWithCat) {
       case travelWithCatAnswer.accept: 
+        dataForSave.travelWithCat = true;
         return "TravelWithCat";
       case travelWithCatAnswer.decline:
+        dataForSave.travelWithCat = false;
         return "TravelWithoutCat";
     }
 

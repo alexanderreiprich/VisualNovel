@@ -18,13 +18,13 @@ namespace Endabgabe {
         },
         Protagonist: {
           T0002: "Huh, is this the cat that I saw earlier?",
-          T0006: "Sorry, I didn’t mean to…",
+          T0006: "Sorry, I didn't mean to…",
           T0008: "What? What are you talking about?",
-          T0012: "I won’t hurt you, I promise. Why would I even do that?",
+          T0012: "I won't hurt you, I promise. Why would I even do that?",
         },
         Fox: {
-          T0007: "Don’t come closer, or else I will bite you!",
-          T0009: "I said what I said, don’t come closer. Step back!",
+          T0007: "Don't come closer, or else I will bite you!",
+          T0009: "I said what I said, don't come closer. Step back!",
           T0011: "I will come out, but only if you swear that you will not hurt me."
         }
       };
@@ -74,14 +74,14 @@ namespace Endabgabe {
         },
         Protagonist: {
           T0002: "Oh, there are you. Why did you want to come with me if you just disappear instantly?",
-          T0006: "Sorry, I didn’t mean to…",
-          T0008: "What? It’s me, " + dataForSave.nameProtagonist + ". What are you talking about Tommy?",
-          T0012: "I won’t hurt you, I promise. Why would I even do that?",
+          T0006: "Sorry, I didn't mean to…",
+          T0008: "What? It's me, " + dataForSave.nameProtagonist + ". What are you talking about Tommy?",
+          T0012: "I won't hurt you, I promise. Why would I even do that?",
           T0015: "Oh, you really aren't Tommy. Uhh… nice to meet you…?"
         },
         Fox: {
-          T0007: "Don’t come closer, or else I will bite you!",
-          T0009: "I don’t know what you mean, I don’t know anybody named Tommy.",
+          T0007: "Don't come closer, or else I will bite you!",
+          T0009: "I don't know what you mean, I don't know anybody named Tommy.",
           T0011: "I will come out, but only if you swear that you will not hurt me.",
           T0016: "Don't step closer. Who is Tommy?"
         }

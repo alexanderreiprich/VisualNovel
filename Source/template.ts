@@ -6,9 +6,10 @@ namespace Endabgabe {
 
     let text = {
       Narrator: {
-
+        T0001: ""
       }
     };
+    ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_table);

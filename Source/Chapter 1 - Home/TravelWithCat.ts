@@ -38,7 +38,7 @@ namespace Endabgabe {
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0004);
 
-    // await ƒS.Speech.getInput();
+    await ƒS.Speech.getInput();
 
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);

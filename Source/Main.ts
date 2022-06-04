@@ -149,6 +149,9 @@ namespace Endabgabe {
     fox: {
       name: "Fox"
     },
+    girl: {
+      name: "Girl"
+    },
     tommy: {
       name: "Tommy",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
@@ -164,7 +167,7 @@ namespace Endabgabe {
     june: {
       name: "June",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
-      pose : {
+      pose: {
         angry: "Images/Characters/fox_mad.png",
         happy: "Images/Characters/fox_laughing.png",
         neutral: "Images/Characters/fox_neutral.png",
@@ -281,20 +284,27 @@ namespace Endabgabe {
       { scene: BefriendFox, name: "BefriendFox", id: "BefriendFox" },
       //{ scene: DontBefriendFox, name: "DontBefriendFox", id: "DontBefriendFox" },
       //{ scene: BefriendFoxFirstEncounter, name: "BefriendFoxFirstEncounter", id: "BefriendFoxFirstEncounter" },
-      { scene: IntoDeepForest, name: "IntoDeepForest", id: "IntoDeepForest" }
-            
+      { scene: IntoDeepForest, name: "IntoDeepForest", id: "IntoDeepForest" },
+
 
       // Chapter 3 - Lake
 
       // Chapter 4 - Deep Forest
 
       // Chapter 5 - Clearing
+
+      // Empty End Scene
+      { id: "Empty Scene", scene: Empty, name: "End" }
     ];
-    // TODO: Wie kann man spezifische Szenen spielen?
+
+    let uiElement: HTMLElement = document.querySelector("[type=interface]");
+    dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+
+    // hide speech on title screen
+    ƒS.Speech.hide();
     // start the sequence
     ƒS.Progress.go(scenes);
   }
 
-  let uiElement: HTMLElement = document.querySelector("[type=interface]");
-  dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
+
 }

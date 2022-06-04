@@ -2,6 +2,9 @@ declare namespace Endabgabe {
     function BeachScene(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
+    function Empty(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
     function ExampleScene(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
@@ -143,6 +146,9 @@ declare namespace Endabgabe {
             name: string;
         };
         fox: {
+            name: string;
+        };
+        girl: {
             name: string;
         };
         tommy: {

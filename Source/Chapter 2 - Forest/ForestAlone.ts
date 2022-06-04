@@ -8,7 +8,7 @@ namespace Endabgabe {
       Narrator: {
         T0001: "You reach the beginning of the forest. Large trees grow left and right of the small road that leads deeper into the forest.",
         T0002: "The large shadows that are casted from the treetops provide a cool shade despite the sun being high up in the sky.",
-        T0003: "As you hear the birds singing you remember why you used to come here so often. This forest seems so magical, but you can’t exactly explain why.",
+        T0003: "As you hear the birds singing you remember why you used to come here so often. This forest seems so magical, but you can't exactly explain why.",
         T0004: "You can see a squirrel, peacefully collecting some nuts near an old tree stump. As soon as it sees you, it freezes and watches you carefully.",
         T0005: "You continue walking, heading deeper into the forest. In the distance, you can see a deer, staring at you. As you get closer, it hurries away behind some bushes.",
         T0006: "After a few hundred meters, you reach a fork in the road.",
