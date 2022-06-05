@@ -81,23 +81,27 @@ namespace Endabgabe {
     },
     lake_entrance: {
       name: "Lake on first arrival",
-      background: ""
+      background: "Images/Backgrounds/lake_entrance.png"
     },
     lake: {
       name: "The Lake",
-      background: ""
+      background: "Images/Backgrounds/lake.png"
+    },
+    lake_castle: {
+      name: "Castle near the lake",
+      background: "Images/Backgrounds/lake_castle.png"
     },
     lake_polluted_water: {
       name: "Polluted water",
-      background: ""
+      background: "Images/Backgrounds/lake_polluted_water.png"
     },
     lake_rocks: {
       name: "Rocks",
-      background: ""
+      background: "Images/Backgrounds/lake_rocks.png"
     },
     lake_bridge: {
       name: "Bride",
-      background: ""
+      background: "Images/Backgrounds/lake_bridge.png"
     },
     deep_forest_entrance: {
       name: "Entrance to the deeper forest",
@@ -183,13 +187,13 @@ namespace Endabgabe {
   export let items = {
     rock: {
       name: "Rock",
-      description: "A mysterious part of a rock, found in the middle of the forest",
+      description: "A mysterious part of a rock, found in the middle of the forest.",
       image: "",
       static: true
     },
-    book: {
+    bag: {
       name: "Bag",
-      description: "A bag with a Walkman and a couple of cassettes inside",
+      description: "A bag with a Walkman and a couple of cassettes inside. It look like it could still work.",
       image: "",
       static: true
     }
@@ -288,6 +292,9 @@ namespace Endabgabe {
 
 
       // Chapter 3 - Lake
+      { scene: EnterLake, name: "EnterLake", id: "EnterLake" },
+      { scene: ExamineWater, name: "ExamineWater", id: "ExamineWater" },
+      { scene: ExamineCastle, name: "ExamineCastle", id: "ExamineCastle" },
 
       // Chapter 4 - Deep Forest
 

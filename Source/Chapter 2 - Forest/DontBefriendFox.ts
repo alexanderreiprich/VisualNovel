@@ -98,7 +98,7 @@ namespace Endabgabe {
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;
 
-      return "";
+      return "EnterLake";
 
     }
   }

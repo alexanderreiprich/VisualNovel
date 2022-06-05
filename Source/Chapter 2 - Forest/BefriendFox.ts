@@ -155,10 +155,12 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0042);
       await ƒS.Speech.tell(characters.cat, text.Cat.T0043);
 
+      await ƒS.Character.hide(characters.tommy);
+
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;
 
-      return "";
+      return "EnterLake";
     
     }
   
@@ -289,7 +291,7 @@ namespace Endabgabe {
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;
 
-      return "";
+      return ""; // TODO: Deep Forest
 
     }
   }

@@ -87,6 +87,10 @@ declare namespace Endabgabe {
             name: string;
             background: string;
         };
+        lake_castle: {
+            name: string;
+            background: string;
+        };
         lake_polluted_water: {
             name: string;
             background: string;
@@ -183,7 +187,7 @@ declare namespace Endabgabe {
             image: string;
             static: boolean;
         };
-        book: {
+        bag: {
             name: string;
             description: string;
             image: string;
@@ -256,4 +260,13 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function MeetFox(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function EnterLake(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function ExamineCastle(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function ExamineWater(): ƒS.SceneReturn;
 }

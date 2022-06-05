@@ -151,23 +151,27 @@ var Endabgabe;
         },
         lake_entrance: {
             name: "Lake on first arrival",
-            background: ""
+            background: "Images/Backgrounds/lake_entrance.png"
         },
         lake: {
             name: "The Lake",
-            background: ""
+            background: "Images/Backgrounds/lake.png"
+        },
+        lake_castle: {
+            name: "Castle near the lake",
+            background: "Images/Backgrounds/lake_castle.png"
         },
         lake_polluted_water: {
             name: "Polluted water",
-            background: ""
+            background: "Images/Backgrounds/lake_polluted_water.png"
         },
         lake_rocks: {
             name: "Rocks",
-            background: ""
+            background: "Images/Backgrounds/lake_rocks.png"
         },
         lake_bridge: {
             name: "Bride",
-            background: ""
+            background: "Images/Backgrounds/lake_bridge.png"
         },
         deep_forest_entrance: {
             name: "Entrance to the deeper forest",
@@ -251,13 +255,13 @@ var Endabgabe;
     Endabgabe.items = {
         rock: {
             name: "Rock",
-            description: "A mysterious part of a rock, found in the middle of the forest",
+            description: "A mysterious part of a rock, found in the middle of the forest.",
             image: "",
             static: true
         },
-        book: {
+        bag: {
             name: "Bag",
-            description: "A bag with a Walkman and a couple of cassettes inside",
+            description: "A bag with a Walkman and a couple of cassettes inside. It look like it could still work.",
             image: "",
             static: true
         }
@@ -343,6 +347,9 @@ var Endabgabe;
             { scene: Endabgabe.BefriendFoxFirstEncounter, name: "BefriendFoxFirstEncounter", id: "BefriendFoxFirstEncounter" },
             { scene: Endabgabe.IntoDeepForest, name: "IntoDeepForest", id: "IntoDeepForest" },
             // Chapter 3 - Lake
+            { scene: Endabgabe.EnterLake, name: "EnterLake", id: "EnterLake" },
+            { scene: Endabgabe.ExamineWater, name: "ExamineWater", id: "ExamineWater" },
+            { scene: Endabgabe.ExamineCastle, name: "ExamineCastle", id: "ExamineCastle" },
             // Chapter 4 - Deep Forest
             // Chapter 5 - Clearing
             // Empty End Scene
@@ -844,9 +851,10 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0041);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0042);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0043);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
-            return "";
+            return "EnterLake";
         }
         else {
             console.log("- - - Scene 6.5.3: New Friends - - -");
@@ -954,7 +962,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0034);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
-            return "";
+            return ""; // TODO: Deep Forest
         }
     }
     Endabgabe.BefriendFox = BefriendFox;
@@ -1054,7 +1062,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0028);
         Endabgabe.dataForSave.encounteredAnyAnimal = true;
         Endabgabe.dataForSave.encounteredFox = true;
-        return "MeetFox";
+        return ""; // TODO: Deep Forest
     }
     Endabgabe.BefriendFoxFirstEncounter = BefriendFoxFirstEncounter;
 })(Endabgabe || (Endabgabe = {}));
@@ -1145,7 +1153,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0027);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
-            return "";
+            return "EnterLake";
         }
     }
     Endabgabe.DontBefriendFox = DontBefriendFox;
@@ -1445,5 +1453,255 @@ var Endabgabe;
         }
     }
     Endabgabe.MeetFox = MeetFox;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function EnterLake() {
+        console.log("- - - Scene 7: Refreshment - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "After a couple minutes of walking, you reach your destination. While everybody says it is a lake, it is actually more like a big pond.",
+                T0002: "On the left side is a path that leads around the lake.",
+                T0003: "On the right side you can find a short bridge, that leads to the courtyard of the so-called castle. Similar to the lake, it is actually just a rather big mansion.",
+                T0005: "The cat jumps from your arms to the ground and runs towards the edge of the lake. From the distance you hear intense slurping."
+            },
+            Protagonist: {
+                T0004: "Alright, there we are, get down and drink something!"
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_entrance);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        if (Endabgabe.dataForSave.travelWithCat) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+        }
+        let examineAnswer = {
+            water: "Check out the water",
+            castle: "Check out the castle"
+        };
+        let examine = await Endabgabe.ƒS.Menu.getInput(examineAnswer, "decision");
+        switch (examine) {
+            case examineAnswer.water:
+                return "ExamineWater";
+            case examineAnswer.castle:
+                return "ExamineCastle";
+        }
+    }
+    Endabgabe.EnterLake = EnterLake;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function ExamineCastle() {
+        console.log("- - - Scene 9: A small kingdom - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "You haven't been here often in the past few years, so you completely forgot how beautiful the scenery is.",
+                T0002: "The big mansion, the small bridge leading to it, the lake around it, all those statues… It radiates an almost dreamy feeling, like a small little kingdom in the middle of the woods.",
+                T0003: "This would be a great opportunity to take a picture, but your current position isn't that optimal.",
+                T0004: "You carefully step on the loosely stacked stones next to the edge of the lake. Some of them are a bit wet, which is why you are extra careful.",
+                T0005: "Once you got around 1 meter higher, you pull out your phone. Just as you want to press the shutter button, it happens.",
+                T0006: "You slip, fall and land on your back. Thankfully, not on any stones, but the soft grass.",
+                T0008: "Still, it hurts, and this is something you should've seen coming. As you get up, you see that, after your short-lived climbing adventure, all stones are scattered around.",
+                T0009: "Standing on the bridge, you can get a better view of both, the lake and the mansion. You take a few pictures and sit down in the shade.",
+                T0010: "A few minutes pass, and by now, the cat made itself comfortable on your lap.",
+                T0019: "Still a bit in pain, you get back to your feet and go back to bridge to sit on the small wall next to it.",
+                T0020: "A few minutes pass, and by the time the pain has faded away, the cat made itself comfortable on your lap."
+            },
+            Protagonist: {
+                T0007: "Ugh… why am I so stupid…?",
+                T0012: "Seems like somebody didn't get enough sleep, huh. What did you do all the time?",
+                T0014: "Yeah, I can imagine, I'm also a bit tired. To be honest, I kinda want to go home now.",
+                T0016: "Ugh, okay. Let's go then. Don't run off again!",
+                T0018: "Ouch, that hurt… why was I so stupid? My god…",
+                T0022: "Very funny. Yeah, I think I am fine. What did you do all the time?",
+                T0024: "Yeah, I can imagine. I kinda want to go home now.",
+                T0026: "Ugh, okay. Let's go then. Don't run off again!"
+            },
+            Cat: {
+                T0011: "*yawn*",
+                T0013: "I was drinking, then I got sleepy and fell asleep on the bridge. All the chasing made me tired.",
+                T0015: "No!! I still want to see the actual forest, we haven't been there yet!",
+                T0017: "Noo, I won't!",
+                T0021: "How was the fall? Hehe",
+                T0023: "I was drinking, then I got sleepy and fell asleep on the bridge. All the chasing made me tired.",
+                T0025: "No!! I still want to see the actual forest, we haven't been there yet!",
+                T0027: "Noo, I won't!"
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_castle);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        let repositionLakeAnswer = {
+            climbRocks: "Climb some rocks to get to a higher position",
+            stepOnBridge: "Step on the bridge for a better angle"
+        };
+        let repositionLake = await Endabgabe.ƒS.Menu.getInput(repositionLakeAnswer, "decision");
+        switch (repositionLake) {
+            case repositionLakeAnswer.climbRocks:
+                console.log("- - - Scene 9.1: Higher, higher! - - -");
+                Endabgabe.ƒS.Speech.hide();
+                await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
+                await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0007);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
+                let pickRocksUpAnswer = {
+                    pickUp: "Pick them up and clean up the mess",
+                    leave: "Leave them be"
+                };
+                let pickRocksUp = await Endabgabe.ƒS.Menu.getInput(pickRocksUpAnswer, "decision");
+                switch (pickRocksUp) {
+                    case pickRocksUpAnswer.pickUp:
+                        return "MeetTurtle";
+                    case pickRocksUpAnswer.leave:
+                        console.log("- - - Scene 11: They are just stones - - -");
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0019);
+                        Endabgabe.ƒS.Speech.hide();
+                        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_bridge);
+                        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
+                        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+                        await Endabgabe.ƒS.update(0.3);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0021);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0022);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0023);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0024);
+                        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomcenter);
+                        await Endabgabe.ƒS.update(0.3);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0025);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0026);
+                        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+                        await Endabgabe.ƒS.update(0.3);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0027);
+                        return "";
+                }
+            case repositionLakeAnswer.stepOnBridge:
+                console.log("- - - Scene 9.2: Bridge - - -");
+                Endabgabe.ƒS.Speech.hide();
+                await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_bridge);
+                await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+                await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter); // TODO: Add yawning pose
+                await Endabgabe.ƒS.update(0.3);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0011);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0013);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+                await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomcenter);
+                await Endabgabe.ƒS.update(0.3);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0015);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0016);
+                await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+                await Endabgabe.ƒS.update(0.3);
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0017);
+                return "";
+        }
+    }
+    Endabgabe.ExamineCastle = ExamineCastle;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function ExamineWater() {
+        console.log("- - - Scene 8: Think of the turtles! - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "You walk along the edge of the lake. Since it has been this warm for a couple of days already, you can see and hear the mosquitos buzzing everywhere.",
+                T0002: "Of course, you forgot the bring any kind of protection.",
+                T0003: "You spot a pile of indistinguishable things a few meters away in a shallower spot of the lake. A strong smell comes from there that really messes with your head.",
+                T0004: "As you step closer to the origin of the smell, you see where it comes from.",
+                T0005: "Somebody has dumped a ton of garbage into the lake. You see a lot of things floating around, all of which definitely do not belong into a body of water.",
+                T0006: "Some things peak your curiosity.",
+                T0007: "The bag is heavier than you thought. Surprisingly, it hasn't been in the water at all. Whoever dumped everything here, was probably too stupid to litter correctly.",
+                T0008: "Inside the bag is an old Walkman, as well as a couple of old cassette tapes. You remember most of them from your childhood.",
+                T0010: "You fish one of the bottles out of the water.",
+                T0011: "As soon as you hold it in your hand, you realize that this is where the horrible smell came from. Out of reflex, you throw the disgusting bottle back into the water.",
+                T0012: "Some things are better left untouched.",
+                T0013: "With the horrid smell still stuck in your nose, you make your way back to the castle."
+            },
+            Protagonist: {
+                T0009: "Oh wow, these albums look pretty new, some are still sealed. This is too cool to throw away. But… would it be stealing if I just took it?"
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        let examineLakeSmellAnswer = {
+            examineSmell: "Examine the smell",
+            goBack: "Go back, since it might be dangerous"
+        };
+        let examineLakeSmell = await Endabgabe.ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");
+        if (examineLakeSmell == examineLakeSmellAnswer.examineSmell) {
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+            let examineLakeItemsAnswer = {
+                grabBag: "Grab a small bag lying next to the water",
+                inspectBottle: "Inspect one of the bottles floating on the surface",
+                dontTouch: "Don't touch anything, as it is unhygenic"
+            };
+            let examineLakeItems = await Endabgabe.ƒS.Menu.getInput(examineLakeItemsAnswer);
+            switch (examineLakeItems) {
+                case examineLakeItemsAnswer.grabBag:
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0009);
+                    let takeBagAnswer = {
+                        takeBag: "Take the bag with you",
+                        leaveBag: "Leave it there, you are no thief"
+                    };
+                    let takeBag = await Endabgabe.ƒS.Menu.getInput(takeBagAnswer);
+                    if (takeBag == takeBagAnswer.takeBag) {
+                        Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+                    }
+                    else {
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+                    }
+                    return "ExamineCastle";
+                case examineLakeItemsAnswer.inspectBottle:
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+                    return "ExamineCastle";
+                case examineLakeItemsAnswer.dontTouch:
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+                    return "ExamineCastle";
+            }
+        }
+        else {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+            return "ExamineCastle";
+        }
+    }
+    Endabgabe.ExamineWater = ExamineWater;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map
