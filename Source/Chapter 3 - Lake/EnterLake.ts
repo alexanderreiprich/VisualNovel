@@ -25,6 +25,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
 
     if (dataForSave.travelWithCat) {
+      // ƒS.Speech.setTickerDelays(150);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0004);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
     }

@@ -152,6 +152,9 @@ declare namespace Endabgabe {
         fox: {
             name: string;
         };
+        turtle: {
+            name: string;
+        };
         girl: {
             name: string;
         };
@@ -177,6 +180,16 @@ declare namespace Endabgabe {
                 surprised: string;
                 uncomfortable: string;
                 concerned: string;
+            };
+        };
+        richard: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                angry: string;
+                happy: string;
+                neutral: string;
+                sad: string;
             };
         };
     };
@@ -269,4 +282,13 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function ExamineWater(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function Interrupted(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function MeetTurtle(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function TurtleStory(): ƒS.SceneReturn;
 }

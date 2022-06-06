@@ -153,6 +153,9 @@ namespace Endabgabe {
     fox: {
       name: "Fox"
     },
+    turtle: {
+      name: "Turtle"
+    },
     girl: {
       name: "Girl"
     },
@@ -180,6 +183,16 @@ namespace Endabgabe {
         surprised: "Images/Characters/fox_surprised.png",
         uncomfortable: "Images/Characters/fox_uncomfortable.png",
         concerned: "Images/Characters/fox_concerned.png"
+      }
+    },
+    richard: {
+      name: "Richard",
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
+      pose: {
+        angry: "",
+        happy: "",
+        neutral: "",
+        sad: ""
       }
     }
   };
@@ -295,6 +308,9 @@ namespace Endabgabe {
       { scene: EnterLake, name: "EnterLake", id: "EnterLake" },
       { scene: ExamineWater, name: "ExamineWater", id: "ExamineWater" },
       { scene: ExamineCastle, name: "ExamineCastle", id: "ExamineCastle" },
+      { scene: MeetTurtle, name: "MeetTurtle", id: "MeetTurtle" },
+      { scene: TurtleStory, name: "TurtleStory", id: "TurtleStory" },
+      { scene: Interrupted, name: "Interrupted", id: "Interrupted" },
 
       // Chapter 4 - Deep Forest
 
@@ -306,7 +322,6 @@ namespace Endabgabe {
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
     dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
-
     // hide speech on title screen
     ƒS.Speech.hide();
     // start the sequence

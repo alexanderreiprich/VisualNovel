@@ -222,6 +222,9 @@ var Endabgabe;
         fox: {
             name: "Fox"
         },
+        turtle: {
+            name: "Turtle"
+        },
         girl: {
             name: "Girl"
         },
@@ -249,6 +252,16 @@ var Endabgabe;
                 surprised: "Images/Characters/fox_surprised.png",
                 uncomfortable: "Images/Characters/fox_uncomfortable.png",
                 concerned: "Images/Characters/fox_concerned.png"
+            }
+        },
+        richard: {
+            name: "Richard",
+            origin: Endabgabe.ƒS.ORIGIN.BOTTOMCENTER,
+            pose: {
+                angry: "",
+                happy: "",
+                neutral: "",
+                sad: ""
             }
         }
     };
@@ -350,6 +363,9 @@ var Endabgabe;
             { scene: Endabgabe.EnterLake, name: "EnterLake", id: "EnterLake" },
             { scene: Endabgabe.ExamineWater, name: "ExamineWater", id: "ExamineWater" },
             { scene: Endabgabe.ExamineCastle, name: "ExamineCastle", id: "ExamineCastle" },
+            { scene: Endabgabe.MeetTurtle, name: "MeetTurtle", id: "MeetTurtle" },
+            { scene: Endabgabe.TurtleStory, name: "TurtleStory", id: "TurtleStory" },
+            { scene: Endabgabe.Interrupted, name: "Interrupted", id: "Interrupted" },
             // Chapter 4 - Deep Forest
             // Chapter 5 - Clearing
             // Empty End Scene
@@ -1478,6 +1494,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
         if (Endabgabe.dataForSave.travelWithCat) {
+            // ƒS.Speech.setTickerDelays(150);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
         }
@@ -1703,5 +1720,179 @@ var Endabgabe;
         }
     }
     Endabgabe.ExamineWater = ExamineWater;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function Interrupted() {
+        console.log("- - - Scene 10.2: Interrupted - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0004: "You put the turtle down on the ground and without continuing his story any further, the turtle turned around and swam away.",
+                T0005: "Feeling a bit guilty and confused, you call for your cat and continue your walk along the path next to the lake, leading deeper into the forest.",
+                T0006: "Feeling a bit guilty and confused, you continue your walk along the path next to the lake, leading deeper into the forest."
+            },
+            Protagonist: {
+                T0001: "Hey, uh, that’s a great story, but I kinda have to get going now…",
+                T0003: "Wait, I'm sorry…"
+            },
+            Turtle: {
+                T0002: "Huh, you young people are all so stressed and entitled. Back in my days we listened to the elderly… So rude… Let me down, right now."
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        Endabgabe.ƒS.Speech.setTickerDelays(50);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
+        Endabgabe.ƒS.Speech.setTickerDelays(150);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0002);
+        Endabgabe.ƒS.Speech.setTickerDelays(50);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+        return "";
+    }
+    Endabgabe.Interrupted = Interrupted;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function MeetTurtle() {
+        console.log("- - - Scene 10: It's not just a boulder - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0002: "Slowly starting to sweat in the heat, you begin gathering the stones and stacking them on top of each other again.",
+                T0003: "In the corner of your eye you notice a bigger, oddly shaped stone. Has it been there before?",
+                T0005: "As you lift it up, you notice how heavy it is, when suddenly…",
+                T0008: "You freeze. Have you gone insane or did this rock just talk to you?",
+                T0010: "You turn the stone around and you see a small head with bright yellow eyes poking out of the presumed rock. You just picked up a turtle.",
+            },
+            Protagonist: {
+                T0001: "Well, there is nobody that cleans up nature, so I guess, I have to do this.",
+                T0004: "Okay, this is the last one, here we go…",
+                T0007: "What?",
+                T0011: "Well… you really did scare me. I’m sorry, I didn’t want to… take you?",
+                T0013: "Nice to meet you too, my name is " + Endabgabe.dataForSave.nameProtagonist + ". Have you been lying there all this time?"
+            },
+            Turtle: {
+                T0006: "Well, hello there.",
+                T0009: "Oh, apologies, I didn’t want to scare you. People tend to overlook me, hahaha.",
+                T0012: "Haha, no problem youngling. I’ve seen a lot of rude people in my life and you are certainly not one of them. My name is Richard, pleased to meet you."
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+        Endabgabe.ƒS.Speech.setTickerDelays(150);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.questionmark, text.Turtle.T0006);
+        Endabgabe.ƒS.Speech.setTickerDelays(50);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0007);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
+        Endabgabe.ƒS.Speech.setTickerDelays(150);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.questionmark, text.Turtle.T0009);
+        Endabgabe.ƒS.Speech.setTickerDelays(50);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
+        Endabgabe.ƒS.Speech.setTickerDelays(150);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.questionmark, text.Turtle.T0012);
+        Endabgabe.ƒS.Speech.setTickerDelays(50);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0013);
+        return "TurtleStory";
+    }
+    Endabgabe.MeetTurtle = MeetTurtle;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function TurtleStory() {
+        console.log("- - - Scene 10.1: Long Time - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Turtle: {
+                T0001: "Oh, please, just because I am an old lad doesn’t mean that I have been here for decades. I actually remember being young like you…",
+                T0002: "Back then I used to come here all the time to admire this amazing lake… I have probably been here for longer than you are alive hahaha.",
+                T0003: "I remember coming here with my girlfriend when I was your age… we had picnics here every week, it was a great tradition. Oh, it was fantastic…",
+                T0004: "This was also my go-to place when I eventually broke up with her… oh man… The only things comforting me were the calm chirping of birds and the splashing of the water.",
+                T0005: "There is just something to calming about this place. I also came back here when my wife died a few years ago. Maybe this is the place that I am destined to be, haha",
+                T0006: "Aw, it was too early for her to go, you know. She was still so young and happy… I remember meeting her for the first time back when I used to work at the bank. She was the one with the gorgeous smile, haha, I remember like it was yesterday.",
+                T0007: "I asked her out on a date on a sunny summer afternoon. We got some ice cream and then went to watch a movie. Exactly there I knew that I wanted to marry her. And I did… our marriage was amazing, there wasn’t a single boring day.",
+                T0008: "We used to surprise each other with small gifts every once in a while. I kept those gifts all my life, every single one of them.",
+                T0009: "Even the ones I didn’t really find a use for. But that is not what matters. It is the fact that we kept this tradition going for so long.",
+                T0010: "Once I got her the most beautiful ring I could find, and you couldn’t imagine what her face looked like when she saw what I got her, hahaha.",
+                T0011: "But it all vanished when she got diagnosed with cancer… It was a horrible sight to see. Every day became a struggle. But I loved her every single day, until she passed away.",
+                T0012: "I still think about her every day. I just hope that she is happy in heaven and that I can join her someday…",
+                T0013: "…",
+                T0014: "Oh my, I am sorry, I haven’t had anybody to speak with for years. I just needed to get all of this out, you know.",
+                T0015: "I’ve just… been so lonely… without my wife…"
+            },
+            Narrator: {
+                T0016: "The turtle stops talking, as if it just realized something. Suddenly you notice, that the previous yellow eyes, slowly fade to black.",
+                T0017: "After a minute or two, you put the turtle down.",
+                T0018: "Without another word to say, it turns around and robs back into the water.",
+                T0020: "There are a ton of questions floating around in your head. You have answers to none of them.",
+                T0023: "Still confused, not knowing what just happened, you start walking along the path next to the lake, leading deeper into the forest."
+            },
+            Protagonist: {
+                T0019: "…what just happened? Richard? Did I just imagine all of this? What happened to him?",
+                T0021: "This must have been… No, this was definitely real. I… I need to clear my mind.",
+                T0022: "Tommy? Come here!"
+            }
+        };
+        let interruptAnswer = {
+            interrupt: "Interrupt",
+            listen: "Listen"
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        Endabgabe.ƒS.Speech.setTickerDelays(150);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0003);
+        let interrupt = await Endabgabe.ƒS.Menu.getInput(interruptAnswer, "decision");
+        if (interrupt == interruptAnswer.interrupt) {
+            return "Interrupted";
+        }
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0004);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0005);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0006);
+        interrupt = await Endabgabe.ƒS.Menu.getInput(interruptAnswer, "decision");
+        if (interrupt == interruptAnswer.interrupt) {
+            return "Interrupted";
+        }
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0007);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0008);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0009);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0010);
+        interrupt = await Endabgabe.ƒS.Menu.getInput(interruptAnswer, "decision");
+        if (interrupt == interruptAnswer.interrupt) {
+            return "Interrupted";
+        }
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0011);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0012);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0013);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0014);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0015);
+        Endabgabe.ƒS.Speech.setTickerDelays(50);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0017);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0018);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
+        if (Endabgabe.dataForSave.travelWithCat)
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0022);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0023);
+    }
+    Endabgabe.TurtleStory = TurtleStory;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map
