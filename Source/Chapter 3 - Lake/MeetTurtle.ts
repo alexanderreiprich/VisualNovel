@@ -17,13 +17,13 @@ namespace Endabgabe {
         T0001: "Well, there is nobody that cleans up nature, so I guess, I have to do this.",
         T0004: "Okay, this is the last one, here we go…",
         T0007: "What?",
-        T0011: "Well… you really did scare me. I’m sorry, I didn’t want to… take you?",
+        T0011: "Well… you really did scare me. I'm sorry, I didn't want to… take you?",
         T0013: "Nice to meet you too, my name is " + dataForSave.nameProtagonist + ". Have you been lying there all this time?"
       },
       Turtle: {
         T0006: "Well, hello there.",
-        T0009: "Oh, apologies, I didn’t want to scare you. People tend to overlook me, hahaha.",
-        T0012: "Haha, no problem youngling. I’ve seen a lot of rude people in my life and you are certainly not one of them. My name is Richard, pleased to meet you."
+        T0009: "Oh, apologies, I didn't want to scare you. People tend to overlook me, hahaha.",
+        T0012: "Haha, no problem youngling. I've seen a lot of rude people in my life and you are certainly not one of them. My name is Richard, pleased to meet you."
       }
     };
 

@@ -105,35 +105,35 @@ namespace Endabgabe {
     },
     deep_forest_entrance: {
       name: "Entrance to the deeper forest",
-      background: ""
+      background: "Images/Backgrounds/deep_forest_entrance.png"
     },
     deep_forest_split: {
       name: "Split path in deep forest",
-      background: ""
+      background: "Images/Backgrounds/deep_forest_split.png"
     },
     deep_forest_split_bridge: {
       name: "Left path of deep forest split path",
-      background: ""
+      background: "Images/Backgrounds/deep_forest_split_bridge.png"
     },
     deep_forest_split_path: {
       name: "Right path of deep forest split path",
-      background: ""
+      background: "Images/Backgrounds/deep_forest_split_path.png"
     },
     clearing_ground: {
       name: "The ground of the clearing",
-      background: ""
+      background: "Images/Backgrounds/clearing_ground.png"
     },
     clearing_center: {
       name: "The center of the clearing",
-      background: ""
+      background: "Images/Backgrounds/clearing_center.png"
     },
     clearing_trees: {
       name: "The trees around the clearing",
-      background: ""
+      background: "Images/Backgrounds/clearing_trees.png"
     },
     evening_walk: {
       name: "The walk home",
-      background: ""
+      background: "Images/Backgrounds/evening_walk.png"
     }
   };
 

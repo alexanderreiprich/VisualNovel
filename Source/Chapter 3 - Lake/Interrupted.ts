@@ -11,7 +11,7 @@ namespace Endabgabe {
         T0006: "Feeling a bit guilty and confused, you continue your walk along the path next to the lake, leading deeper into the forest."
       },
       Protagonist: {
-        T0001: "Hey, uh, that’s a great story, but I kinda have to get going now…",
+        T0001: "Hey, uh, that's a great story, but I kinda have to get going now…",
         T0003: "Wait, I'm sorry…"
       },
       Turtle: {
