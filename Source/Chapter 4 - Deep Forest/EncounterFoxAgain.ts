@@ -11,8 +11,8 @@ namespace Endabgabe {
         T0001: "Oh is that you June?",
         T0005: "Yes, it is. June, meet Tommy.",
         T0006: "I feel like half of my friends are animals now.",
-        T0009: "I don’t think you have to envy somebody because of the animal they became. I mean you are a cute cat, that is also cool!",
-        T0014: "It’s okay if you don’t talk about it, no pressure.",
+        T0009: "I don't think you have to envy somebody because of the animal they became. I mean you are a cute cat, that is also cool!",
+        T0014: "It's okay if you don't talk about it, no pressure.",
         T0018: "I totally understand. Have you seen the lake? There is so much garbage in it…"
 
       },
@@ -27,8 +27,8 @@ namespace Endabgabe {
         T0007: "Nice to meet you, Tommy.",
         T0011: "…",
         T0013: "Well, I… um…",
-        T0015: "No, it’s okay… Well, honestly, I never liked my life as a human. Humans aren’t accepting people, and if you don’t fit into certain criteria, you get excluded.",
-        T0016: "It sucks. And you can’t do anything about it. Of course, there are people that stand up for you, but it doesn’t change anything in the long run. It’s a systemic problem.",
+        T0015: "No, it's okay… Well, honestly, I never liked my life as a human. Humans aren't accepting people, and if you don't fit into certain criteria, you get excluded.",
+        T0016: "It sucks. And you can't do anything about it. Of course, there are people that stand up for you, but it doesn't change anything in the long run. It's a systemic problem.",
         T0017: "And it is just really… frustrating and sad. That, in addition to the disregard in terms of the planet and its resources is just depressing.",
         T0019a: "Oh, really? What kind of garbage?",
         T0019b: "I mean, have you seen the lake? It was so beautiful but now there is nothing but garbage in it."
@@ -36,7 +36,7 @@ namespace Endabgabe {
     };
 
     // Depending on a previous encounter, the dialogue starts differently
-    if (!dataForSave.encounteredDeer) {
+    if (!dataForSave.encounteredFox) {
       let text2 = {
         Protagonist: {
           T0001: "Tommy, come here, stay away from the fox!",
@@ -195,14 +195,14 @@ namespace Endabgabe {
               T0005: "The cat runs away back into the forest, with the fox and you trying to keep up. After a few minutes you reach the lake."
             },
             Protagonist: {
-              T0001: "Yeah, I heard about it. It's disgusting"
+              T0001: "Yeah, I heard about it. It's disgusting."
             },
             Cat: {
               T0004: "Oh, I know a short cut, follow me!"
             },
             Fox: {
               T0002: "Exactly! I used to go there and pick up what I could so that it could be disposed properly.",
-              T0003: "I haven’t been there in a few weeks though, so things might have changed?"
+              T0003: "I haven't been there in a few weeks though, so things might have changed?"
             }
           };
           await ƒS.Speech.tell(characters.protagonist, text3.Protagonist.T0001);
@@ -255,7 +255,7 @@ namespace Endabgabe {
               T0014: "In silence, you both head back into the forest the way you came from. When you arrive at the bridge, you suddenly hear a loud noise coming from the small dirt path, surrounded by tall, dark trees."
             },
             Protagonist: {
-              T0001: "Hey, you know what? I don’t think that it is that much of a problem.",
+              T0001: "Hey, you know what? I don't think that it is that much of a problem.",
               T0003: "Humans have been using the nature for years already. What does it matter if you throw some stuff away?",
               T0004: "I really dislike people that feel like they are better than others, especially when they pretend to care about the environment.",
               T0005: "You are really annoying with all this nature crap, you know that, right?",

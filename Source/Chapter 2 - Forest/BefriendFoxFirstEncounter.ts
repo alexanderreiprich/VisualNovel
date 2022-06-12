@@ -114,7 +114,7 @@ namespace Endabgabe {
     dataForSave.encounteredAnyAnimal = true;
     dataForSave.encounteredFox = true;
 
-    return "DeepForestAlone"; // TODO: Deep Forest
+    return "DeepForestAlone";
 
   }
 }

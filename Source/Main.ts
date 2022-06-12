@@ -317,6 +317,7 @@ namespace Endabgabe {
       { scene: CatBridge, name: "CatBridge", id: "CatBridge" },
       { scene: EncounterFoxAgain, name: "EncounterFoxAgain", id: "EncounterFoxAgain" },
       { scene: DeepForestAlone, name: "DeepForestAlone", id: "DeepForestAlone" },
+      { scene: EncounterFoxAgainNoCat, name: "EncounterFoxAgainNoCat", id: "EncounterFoxAgainNoCat" },
 
       // Chapter 5 - Clearing
 

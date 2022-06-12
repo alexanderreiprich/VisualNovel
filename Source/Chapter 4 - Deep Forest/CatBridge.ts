@@ -7,7 +7,7 @@ namespace Endabgabe {
     let text = {
       Narrator: {
         T0001: "You cross the bridge and reach a dirt path. After a couple of meters, more light shines through the trees, until you step out of the forest.",
-        T0002: "You are now on the side of the field, at the edge of the forest. The sun is still shining, but it isn’t as hot as when you entered the forest.",
+        T0002: "You are now on the side of the field, at the edge of the forest. The sun is still shining, but it isn't as hot as when you entered the forest.",
         T0006: "The cat jumps from your shoulder onto the ground."
 
       },
@@ -78,14 +78,14 @@ namespace Endabgabe {
         Cat: {
           T0002: "What are you doing?",
           T0005: "Ah, I see where this is going!",
-          T0007: "Yes! Come on, come on, let’s play!!",
+          T0007: "Yes! Come on, come on, let's play!!",
           T0009: "Whoa, what is that?",
           T0012: "…eyes."
         },
         Protagonist: {
           T0001: "Well, this could work…",
           T0003: "Just wait.",
-          T0006: "Aaaand, we’re done. Enjoy your new DIY cat toy. It’s like one of these rods with a feather at the end, but… with more nature.",
+          T0006: "Aaaand, we're done. Enjoy your new DIY cat toy. It's like one of these rods with a feather at the end, but… with more nature.",
           T0011: "What is it?",
           T0013: "Huh?"
         }
@@ -136,19 +136,19 @@ namespace Endabgabe {
         Narrator: {
           T0003: "The cat points to a couple of red roses growing at the side.",
           T0007: "Half a minute passes with the cat walking up and down the path, looking around.",
-          T0010: "The cat wasn’t even close to the bright blue bottle opener that somebody lost a few meters away.",
+          T0010: "The cat wasn't even close to the bright blue bottle opener that somebody lost a few meters away.",
           T0011: "Suddenly, you hear a loud scream.",
-          T0014: "As the cat jumps back, a fox comes crawling out of the bush, it’s blue eyes shining bright in the sunlight."
+          T0014: "As the cat jumps back, a fox comes crawling out of the bush, it's blue eyes shining bright in the sunlight."
         },
         Protagonist: {
           T0001: "Alright Tommy, I spy with my little eye… something red.",
-          T0004: "Yep, that’s it. Okay…",
+          T0004: "Yep, that's it. Okay…",
           T0005: "I spy with my little eye… something bright blue.",
           T0009: "Uh, what did you find?",
           T0013: "What, are you okay?"
         },
         Cat: {
-          T0002: "Hmm, okay… ah, yes, it’s one of these flowers!",
+          T0002: "Hmm, okay… ah, yes, it's one of these flowers!",
           T0006: "Oh… okay… let me see…",
           T0008: "Oh, I found it! Crazy how you saw that from up there!",
           T0012: "AHHH!"
@@ -200,14 +200,14 @@ namespace Endabgabe {
       let text2 = {
         Narrator: {
           T0003: "You turn around.",
-          T0005: "Ten seconds pass, and you hear the rustling of leaves behind you. It couldn’t be hard to figure out where the cat has hidden.",
-          T0008: "The cat is halfway crouched underneath a bush - The first half is visible; the other half isn’t.",
+          T0005: "Ten seconds pass, and you hear the rustling of leaves behind you. It couldn't be hard to figure out where the cat has hidden.",
+          T0008: "The cat is halfway crouched underneath a bush - The first half is visible; the other half isn't.",
           T0010: "The cat slowly backs away from the bush, with their eyes fixated on whatever still hides in the bush.",
           T0012: "Before the cat could answer, you can see a fox crawling out of the bush."
         },
         Protagonist: {
-          T0001: "Alright, I’ll count to 10 and you have to hide. Ready?",
-          T0004: "Perfect. Let’s go! 10… 9… 8…",
+          T0001: "Alright, I'll count to 10 and you have to hide. Ready?",
+          T0004: "Perfect. Let's go! 10… 9… 8…",
           T0006: "Zero! Come out, come out, where ever you a-.",
           T0007: "Okay, wow, Tommy, you had plent of time to hide.",
           T0011: "What did you find?"

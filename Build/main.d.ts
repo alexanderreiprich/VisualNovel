@@ -293,6 +293,9 @@ declare namespace Endabgabe {
     function TurtleStory(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
+    function BridgeAlone(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
     function CatBackstory(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
@@ -303,4 +306,7 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function EncounterFoxAgain(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function EncounterFoxAgainNoCat(): ƒS.SceneReturn;
 }

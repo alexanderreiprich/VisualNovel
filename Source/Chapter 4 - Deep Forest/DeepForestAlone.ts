@@ -37,7 +37,7 @@ namespace Endabgabe {
 
     switch (splitPathForest) {
       case splitPathForestAnswer.bridge:
-        return; // TODO: Add Return
+        return "BridgeAlone";
       case splitPathForestAnswer.path:
         return;  // TODO: Add Return
     }

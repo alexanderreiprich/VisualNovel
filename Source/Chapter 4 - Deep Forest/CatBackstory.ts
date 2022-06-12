@@ -101,6 +101,11 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0019);
 
+    ƒS.Speech.hide();
+    await ƒS.Character.hide(characters.tommy);
+    await ƒS.Location.show(locations.deep_forest_split);
+    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0021);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0022);
@@ -114,9 +119,9 @@ namespace Endabgabe {
 
     switch (splitPathForest) {
       case splitPathForestAnswer.bridge:
-        return; // TODO: Add Return
+        return "CatBridge";
       case splitPathForestAnswer.path:
-        return;  // TODO: Add Return
+        return "";  // TODO: Add Return
     }
   }
 }
