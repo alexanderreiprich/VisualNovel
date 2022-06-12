@@ -313,6 +313,10 @@ namespace Endabgabe {
       { scene: Interrupted, name: "Interrupted", id: "Interrupted" },
 
       // Chapter 4 - Deep Forest
+      { scene: CatBackstory, name: "CatBackstory", id: "CatBackstory" },
+      { scene: CatBridge, name: "CatBridge", id: "CatBridge" },
+      { scene: EncounterFoxAgain, name: "EncounterFoxAgain", id: "EncounterFoxAgain" },
+      { scene: DeepForestAlone, name: "DeepForestAlone", id: "DeepForestAlone" },
 
       // Chapter 5 - Clearing
 

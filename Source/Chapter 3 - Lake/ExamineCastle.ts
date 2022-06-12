@@ -112,7 +112,7 @@ namespace Endabgabe {
     
             await ƒS.Speech.tell(characters.tommy, text.Cat.T0027);
     
-            return "";
+            return "CatBackstory";
 
         }
 
@@ -146,7 +146,7 @@ namespace Endabgabe {
 
         await ƒS.Speech.tell(characters.tommy, text.Cat.T0017);
 
-        return "";
+        return "CatBackstory";
         
 
     }

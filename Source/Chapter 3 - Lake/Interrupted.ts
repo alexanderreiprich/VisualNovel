@@ -7,7 +7,7 @@ namespace Endabgabe {
     let text = {
       Narrator: {
         T0004: "You put the turtle down on the ground and without continuing his story any further, the turtle turned around and swam away.",
-        T0005: "Feeling a bit guilty and confused, you call for your cat and continue your walk along the path next to the lake, leading deeper into the forest.",
+        T0005: "Feeling a bit guilty and confused, you call Tommy and continue your walk along the path next to the lake, leading deeper into the forest.",
         T0006: "Feeling a bit guilty and confused, you continue your walk along the path next to the lake, leading deeper into the forest."
       },
       Protagonist: {
@@ -30,9 +30,13 @@ namespace Endabgabe {
     ƒS.Speech.setTickerDelays(50);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
-    await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
-    await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
-
-    return "";
+    if (dataForSave.travelWithCat) {
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
+      return "CatBackstory";
+    }
+    else {
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
+      return "DeepForestAlone";
+    }
   }
 }

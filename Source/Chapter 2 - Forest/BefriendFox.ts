@@ -291,7 +291,7 @@ namespace Endabgabe {
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;
 
-      return ""; // TODO: Deep Forest
+      return "DeepForestAlone"; // TODO: Deep Forest
 
     }
   }

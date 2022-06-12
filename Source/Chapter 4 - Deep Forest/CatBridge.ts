@@ -8,7 +8,7 @@ namespace Endabgabe {
       Narrator: {
         T0001: "You cross the bridge and reach a dirt path. After a couple of meters, more light shines through the trees, until you step out of the forest.",
         T0002: "You are now on the side of the field, at the edge of the forest. The sun is still shining, but it isn’t as hot as when you entered the forest.",
-        T0006: "The cat jumps from your shoulder onto the ground.",
+        T0006: "The cat jumps from your shoulder onto the ground."
 
       },
       Cat: {
@@ -126,7 +126,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0013);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0014);
 
-      return ""; // TODO: Add return
+      return "EncounterFoxAgain";
 
     }
 
@@ -190,7 +190,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0013);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0014);
 
-      return ""; // TODO: Add return
+      return "EncounterFoxAgain";
 
     }
 
@@ -244,7 +244,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0011);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0012);
 
-      return ""; // TODO: Add return
+      return "EncounterFoxAgain";
 
     }
   }

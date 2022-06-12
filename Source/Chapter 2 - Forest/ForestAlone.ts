@@ -43,7 +43,7 @@ namespace Endabgabe {
       case forestSplitAnswer.forest:
         return "MeetFox";
       case forestSplitAnswer.lake:
-        return "";
+        return "EnterLake";
     }
     
   }

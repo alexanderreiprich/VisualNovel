@@ -175,35 +175,35 @@ var Endabgabe;
         },
         deep_forest_entrance: {
             name: "Entrance to the deeper forest",
-            background: ""
+            background: "Images/Backgrounds/deep_forest_entrance.png"
         },
         deep_forest_split: {
             name: "Split path in deep forest",
-            background: ""
+            background: "Images/Backgrounds/deep_forest_split.png"
         },
         deep_forest_split_bridge: {
             name: "Left path of deep forest split path",
-            background: ""
+            background: "Images/Backgrounds/deep_forest_split_bridge.png"
         },
         deep_forest_split_path: {
             name: "Right path of deep forest split path",
-            background: ""
+            background: "Images/Backgrounds/deep_forest_split_path.png"
         },
         clearing_ground: {
             name: "The ground of the clearing",
-            background: ""
+            background: "Images/Backgrounds/clearing_ground.png"
         },
         clearing_center: {
             name: "The center of the clearing",
-            background: ""
+            background: "Images/Backgrounds/clearing_center.png"
         },
         clearing_trees: {
             name: "The trees around the clearing",
-            background: ""
+            background: "Images/Backgrounds/clearing_trees.png"
         },
         evening_walk: {
             name: "The walk home",
-            background: ""
+            background: "Images/Backgrounds/evening_walk.png"
         }
     };
     Endabgabe.characters = {
@@ -367,6 +367,10 @@ var Endabgabe;
             { scene: Endabgabe.TurtleStory, name: "TurtleStory", id: "TurtleStory" },
             { scene: Endabgabe.Interrupted, name: "Interrupted", id: "Interrupted" },
             // Chapter 4 - Deep Forest
+            { scene: Endabgabe.CatBackstory, name: "CatBackstory", id: "CatBackstory" },
+            { scene: Endabgabe.CatBridge, name: "CatBridge", id: "CatBridge" },
+            { scene: Endabgabe.EncounterFoxAgain, name: "EncounterFoxAgain", id: "EncounterFoxAgain" },
+            { scene: Endabgabe.DeepForestAlone, name: "DeepForestAlone", id: "DeepForestAlone" },
             // Chapter 5 - Clearing
             // Empty End Scene
             { id: "Empty Scene", scene: Endabgabe.Empty, name: "End" }
@@ -978,7 +982,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0034);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
-            return ""; // TODO: Deep Forest
+            return "DeepForestAlone"; // TODO: Deep Forest
         }
     }
     Endabgabe.BefriendFox = BefriendFox;
@@ -1078,7 +1082,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0028);
         Endabgabe.dataForSave.encounteredAnyAnimal = true;
         Endabgabe.dataForSave.encounteredFox = true;
-        return ""; // TODO: Deep Forest
+        return "DeepForestAlone"; // TODO: Deep Forest
     }
     Endabgabe.BefriendFoxFirstEncounter = BefriendFoxFirstEncounter;
 })(Endabgabe || (Endabgabe = {}));
@@ -1212,7 +1216,7 @@ var Endabgabe;
             case forestSplitAnswer.forest:
                 return "MeetFox";
             case forestSplitAnswer.lake:
-                return "";
+                return "EnterLake";
         }
     }
     Endabgabe.ForestAlone = ForestAlone;
@@ -1607,7 +1611,7 @@ var Endabgabe;
                         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
                         await Endabgabe.ƒS.update(0.3);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0027);
-                        return "";
+                        return "CatBackstory";
                 }
             case repositionLakeAnswer.stepOnBridge:
                 console.log("- - - Scene 9.2: Bridge - - -");
@@ -1632,7 +1636,7 @@ var Endabgabe;
                 await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
                 await Endabgabe.ƒS.update(0.3);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0017);
-                return "";
+                return "CatBackstory";
         }
     }
     Endabgabe.ExamineCastle = ExamineCastle;
@@ -1730,7 +1734,7 @@ var Endabgabe;
         let text = {
             Narrator: {
                 T0004: "You put the turtle down on the ground and without continuing his story any further, the turtle turned around and swam away.",
-                T0005: "Feeling a bit guilty and confused, you call for your cat and continue your walk along the path next to the lake, leading deeper into the forest.",
+                T0005: "Feeling a bit guilty and confused, you call Tommy and continue your walk along the path next to the lake, leading deeper into the forest.",
                 T0006: "Feeling a bit guilty and confused, you continue your walk along the path next to the lake, leading deeper into the forest."
             },
             Protagonist: {
@@ -1751,9 +1755,14 @@ var Endabgabe;
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
-        return "";
+        if (Endabgabe.dataForSave.travelWithCat) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+            return "CatBackstory";
+        }
+        else {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+            return "DeepForestAlone";
+        }
     }
     Endabgabe.Interrupted = Interrupted;
 })(Endabgabe || (Endabgabe = {}));
@@ -1894,5 +1903,608 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0023);
     }
     Endabgabe.TurtleStory = TurtleStory;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function CatBackstory() {
+        console.log("- - - Scene 12.1: What's up with the cat? - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious",
+                T0010: "The cat hisses, as if it is still angry about the failed test.",
+                T0017: "The cat slowed down, jumped, and climbed onto your shoulder.",
+                T0020: "You reach the end of the path.",
+                T0021: "To your left is a small bridge leading over a small river. It leads to the edge of the forest.",
+                T0022: "To your right is an even smaller path, surrounded by tall trees. While it seems like there is no sunlight, you can see a clearing at the end of the path."
+            },
+            Protagonist: {
+                T0002: "Hey Tommy, I can't help but to wonder, what is even happening today.",
+                T0004: "Yeah, I mean the whole talking-to-animals-thing.",
+                T0007: "I mean, I don't think it's normal to talk to cats or dogs. I couldn't do it yesterday, so something must have happened.",
+                T0011: "If I'm allowed to ask, what was your life like before your cat-transformation? What about your family?",
+                T0014: "Oh, I am sorry to hear that. It must be hard without a dad.",
+                T0019: "Hah, yeah, I guess so."
+            },
+            Cat: {
+                T0003: "What do you mean? It's been a great day so far!",
+                T0005: "Oh, right. Hmm, yea that is really weird. I couldn't even talk to animals when I was still in school!",
+                T0006: "I always tried to talk to Daisy, that's the neighbor's dog. She was so fluffy! But she never understood me…",
+                T0008: "Well, I guess sometimes things happen that we can't explain.",
+                T0009: "I once failed my math test even though I studied all week for it, can you believe that?",
+                T0012: "Hmm, so my mom has always been working a lot.",
+                T0013: "My dad left when I was little, so I don't really know much about him. My mom and my dad used to fight a lot, but that's all.",
+                T0015: "No, I am happy with my mom! I love her so much! I haven't seen her since I became a cat though…",
+                T0016: "But she always had so much work to do, so maybe she is just working a lot and has no time or something, I don't know…",
+                T0018: "But now I have you!"
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_entrance);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0005);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0006);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0007);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0008);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0009);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0012);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0013);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0015);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0016);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0017);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0018);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0021);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0022);
+        let splitPathForestAnswer = {
+            bridge: "Cross the bridge",
+            path: "Follow the dirt path"
+        };
+        let splitPathForest = await Endabgabe.ƒS.Menu.getInput(splitPathForestAnswer, "decision");
+        switch (splitPathForest) {
+            case splitPathForestAnswer.bridge:
+                return; // TODO: Add Return
+            case splitPathForestAnswer.path:
+                return; // TODO: Add Return
+        }
+    }
+    Endabgabe.CatBackstory = CatBackstory;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function CatBridge() {
+        console.log("- - - Scene 13: What the cat? - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "You cross the bridge and reach a dirt path. After a couple of meters, more light shines through the trees, until you step out of the forest.",
+                T0002: "You are now on the side of the field, at the edge of the forest. The sun is still shining, but it isn’t as hot as when you entered the forest.",
+                T0006: "The cat jumps from your shoulder onto the ground."
+            },
+            Cat: {
+                T0003: "Wow! You can see so far!",
+                T0005: "Well, not at this height of course.",
+                T0007: "Okay, and what do we do now?",
+                T0009: "Yes. Very."
+            },
+            Protagonist: {
+                T0004: "I mean, yes, this is a field and there is no town or anything in sight. Have you never been here before?",
+                T0008: "Are you bored or what?",
+                T0010: "Hmm, okay…"
+            }
+        };
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0005);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0007);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0009);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0010);
+        let playWithCatAnswer = {
+            stick: "Use a stick with a leaf on it as a cat toy",
+            iSpy: "Play 'I spy with my little eye'",
+            hideAndSeek: "Play 'Hide and Seek'"
+        };
+        let playWithCat = await Endabgabe.ƒS.Menu.getInput(playWithCatAnswer, "decision");
+        if (playWithCat == playWithCatAnswer.stick) {
+            console.log("- - - Scene 13.1: DIY Toys - - -");
+            let text2 = {
+                Narrator: {
+                    T0004: "You grab a long stick with a couple of leaves at the end of it. As you pluck every single leaf off the branch, aside from one, the cats eyes begin to light up.",
+                    T0008: "You play with the cat for a couple of minutes until suddenly…",
+                    T0010: "The cat is crouching beneath a nearby bush. It seems to have spotted something interesting.",
+                    T0014: "Abruptly, the cat jumps back, and you can see a fox crawling out of the bush."
+                },
+                Cat: {
+                    T0002: "What are you doing?",
+                    T0005: "Ah, I see where this is going!",
+                    T0007: "Yes! Come on, come on, let’s play!!",
+                    T0009: "Whoa, what is that?",
+                    T0012: "…eyes."
+                },
+                Protagonist: {
+                    T0001: "Well, this could work…",
+                    T0003: "Just wait.",
+                    T0006: "Aaaand, we’re done. Enjoy your new DIY cat toy. It’s like one of these rods with a feather at the end, but… with more nature.",
+                    T0011: "What is it?",
+                    T0013: "Huh?"
+                }
+            };
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0002);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0003);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0004);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0006);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0007);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0008);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0009);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0010);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0011);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0012);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0013);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0014);
+            return "EncounterFoxAgain";
+        }
+        else if (playWithCat == playWithCatAnswer.iSpy) {
+            console.log("- - - Scene 13.2: I spy... - - -");
+            let text2 = {
+                Narrator: {
+                    T0003: "The cat points to a couple of red roses growing at the side.",
+                    T0007: "Half a minute passes with the cat walking up and down the path, looking around.",
+                    T0010: "The cat wasn’t even close to the bright blue bottle opener that somebody lost a few meters away.",
+                    T0011: "Suddenly, you hear a loud scream.",
+                    T0014: "As the cat jumps back, a fox comes crawling out of the bush, it’s blue eyes shining bright in the sunlight."
+                },
+                Protagonist: {
+                    T0001: "Alright Tommy, I spy with my little eye… something red.",
+                    T0004: "Yep, that’s it. Okay…",
+                    T0005: "I spy with my little eye… something bright blue.",
+                    T0009: "Uh, what did you find?",
+                    T0013: "What, are you okay?"
+                },
+                Cat: {
+                    T0002: "Hmm, okay… ah, yes, it’s one of these flowers!",
+                    T0006: "Oh… okay… let me see…",
+                    T0008: "Oh, I found it! Crazy how you saw that from up there!",
+                    T0012: "AHHH!"
+                }
+            };
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0002);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0003);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0006);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0007);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0008);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0009);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0010);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0011);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0012);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0013);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0014);
+            return "EncounterFoxAgain";
+        }
+        else {
+            console.log("- - - Scene 13.3: Hide, Seek and Find - - -");
+            let text2 = {
+                Narrator: {
+                    T0003: "You turn around.",
+                    T0005: "Ten seconds pass, and you hear the rustling of leaves behind you. It couldn’t be hard to figure out where the cat has hidden.",
+                    T0008: "The cat is halfway crouched underneath a bush - The first half is visible; the other half isn’t.",
+                    T0010: "The cat slowly backs away from the bush, with their eyes fixated on whatever still hides in the bush.",
+                    T0012: "Before the cat could answer, you can see a fox crawling out of the bush."
+                },
+                Protagonist: {
+                    T0001: "Alright, I’ll count to 10 and you have to hide. Ready?",
+                    T0004: "Perfect. Let’s go! 10… 9… 8…",
+                    T0006: "Zero! Come out, come out, where ever you a-.",
+                    T0007: "Okay, wow, Tommy, you had plent of time to hide.",
+                    T0011: "What did you find?"
+                },
+                Cat: {
+                    T0002: "Yes! I love hide and seek!",
+                    T0009: "Uh, I think I found something… or rather, someone."
+                }
+            };
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0002);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0003);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0006);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0007);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0008);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0009);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0010);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0011);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0012);
+            return "EncounterFoxAgain";
+        }
+    }
+    Endabgabe.CatBridge = CatBridge;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function DeepForestAlone() {
+        console.log("- - - Scene 12.2: What's up with myself? - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious.",
+                T0002: "What is happening today?",
+                T0003: "Why is today such a weird day?",
+                T0004: "There are so many questions but you simply do not know the answers.",
+                T0005: "You reach the end of the path.",
+                T0006: "To your left is a small bridge leading over a small river. It leads to the edge of the forest.",
+                T0007: "To your right is an even smaller path, surrounded by tall trees. While it seems like there is no sunlight, you can see a clearing at the end of the path."
+            }
+        };
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_entrance);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
+        let splitPathForestAnswer = {
+            bridge: "Cross the bridge",
+            path: "Follow the dirt path"
+        };
+        let splitPathForest = await Endabgabe.ƒS.Menu.getInput(splitPathForestAnswer, "decision");
+        switch (splitPathForest) {
+            case splitPathForestAnswer.bridge:
+                return; // TODO: Add Return
+            case splitPathForestAnswer.path:
+                return; // TODO: Add Return
+        }
+    }
+    Endabgabe.DeepForestAlone = DeepForestAlone;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function EncounterFoxAgain() {
+        let text = {
+            Narrator: {
+                T0002: "The fox turns around and looks at you with their shiny blue eyes.",
+                T0012: "It seems like this topic is a bit sensitive, as the fox ducks around and wants to avoid the question."
+            },
+            Protagonist: {
+                T0001: "Oh is that you June?",
+                T0005: "Yes, it is. June, meet Tommy.",
+                T0006: "I feel like half of my friends are animals now.",
+                T0009: "I don’t think you have to envy somebody because of the animal they became. I mean you are a cute cat, that is also cool!",
+                T0014: "It’s okay if you don’t talk about it, no pressure.",
+                T0018: "I totally understand. Have you seen the lake? There is so much garbage in it…"
+            },
+            Cat: {
+                T0004: "Is that the fox you told me about?",
+                T0008: "Nice to meet you too! Why did you turn into a fox and I turned into a cat? Foxes are so much cooler…",
+                T0010: "Yeah, I guess you are right. Anyways, do you know why you turned into a fox?"
+            },
+            Fox: {
+                T0003: "Oh, it's you! I knew we would meet again.",
+                T0007: "Nice to meet you, Tommy.",
+                T0011: "…",
+                T0013: "Well, I… um…",
+                T0015: "No, it’s okay… Well, honestly, I never liked my life as a human. Humans aren’t accepting people, and if you don’t fit into certain criteria, you get excluded.",
+                T0016: "It sucks. And you can’t do anything about it. Of course, there are people that stand up for you, but it doesn’t change anything in the long run. It’s a systemic problem.",
+                T0017: "And it is just really… frustrating and sad. That, in addition to the disregard in terms of the planet and its resources is just depressing.",
+                T0019a: "Oh, really? What kind of garbage?",
+                T0019b: "I mean, have you seen the lake? It was so beautiful but now there is nothing but garbage in it."
+            }
+        };
+        // Depending on a previous encounter, the dialogue starts differently
+        if (!Endabgabe.dataForSave.encounteredDeer) {
+            let text2 = {
+                Protagonist: {
+                    T0001: "Tommy, come here, stay away from the fox!",
+                    T0003: "What?",
+                    T0006: "I can hear you. Can you understand me?",
+                    T0008: "Uh, to be honest, I have no idea.",
+                    T0011: "Me too. Well… my name is " + Endabgabe.dataForSave.nameProtagonist + ", and this is Tommy. I found him this morning and I can also talk to him."
+                },
+                Cat: {
+                    T0004: "Huh?",
+                    T0009: "He can also talk to me! Can we be friends?"
+                },
+                Fox: {
+                    T0002: "Hey, I don't want to hurt you, I'm just curious.",
+                    T0005: "…what?",
+                    T0007: "Oh… yes, I can. What, how can you hear me?",
+                    T0010: "I… think so? I am a bit confused.",
+                    T0012: "Well, looks like you unlocked a new talent or something overnight. My name is June, nice to meet you."
+                }
+            };
+            console.log("- - - Scene 14.2: What does the fox say? - - -");
+            let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+            gameMenu.open();
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0002);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0003);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0004);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0006);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0007);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0008);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0009);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0010);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0011);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0012);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+        }
+        else {
+            console.log("- - - Scene 14: The Fox returns - - -");
+            let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+            gameMenu.open();
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0006);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0007);
+        }
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0008);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0009);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomleft);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0010);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.ƒS.positions.bottomright);
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0011);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0013);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0015);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0016);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0017);
+        // Depending on the inventory, the scene ends differently
+        if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) != 0) {
+            console.log("- - - Scene 14.1: Sounds familiar - - -");
+            let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+            gameMenu.open();
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0019a);
+        }
+        else {
+            console.log("- - - Scene 14.3: Doesn't sound familiar - - -");
+            let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+            gameMenu.open();
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0019b);
+            let agreeWithFoxChoiceAnswer = {
+                agree: "Agree",
+                disagree: "Disagree",
+                complain: "Complain about activism"
+            };
+            let agreeWithFoxChoice = await Endabgabe.ƒS.Menu.getInput(agreeWithFoxChoiceAnswer, "decision");
+            switch (agreeWithFoxChoice) {
+                case agreeWithFoxChoiceAnswer.agree:
+                    let text3 = {
+                        Narrator: {
+                            T0005: "The cat runs away back into the forest, with the fox and you trying to keep up. After a few minutes you reach the lake."
+                        },
+                        Protagonist: {
+                            T0001: "Yeah, I heard about it. It's disgusting"
+                        },
+                        Cat: {
+                            T0004: "Oh, I know a short cut, follow me!"
+                        },
+                        Fox: {
+                            T0002: "Exactly! I used to go there and pick up what I could so that it could be disposed properly.",
+                            T0003: "I haven’t been there in a few weeks though, so things might have changed?"
+                        }
+                    };
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text3.Protagonist.T0001);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0002);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0003);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.update(0.3);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text3.Cat.T0004);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text3.Narrator.T0005);
+                    // TODO: Add return
+                    return "";
+                case agreeWithFoxChoiceAnswer.disagree:
+                    let text4 = {
+                        Narrator: {
+                            T0003: "The fox sighs.",
+                            T0005: "The fox hurries away back into the forest, with the cat and you trying to keep up. After a few minutes you reach the lake."
+                        },
+                        Protagonist: {
+                            T0001: "What, really? I never thought it was that much of a problem?"
+                        },
+                        Fox: {
+                            T0002: "Not that much of a problem?",
+                            T0004: "You know what, follow me, I have to show you something."
+                        }
+                    };
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text4.Protagonist.T0001);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.update(0.3);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0002);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0003);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0004);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0005);
+                    // TODO: Add return
+                    return "";
+                case agreeWithFoxChoiceAnswer.complain:
+                    let text5 = {
+                        Narrator: {
+                            T0006: "The fox seems really taken aback by all of that. The previously friendly face first turns into a disappointed, then an angry expression.",
+                            T0011: "The fox hisses, turns around and runs away into the forest.",
+                            T0014: "In silence, you both head back into the forest the way you came from. When you arrive at the bridge, you suddenly hear a loud noise coming from the small dirt path, surrounded by tall, dark trees."
+                        },
+                        Protagonist: {
+                            T0001: "Hey, you know what? I don’t think that it is that much of a problem.",
+                            T0003: "Humans have been using the nature for years already. What does it matter if you throw some stuff away?",
+                            T0004: "I really dislike people that feel like they are better than others, especially when they pretend to care about the environment.",
+                            T0005: "You are really annoying with all this nature crap, you know that, right?",
+                            T0013: "…"
+                        },
+                        Cat: {
+                            T0012: "Wow, " + Endabgabe.dataForSave.nameProtagonist + ", what was that? You were kinda rude…"
+                        },
+                        Fox: {
+                            T0002: "…what? Excuse me?",
+                            T0007: "Wow… People like you are the reason why millions of animals died and will continue to die.",
+                            T0008: "All of this is avoidable and fixable, but some people are too selfish to realize that.",
+                            T0009: "I really thought you were actually a decent human being with some common sense, but I guess I was wrong.",
+                            T0010: "I might be annoying but at least I am not an asshole."
+                        }
+                    };
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0001);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.update(0.3);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0002);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0003);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0004);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0005);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.update(0.3);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0006);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.update(0.3);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0007);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0008);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0009);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0010);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0011);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomleft);
+                    await Endabgabe.ƒS.update(0.3);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text5.Cat.T0012);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0013);
+                    await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0014);
+                    // TODO: Add return
+                    return "";
+            }
+        }
+    }
+    Endabgabe.EncounterFoxAgain = EncounterFoxAgain;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map

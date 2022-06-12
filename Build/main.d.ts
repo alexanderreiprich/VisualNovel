@@ -292,3 +292,15 @@ declare namespace Endabgabe {
 declare namespace Endabgabe {
     function TurtleStory(): ƒS.SceneReturn;
 }
+declare namespace Endabgabe {
+    function CatBackstory(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function CatBridge(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function DeepForestAlone(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function EncounterFoxAgain(): ƒS.SceneReturn;
+}
