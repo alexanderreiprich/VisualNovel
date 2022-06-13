@@ -310,3 +310,6 @@ declare namespace Endabgabe {
 declare namespace Endabgabe {
     function EncounterFoxAgainNoCat(): ƒS.SceneReturn;
 }
+declare namespace Endabgabe {
+    function FreeFox(): ƒS.SceneReturn;
+}
