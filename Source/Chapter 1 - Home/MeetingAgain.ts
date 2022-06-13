@@ -77,8 +77,15 @@ namespace Endabgabe {
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.cat, text.Cat.T0009);
 
+    let scene: HTMLElement = document.getElementById("append");
+    let overlay: HTMLDivElement = document.createElement("div");
+    overlay.id = "overlay";
+    scene.appendChild(overlay);
+
     let name: string = await ƒS.Speech.getInput();
     dataForSave.nameProtagonist = name;
+
+    document.getElementById("append").children[0].remove();
     
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);

@@ -3,7 +3,7 @@ namespace Endabgabe {
     console.log("- - - Scene 1: Waking Up - - -");
     let gameMenu = ƒS.Menu.create(ingameMenuButtons, buttonFunctionalities, "gameMenu");
     gameMenu.open();
-  
+
     let text = {
       Narrator: {
         T0001: "You open your eyes. The sun is already up and shining through your window. It is warm outside and not a single cloud obstructs the beautiful blue sky on this summer morning.",
@@ -31,9 +31,8 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
-
     let breakfastAnswer = {
-      cereal: "Ceral with Milk",
+      cereal: "Cereal with Milk",
       toast: "Toast",
       eggs: "Scrambled Eggs with Bacon"
     };
@@ -85,7 +84,7 @@ namespace Endabgabe {
 
     let cat = await ƒS.Menu.getInput(catAnswer, "decision");
 
-    switch (cat) { 
+    switch (cat) {
       case catAnswer.pet:
         return "PetTheCat";
       case catAnswer.scare:

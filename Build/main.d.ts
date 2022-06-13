@@ -215,6 +215,7 @@ declare namespace Endabgabe {
     };
     function buttonFunctionalities(_option: string): Promise<void>;
     function showCredits(): void;
+    function hndKeyPress(_event: KeyboardEvent): Promise<void>;
     let dataForSave: {
         nameProtagonist: string;
         studiesProtagonist: string;
@@ -312,4 +313,7 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function FreeFox(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function RevisitLake(): ƒS.SceneReturn;
 }

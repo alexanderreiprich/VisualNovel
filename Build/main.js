@@ -330,6 +330,7 @@ var Endabgabe;
                 break;
         }
     }
+    Endabgabe.hndKeyPress = hndKeyPress;
     Endabgabe.dataForSave = {
         nameProtagonist: "",
         studiesProtagonist: "",
@@ -494,8 +495,13 @@ var Endabgabe;
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0009);
+        let scene = document.getElementById("append");
+        let overlay = document.createElement("div");
+        overlay.id = "overlay";
+        scene.appendChild(overlay);
         let name = await Endabgabe.ƒS.Speech.getInput();
         Endabgabe.dataForSave.nameProtagonist = name;
+        document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
@@ -684,7 +690,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
         let breakfastAnswer = {
-            cereal: "Ceral with Milk",
+            cereal: "Cereal with Milk",
             toast: "Toast",
             eggs: "Scrambled Eggs with Bacon"
         };
@@ -2801,11 +2807,11 @@ var Endabgabe;
                 Fox: {
                     T0004: "Oh wow, I love cassettes, let me take a look!",
                     T0007: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven’t heard this in ages… Look at all of the-",
-                    T0009: "Hey, does the Walkman still work?",
+                    T0009: "Hey, does the Walkman still work?"
                 },
                 Cat: {
                     T0003: "I remember these things, my mom told me she had one back when she was younger!",
-                    T0016: "What was that",
+                    T0016: "What was that?",
                     T0018: "I doubt that, but yes, let’s go."
                 }
             };
@@ -2822,11 +2828,22 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0007);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0009);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0010);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0014);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0015);
@@ -2890,5 +2907,162 @@ var Endabgabe;
         }
     }
     Endabgabe.FreeFox = FreeFox;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function RevisitLake() {
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        if (Endabgabe.dataForSave.travelWithCat) {
+            console.log("- - - Scene 17: Pollution never sounded that good - - -");
+            let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+            gameMenu.open();
+            let text = {
+                Narrator: {
+                    T0002: "You stand in front of a heavily polluted area of the lake. A lot of trash floats around in the river – empty bottles, various electronic devices, or just regular trash.",
+                    T0005: "You grab a bag, which wasn’t fully submerged in water and open it up. Inside is a Walkman and a couple of cassettes.",
+                    T0009: "The otherwise calm and collected fox seems really happy and excited all of a sudden.",
+                    T0010: "You spread all tapes out on the ground, with the fox looking at every single one of them carefully.",
+                    T0012: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
+                    T0015: "You lay the tape into the player and put the headphones over the fox’s ears.",
+                    T0017: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
+                    T0018: "After around 10 seconds, the fox seems surprised, as if it doesn’t recognize you, shakes the head, and runs away into the forest."
+                },
+                Protagonist: {
+                    T0004: "Yeah, you are right… This is disgusting. It’s been so long in here that I can barely tell what all of these things are… What even is this…",
+                    T0006: "A music player? And… a ton of albums…? Why would somebody throw this away?",
+                    T0014: "Well, I haven’t tried it, but let’s give it a go.",
+                    T0016: "…so, is it working?",
+                    T0019: "Well… I guess it did work after all…",
+                    T0021: "I have no idea. Come on, let’s go into the direction that they went, maybe we can find them again?"
+                },
+                Cat: {
+                    T0003: "Eww, this smells horrible…",
+                    T0007: "I remember these things, my mom told me she had one back when she was younger!",
+                    T0020: "What was that?",
+                    T0022: "I doubt that, but yes, let’s go."
+                },
+                Fox: {
+                    T0001: "Look at this. Who throws all of this away?",
+                    T0008: "Oh wow, I love cassettes, let me take a look!",
+                    T0011: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven’t heard this in ages… Look at all of the-",
+                    T0013: "Hey, does the Walkman still work?"
+                }
+            };
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0003);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0006);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0007);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0008);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0011);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0013);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0016);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0017);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0018);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0020);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0022);
+            return ""; // TODO: Add Return
+        }
+        else {
+            console.log("- - - Scene 21: Pollution never sounded that good [no cat] - - -");
+            let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+            gameMenu.open();
+            let text = {
+                Narrator: {
+                    T0002: "You stand in front of a heavily polluted area of the lake. A lot of trash floats around in the river – empty bottles, various electronic devices, or just regular trash.",
+                    T0004: "You grab a bag, which wasn’t fully submerged in water and open it up. Inside is a Walkman and a couple of cassettes.",
+                    T0007: "The otherwise calm and collected fox seems really happy and excited all of a sudden.",
+                    T0008: "You spread all tapes out on the ground, with the fox looking at every single one of them carefully.",
+                    T0010: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
+                    T0013: "You lay the tape into the player and put the headphones over the fox’s ears.",
+                    T0015: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
+                    T0016: "After around 10 seconds, the fox seems surprised, as if it doesn’t recognize you, shakes the head, and runs away into the forest."
+                },
+                Protagonist: {
+                    T0003: "Yeah, you are right… This is disgusting. It’s been so long in here that I can barely tell what all of these things are… What even is this…",
+                    T0005: "A music player? And… a ton of albums…? Why would somebody throw this away?",
+                    T0012: "Well, I haven’t tried it, but let’s give it a go.",
+                    T0014: "…so, is it working?",
+                    T0017: "Well… I guess it did work after all…",
+                    T0018: "No way that I will catch up to them. I hope we meet again though…"
+                },
+                Fox: {
+                    T0001: "Look at this. Who throws all of this away?",
+                    T0006: "Oh wow, I love cassettes, let me take a look!",
+                    T0009: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven’t heard this in ages… Look at all of the-",
+                    T0011: "Hey, does the Walkman still work?"
+                }
+            };
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0006);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0009);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0011);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
+            return ""; // TODO: Add return
+        }
+    }
+    Endabgabe.RevisitLake = RevisitLake;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map

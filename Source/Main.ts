@@ -256,7 +256,7 @@ namespace Endabgabe {
 
   let inventoryOpen: boolean;
 
-  async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
+  export async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
     switch (_event.code) {
       case ƒ.KEYBOARD_CODE.I:
         if (!inventoryOpen) {
