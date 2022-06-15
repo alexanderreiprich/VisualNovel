@@ -254,8 +254,89 @@ namespace Endabgabe {
   // Menu Shortcuts
   window.addEventListener("keydown", hndKeyPress);
 
-  let inventoryOpen: boolean;
+  // Functions that manage the music player
+  let musicOpen: boolean;
+  let previousName: string;
+  let previousContent: string;
 
+  function hndSkip(_event: Event): void {
+    _event.stopPropagation();
+    console.log("SKIP");
+  }
+
+  function hndPrev(_event: Event): void {
+    _event.stopPropagation();
+    console.log("PREV");
+  }
+
+  function hndStop(_event: Event): void {
+    _event.stopPropagation();
+    console.log("STOP");
+  }
+
+  function hndPlay(_event: Event): void {
+    _event.stopPropagation();
+    console.log("PLAY");
+  }
+
+  async function hndMusicPlayer(): Promise<void> {
+
+    let nameDiv: Element = document.getElementsByTagName("name")[0];
+    let contentDiv: Element = document.getElementsByTagName("content")[0];
+
+    if (!musicOpen) {
+      let parentDiv: HTMLDivElement = document.createElement("div");
+      parentDiv.id = "appendedDiv";
+
+      let walkmanDiv: HTMLDivElement = document.createElement("div");
+      walkmanDiv.id = "walkmanDiv";
+
+      let img: HTMLImageElement = document.createElement("img");
+      img.src = "Images/Walkman/sideview.jpg";
+      img.id = "walkman";
+
+      let skipDiv: HTMLDivElement = document.createElement("div");
+      skipDiv.addEventListener("pointerdown", hndSkip);
+      skipDiv.id = "skipDiv";
+
+      let prevDiv: HTMLDivElement = document.createElement("div");
+      prevDiv.addEventListener("pointerdown", hndPrev);
+      prevDiv.id = "prevDiv";
+
+      let playDiv: HTMLDivElement = document.createElement("div");
+      playDiv.addEventListener("pointerdown", hndPlay);
+      playDiv.id = "playDiv";
+
+      let stopDiv: HTMLDivElement = document.createElement("div");
+      stopDiv.addEventListener("pointerdown", hndStop);
+      stopDiv.id = "stopDiv";
+
+      walkmanDiv.appendChild(skipDiv);
+      walkmanDiv.appendChild(prevDiv);
+      walkmanDiv.appendChild(playDiv);
+      walkmanDiv.appendChild(stopDiv);
+
+      previousName = nameDiv.innerHTML;
+      previousContent = contentDiv.innerHTML;
+  
+      nameDiv.innerHTML = "";
+      contentDiv.innerHTML = "You grab the music player. Skip the songs using the << and >> buttons, play using the > button and stop the music altogether by pressing the ▪ button";
+  
+      walkmanDiv.appendChild(img);
+      parentDiv.appendChild(walkmanDiv);
+      document.getElementById("append").appendChild(parentDiv);
+    }
+    else {
+      nameDiv.innerHTML = previousName;
+      contentDiv.innerHTML = previousContent;
+
+      document.getElementById("append").removeChild(document.getElementById("appendedDiv"));
+    }
+  }
+
+
+  // Keybinds
+  let inventoryOpen: boolean;
   export async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
     switch (_event.code) {
       case ƒ.KEYBOARD_CODE.I:
@@ -268,10 +349,22 @@ namespace Endabgabe {
           inventoryOpen = false;
         }
         break;
+      case ƒ.KEYBOARD_CODE.M:
+        if (!musicOpen) {
+          hndMusicPlayer();
+          musicOpen = true;
+        }
+        else {
+          hndMusicPlayer();
+          musicOpen = false;
+        }
+        break;
     }
   }
 
-  export let dataForSave = { // everything that is supposed to be saved
+  // Data to be saved
+
+  export let dataForSave = {
     nameProtagonist: "",
     studiesProtagonist: "",
     encounteredAnyAnimal: false,
