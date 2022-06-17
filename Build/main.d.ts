@@ -135,6 +135,26 @@ declare namespace Endabgabe {
             name: string;
             background: string;
         };
+        home_bedroom_night: {
+            name: string;
+            background: string;
+        };
+        ending_all: {
+            name: string;
+            background: string;
+        };
+        ending_bag: {
+            name: string;
+            background: string;
+        };
+        ending_rock: {
+            name: string;
+            background: string;
+        };
+        ending_none: {
+            name: string;
+            background: string;
+        };
     };
     let characters: {
         narrator: {
@@ -224,6 +244,11 @@ declare namespace Endabgabe {
         encounteredFox: boolean;
         encounteredTurtle: boolean;
         encounteredDeer: boolean;
+        freedCat: boolean;
+        freedFox: boolean;
+        freedTurtle: boolean;
+        freedDeer: boolean;
+        freedAnimals: number;
         travelWithCat: boolean;
     };
 }
@@ -316,4 +341,16 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function RevisitLake(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function BadEnding(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function GoodEnding(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function NeutralEndings(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function WalkHome(): ƒS.SceneReturn;
 }

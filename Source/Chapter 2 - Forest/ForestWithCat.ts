@@ -55,7 +55,7 @@ namespace Endabgabe {
     };
     
     let lookForCat = await ƒS.Menu.getInput(lookForCatAnswer, "decision");
-
+ // delete lookForCatAnswer.forest löscht die sachen aus der decision
     switch (lookForCat) {
       case lookForCatAnswer.forest:
         return "IntoDeepForest";

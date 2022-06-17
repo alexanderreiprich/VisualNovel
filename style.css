@@ -181,6 +181,12 @@ dialog[type="inventory"] img{
   right: 0;
 }
 
+dialog[type="text"] {
+  width: 50%;
+  height: 40%;
+  white-space: pre-wrap;
+}
+
 #appendedDiv {
   position: absolute;
   top: 0;
@@ -203,7 +209,7 @@ dialog[type="inventory"] img{
   margin-left: 6.2%;
   width: 40px;
   height: 30px;
-  background-color: red;
+  /* background-color: red; */
   cursor: pointer;
 }
 
@@ -213,7 +219,7 @@ dialog[type="inventory"] img{
   margin-left: 6.2%;
   width: 40px;
   height: 30px;
-  background-color: red;
+  /* background-color: red; */
   cursor: pointer;
 }
 
@@ -223,7 +229,7 @@ dialog[type="inventory"] img{
   margin-left: 6.2%;
   width: 40px;
   height: 70px;
-  background-color: red;
+  /* background-color: red; */
   cursor: pointer;
 }
 
@@ -233,7 +239,7 @@ dialog[type="inventory"] img{
   margin-left: 3.4%;
   width: 30px;
   height: 105px;
-  background-color: red;
+  /* background-color: red; */
   cursor: pointer;
 }
 

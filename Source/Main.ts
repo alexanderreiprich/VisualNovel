@@ -29,7 +29,7 @@ namespace Endabgabe {
   export let locations = {
     home_bedroom: {
       name: "Bedroom",
-      background: ""
+      background: "" // TODO: Add Background
     },
     home_table: {
       name: "Table",
@@ -134,6 +134,26 @@ namespace Endabgabe {
     evening_walk: {
       name: "The walk home",
       background: "Images/Backgrounds/evening_walk.png"
+    },
+    home_bedroom_night: {
+      name: "Bedroom at night",
+      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+    },
+    ending_all: {
+      name: "Ending: All items collected",
+      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+    },
+    ending_bag: {
+      name: "Ending: Bag collected",
+      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+    },
+    ending_rock: {
+      name: "Ending: Rock collected",
+      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+    },
+    ending_none: {
+      name: "No items collected",
+      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
     }
   };
 
@@ -248,7 +268,7 @@ namespace Endabgabe {
     // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
     // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
 
-    ƒS.Text.print("wee woo");
+    // ƒS.Text.print("wee woo");    -   Text ausgeben!
   }
 
   // Menu Shortcuts
@@ -350,13 +370,15 @@ namespace Endabgabe {
         }
         break;
       case ƒ.KEYBOARD_CODE.M:
-        if (!musicOpen) {
-          hndMusicPlayer();
-          musicOpen = true;
-        }
-        else {
-          hndMusicPlayer();
-          musicOpen = false;
+        if (ƒS.Inventory.getAmount(items.bag) != 0) {
+          if (!musicOpen) {
+            hndMusicPlayer();
+            musicOpen = true;
+          }
+          else {
+            hndMusicPlayer();
+            musicOpen = false;
+          }
         }
         break;
     }
@@ -372,6 +394,11 @@ namespace Endabgabe {
     encounteredFox: false,
     encounteredTurtle: false,
     encounteredDeer: false,
+    freedCat: false,
+    freedFox: false,
+    freedTurtle: false,
+    freedDeer: false,
+    freedAnimals: 0,
     travelWithCat: false
   };
 
@@ -409,8 +436,11 @@ namespace Endabgabe {
       { scene: CatBackstory, name: "CatBackstory", id: "CatBackstory" },
       { scene: CatBridge, name: "CatBridge", id: "CatBridge" },
       { scene: EncounterFoxAgain, name: "EncounterFoxAgain", id: "EncounterFoxAgain" },
+      { scene: BridgeAlone, name: "BridgeAlone", id: "BridgeAlone" },
       { scene: DeepForestAlone, name: "DeepForestAlone", id: "DeepForestAlone" },
       { scene: EncounterFoxAgainNoCat, name: "EncounterFoxAgainNoCat", id: "EncounterFoxAgainNoCat" },
+      { scene: FreeFox, name: "FreeFox", id: "FreeFox" },
+      { scene: RevisitLake, name: "RevisitLake", id: "RevisitLake" },
 
       // Chapter 5 - Clearing
 

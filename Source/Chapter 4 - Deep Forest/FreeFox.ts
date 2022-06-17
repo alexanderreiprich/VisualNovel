@@ -83,6 +83,8 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0017);
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0018);
 
+      dataForSave.freedFox = true;
+
       return ""; // TODO: Add return
     }
 
@@ -147,6 +149,9 @@ namespace Endabgabe {
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0014);
+
+      dataForSave.freedFox = true;
+      dataForSave.freedAnimals++;
 
       return ""; // TODO: Add return
     }

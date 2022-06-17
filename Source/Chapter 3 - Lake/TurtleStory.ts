@@ -89,6 +89,9 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0021);
 
+    dataForSave.freedTurtle = true;
+    dataForSave.freedAnimals++;
+
     if (dataForSave.travelWithCat)
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0022);
 

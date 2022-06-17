@@ -99,7 +99,7 @@ var Endabgabe;
     Endabgabe.locations = {
         home_bedroom: {
             name: "Bedroom",
-            background: ""
+            background: "" // TODO: Add Background
         },
         home_table: {
             name: "Table",
@@ -204,6 +204,26 @@ var Endabgabe;
         evening_walk: {
             name: "The walk home",
             background: "Images/Backgrounds/evening_walk.png"
+        },
+        home_bedroom_night: {
+            name: "Bedroom at night",
+            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+        },
+        ending_all: {
+            name: "Ending: All items collected",
+            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+        },
+        ending_bag: {
+            name: "Ending: Bag collected",
+            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+        },
+        ending_rock: {
+            name: "Ending: Rock collected",
+            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+        },
+        ending_none: {
+            name: "No items collected",
+            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
         }
     };
     Endabgabe.characters = {
@@ -310,7 +330,7 @@ var Endabgabe;
     function showCredits() {
         // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
         // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
-        Endabgabe.ƒS.Text.print("wee woo");
+        // ƒS.Text.print("wee woo");    -   Text ausgeben!
     }
     Endabgabe.showCredits = showCredits;
     // Menu Shortcuts
@@ -391,13 +411,15 @@ var Endabgabe;
                 }
                 break;
             case Endabgabe.ƒ.KEYBOARD_CODE.M:
-                if (!musicOpen) {
-                    hndMusicPlayer();
-                    musicOpen = true;
-                }
-                else {
-                    hndMusicPlayer();
-                    musicOpen = false;
+                if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) != 0) {
+                    if (!musicOpen) {
+                        hndMusicPlayer();
+                        musicOpen = true;
+                    }
+                    else {
+                        hndMusicPlayer();
+                        musicOpen = false;
+                    }
                 }
                 break;
         }
@@ -412,6 +434,11 @@ var Endabgabe;
         encounteredFox: false,
         encounteredTurtle: false,
         encounteredDeer: false,
+        freedCat: false,
+        freedFox: false,
+        freedTurtle: false,
+        freedDeer: false,
+        freedAnimals: 0,
         travelWithCat: false
     };
     window.addEventListener("load", start);
@@ -444,8 +471,11 @@ var Endabgabe;
             { scene: Endabgabe.CatBackstory, name: "CatBackstory", id: "CatBackstory" },
             { scene: Endabgabe.CatBridge, name: "CatBridge", id: "CatBridge" },
             { scene: Endabgabe.EncounterFoxAgain, name: "EncounterFoxAgain", id: "EncounterFoxAgain" },
+            { scene: Endabgabe.BridgeAlone, name: "BridgeAlone", id: "BridgeAlone" },
             { scene: Endabgabe.DeepForestAlone, name: "DeepForestAlone", id: "DeepForestAlone" },
             { scene: Endabgabe.EncounterFoxAgainNoCat, name: "EncounterFoxAgainNoCat", id: "EncounterFoxAgainNoCat" },
+            { scene: Endabgabe.FreeFox, name: "FreeFox", id: "FreeFox" },
+            { scene: Endabgabe.RevisitLake, name: "RevisitLake", id: "RevisitLake" },
             // Chapter 5 - Clearing
             // Empty End Scene
             { id: "Empty Scene", scene: Endabgabe.Empty, name: "End" }
@@ -745,17 +775,16 @@ var Endabgabe;
                 T0004: "As you crunch away on your breakfast, you read a bit through the news of today. Besides the boring sports stuff and questionable claims of politicians, one headline caught your eye.",
                 T0005: "“Mysterious dust raining on earth”",
                 T0006: "“Huh, I guess the aliens started with their chemical warfare” you thought to yourself, before skimming through the article.",
-                T0007: "“Small particles raining from the sky this night…”",
-                T0008: "“… scientists are not sure where if comes from…”",
-                T0009: "“… no explanation what it is or what it does…”",
-                T0010: "“… citizens are advised to keep windows closed…”",
-                T0011: "Well, it might not have been a good idea to keep the window open all night, but well, what can you do. It is summer after all, and the temperature is getting higher every day.",
-                T0012: "Since the weather hasn't been this good in days, you decide to go for a little walk after eating. After all, you spent the last 4 weeks doing nothing but studying all day. Some fresh air after all this time should be refreshing.",
-                T0013: "What song do you want to listen to on your walk?",
-                T0014: "As you put your shoes on, you notice a small cat through the small window in your front door. It seems to be snooping around in your front yard, which is nothing out of the ordinary. Cats aren't exactly a rare sight in this part of your town.",
-                T0015: "You shut the door, turn around and see the cat curling up at your feet."
+                T0007: "Well, it might not have been a good idea to keep the window open all night, but well, what can you do. It is summer after all, and the temperature is getting higher every day.",
+                T0008: "Since the weather hasn't been this good in days, you decide to go for a little walk after eating. After all, you spent the last 4 weeks doing nothing but studying all day. Some fresh air after all this time should be refreshing.",
+                T0009: "What song do you want to listen to on your walk?",
+                T0010: "As you put your shoes on, you notice a small cat through the small window in your front door. It seems to be snooping around in your front yard, which is nothing out of the ordinary. Cats aren't exactly a rare sight in this part of your town.",
+                T0011: "You shut the door, turn around and see the cat curling up at your feet."
             }
         };
+        let pages = [" - - - NEWSPAPER - - -", "- all the news you need for the day -", "", "", "Mysterious dust raining on earth", "",
+            "Small particles raining from the sky this night…", "… scientists are not sure where if comes from…", "… no explanation what it is or what it does…",
+            "… citizens are advised to keep windows closed…"];
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
         await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
@@ -771,13 +800,14 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+        let newspaper = "";
+        for (let i = 0; i < pages.length; i++) {
+            newspaper += pages[i] + "\n";
+        }
+        await Endabgabe.ƒS.Text.print(newspaper);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
         let songAnswer = {
             song1: "Song 1",
             song2: "Song 2",
@@ -797,8 +827,8 @@ var Endabgabe;
         }
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
         await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0014);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
         let catAnswer = {
             pet: "Pet the Cat",
             scare: "Scare it away",
@@ -1352,6 +1382,7 @@ var Endabgabe;
             bush: "Underneath some bushes next to the path"
         };
         let lookForCat = await Endabgabe.ƒS.Menu.getInput(lookForCatAnswer, "decision");
+        // delete lookForCatAnswer.forest löscht die sachen aus der decision
         switch (lookForCat) {
             case lookForCatAnswer.forest:
                 return "IntoDeepForest";
@@ -1978,6 +2009,8 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
+        Endabgabe.dataForSave.freedTurtle = true;
+        Endabgabe.dataForSave.freedAnimals++;
         if (Endabgabe.dataForSave.travelWithCat)
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0022);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0023);
@@ -2923,6 +2956,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0016);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0018);
+            Endabgabe.dataForSave.freedFox = true;
             return ""; // TODO: Add return
         }
         else {
@@ -2976,6 +3010,8 @@ var Endabgabe;
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+            Endabgabe.dataForSave.freedFox = true;
+            Endabgabe.dataForSave.freedAnimals++;
             return ""; // TODO: Add return
         }
     }
@@ -3137,5 +3173,199 @@ var Endabgabe;
         }
     }
     Endabgabe.RevisitLake = RevisitLake;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function BadEnding() {
+        console.log("- - - Scene 32: The Bad Ending - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "As you close your eyes, you hear a quiet meow from outside your window.",
+                T0002: "You have the feeling that you did something wrong, but you can't put the finger on it.",
+                T0003: "The feeling starts to grow and grow, as you drift more and more to sleep, not knowing the nightmares of the forest you are about to have."
+            }
+        };
+        let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        await delay();
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Bad Ending\nYou freed no animals.");
+        return "Empty";
+    }
+    Endabgabe.BadEnding = BadEnding;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function GoodEnding() {
+        console.log("- - - Scene 31: The Good Ending - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "As you head to bed, you remember all the animals you met today.",
+                T0002: "All of them with different stories, problems, fears and passions.",
+                T0003: "You wonder where they are now.",
+                T0004: "But you are certain about one thing:",
+                T0005: "Where ever they are now, they are in a better place."
+            }
+        };
+        let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+        await delay();
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+        await delay();
+        Endabgabe.ƒS.Speech.hide();
+        if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) > 0 && Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.rock) > 0) {
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_all);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        }
+        else if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) > 0) {
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_bag);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        }
+        else if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.rock) > 0) {
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_rock);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        }
+        else {
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_none);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        }
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Good Ending\nYou freed all animals.");
+        return "Empty";
+    }
+    Endabgabe.GoodEnding = GoodEnding;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function NeutralEndings() {
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "As you close your eyes, you hear a quiet meow from outside your window.",
+                T0002: "You have the feeling that you missed something, but you can't quite put the finger on it.",
+                T0003: "You start to think back to the things you have experienced today.",
+                T0004a: "Tommy and DEERNAME, who are finally back together. You can't imagine how happy both of them must be now.",
+                T0004b: "DEERNAME, who finally found peace after a life of stress and crushing responsiblity.",
+                T0005: "June, who got to experience their favorite passion once more before being gone forever.",
+                T0006: "As well as the peace of knowing, that they don't have to live with the depressing nature of humankind anymore.",
+                T0007: "Richard, somebody who is finally together with his beloved wife.",
+                T0008: "Everybody, ultimately at a better place now.",
+                T0009: "Slowly drifting to sleep, you can see something in front of your inner eye.",
+                T0010a: "A small cat, wandering around the paths and roads of your hometown aimlessly.",
+                T0010b: "A cute fox, hiding under bushes and leaves, feeling like it is destined for something bigger.",
+                T0010c: "An old turtle, sitting near a lake, yearning for something that it can't have.",
+                T0010d: "A scared deer, stressing and worrying about everything and everyone.",
+                T0011: "You don't know what all of this means, but you are too tired to worry.",
+                T0012: "Maybe you will think about all of this tomorrow."
+            }
+        };
+        let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
+        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
+        if (Endabgabe.dataForSave.freedCat && Endabgabe.dataForSave.freedDeer) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004a);
+        }
+        else if (Endabgabe.dataForSave.freedDeer) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004b);
+        }
+        if (Endabgabe.dataForSave.freedFox) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+        }
+        if (Endabgabe.dataForSave.freedTurtle) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
+        }
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
+        if (Endabgabe.dataForSave.freedCat) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010a);
+        }
+        if (Endabgabe.dataForSave.freedFox) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010b);
+        }
+        if (Endabgabe.dataForSave.freedTurtle) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010c);
+        }
+        if (Endabgabe.dataForSave.freedDeer) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010d);
+        }
+        await delay();
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Neutral Ending\nYou freed " + Endabgabe.dataForSave.freedAnimals + " animals.");
+        return "Empty";
+    }
+    Endabgabe.NeutralEndings = NeutralEndings;
+})(Endabgabe || (Endabgabe = {}));
+var Endabgabe;
+(function (Endabgabe) {
+    async function WalkHome() {
+        console.log("- - - Scene 30.1: Coming Home - - -");
+        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
+        gameMenu.open();
+        let text = {
+            Narrator: {
+                T0001: "The sun has almost gone down completely, when you decide to head back home.",
+                T0006: "You laugh as you reach your home, unlock your front door and jump onto your bed, not knowing that this day might have just changed your life forever.",
+                T0006a: "You laugh as you reach your home, unlock your front door and jump onto your bed, not knowing that you have just missed the most interesting day of your life."
+            },
+            Protagonist: {
+                T0002a: "Wow, what a relaxing day. But… I feel like I missed something…",
+                T0003a: "Well, must've been nothing.",
+                T0002: "What a day, huh. What was I even doing? I guess I helped people…",
+                T0003: "Were they even people? Were they animals?",
+                T0004: "Where are they now? And why me?",
+                T0005: "I have so many questions. Hopefully tomorrow is going to be a less stressful day. I mean, I just wanted to go for a walk…"
+            }
+        };
+        if (Endabgabe.dataForSave.freedAnimals == 0) {
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002a);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003a);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006a);
+            return "BadEnding";
+        }
+        else {
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+            if (Endabgabe.dataForSave.freedAnimals == 4) {
+                return "GoodEnding";
+            }
+            else {
+                return "NeutralEnding";
+            }
+        }
+    }
+    Endabgabe.WalkHome = WalkHome;
 })(Endabgabe || (Endabgabe = {}));
 //# sourceMappingURL=main.js.map
