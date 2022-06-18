@@ -13,26 +13,26 @@ namespace Endabgabe {
           T0005: "The otherwise calm and collected fox seems really happy and excited all of a sudden.",
           T0006: "You spread all tapes out on the ground, with the fox looking at every single one of them carefully.",
           T0008: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
-          T0011: "You lay the tape into the player and put the headphones over the fox’s ears.",
+          T0011: "You lay the tape into the player and put the headphones over the fox's ears.",
           T0013: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
-          T0014: "After around 10 seconds, the fox seems surprised, as if it doesn’t recognize you, shakes the head, and runs away into the forest."
+          T0014: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest."
         },
         Protagonist: {
           T0001: "Look what I found! Why would anybody throw this away?",
-          T0010: "Well, I haven’t tried it, but let’s give it a go.",
+          T0010: "Well, I haven't tried it, but let's give it a go.",
           T0012: "…so, is it working?",
           T0015: "Well… I guess it did work after all…",
-          T0017: "I have no idea. Come on, let’s go into the direction that they went, maybe we can find them again?"
+          T0017: "I have no idea. Come on, let's go into the direction that they went, maybe we can find them again?"
         },
         Fox: {
           T0004: "Oh wow, I love cassettes, let me take a look!",
-          T0007: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven’t heard this in ages… Look at all of the-",
+          T0007: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven't heard this in ages… Look at all of the-",
           T0009: "Hey, does the Walkman still work?"
         },
         Cat: {
           T0003: "I remember these things, my mom told me she had one back when she was younger!",
           T0016: "What was that?",
-          T0018: "I doubt that, but yes, let’s go."
+          T0018: "I doubt that, but yes, let's go."
         }
       };
 
@@ -99,19 +99,19 @@ namespace Endabgabe {
           T0004: "The otherwise calm and collected fox seems really happy and excited all of a sudden.",
           T0005: "You spread all tapes out on the ground, with the fox looking at every single one of them carefully.",
           T0007: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
-          T0010: "You lay the tape into the player and put the headphones over the fox’s ears.",
+          T0010: "You lay the tape into the player and put the headphones over the fox's ears.",
           T0012: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
-          T0013: "After around 10 seconds, the fox seems surprised, as if it doesn’t recognize you, shakes the head, and runs away into the forest."
+          T0013: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest."
         },
         Protagonist: {
           T0001: "Look what I found! Why would anybody throw this away?",
-          T0009: "Well, I haven’t tried it, but let’s give it a go.",
+          T0009: "Well, I haven't tried it, but let's give it a go.",
           T0011: "…so, is it working?",
           T0014: "Well… I guess it did work after all…"
         },
         Fox: {
           T0003: "Oh wow, I love cassettes, let me take a look!",
-          T0006: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven’t heard this in ages… Look at all of the-",
+          T0006: "Ohh… I remember this one. This one is also a classic… and this one, wow, I haven't heard this in ages… Look at all of the-",
           T0008: "Hey, does the Walkman still work?"
         }
       };

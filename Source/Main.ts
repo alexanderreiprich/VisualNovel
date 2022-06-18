@@ -443,6 +443,14 @@ namespace Endabgabe {
       { scene: RevisitLake, name: "RevisitLake", id: "RevisitLake" },
 
       // Chapter 5 - Clearing
+      { scene: ArrivalClearing, name: "ArrivalClearing", id: "ArrivalClearing" },
+
+      // Chapter 6 - Walk Home & Endings
+      { scene: WalkHome, name: "WalkHome", id: "WalkHome" },
+      { scene: BadEnding, name: "BadEnding", id: "BadEnding" },
+      { scene: GoodEnding, name: "GoodEnding", id: "GoodEnding" },
+      { scene: NeutralEndings, name: "NeutralEndings", id: "NeutralEndings" },
+      
 
       // Empty End Scene
       { id: "Empty Scene", scene: Empty, name: "End" }

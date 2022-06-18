@@ -343,6 +343,9 @@ declare namespace Endabgabe {
     function RevisitLake(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
+    function ArrivalClearing(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
     function BadEnding(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {

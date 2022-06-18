@@ -7,6 +7,7 @@ namespace Endabgabe {
     let text = {
       Narrator: {
         T0001: "The sun has almost gone down completely, when you decide to head back home.",
+        T0001a: "The sun has almost gone down completely, when you decide to head back home, with Tommy fast asleep on your shoulder.",
         T0006: "You laugh as you reach your home, unlock your front door and jump onto your bed, not knowing that this day might have just changed your life forever.",
         T0006a: "You laugh as you reach your home, unlock your front door and jump onto your bed, not knowing that you have just missed the most interesting day of your life."
       },
@@ -25,7 +26,11 @@ namespace Endabgabe {
       await ƒS.Location.show(locations.evening_walk);
       await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
 
-      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+      if (dataForSave.travelWithCat)
+        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
+      else 
+        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002a);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003a);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006a);
@@ -36,7 +41,11 @@ namespace Endabgabe {
       await ƒS.Location.show(locations.evening_walk);
       await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
 
-      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+      if (dataForSave.travelWithCat && !dataForSave.freedCat)
+        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
+      else 
+        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0004);
