@@ -15,7 +15,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_table);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -55,7 +55,7 @@ namespace Endabgabe {
 
           ƒS.Speech.hide();
           await ƒS.Location.show(locations.home_table);
-          await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+          await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
           await ƒS.Speech.tell(characters.narrator, text1.Narrator.T0001);
           await ƒS.Speech.tell(characters.narrator, text1.Narrator.T0002);
@@ -157,7 +157,7 @@ namespace Endabgabe {
 
           ƒS.Speech.hide();
           await ƒS.Location.show(locations.home_table);
-          await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+          await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
   
           await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0001);
 

@@ -39,7 +39,7 @@ namespace Endabgabe {
     beach: "Audio/beach.mp3",
 
     // sfx
-    click: "Pfad",
+    click: "Audio/click.mp3",
     seagull: "Audio/Seagulls.mp3",
     swimming: "Audio/swimming.mp3",
     music: "Audio/music.mp3",

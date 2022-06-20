@@ -43,7 +43,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.cat_search_bush);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
     await ƒS.Speech.tell(characters.fox, text.Fox.T0002);

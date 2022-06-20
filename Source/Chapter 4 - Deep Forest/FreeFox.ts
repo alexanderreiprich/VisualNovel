@@ -84,8 +84,9 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0018);
 
       dataForSave.freedFox = true;
+      dataForSave.freedAnimals++;
 
-      return ""; // TODO: Add return
+      return "ArrivalClearing";
     }
 
     else {
@@ -153,7 +154,7 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
 
-      return ""; // TODO: Add return
+      return "ArrivalClearing";
     }
   }
 }

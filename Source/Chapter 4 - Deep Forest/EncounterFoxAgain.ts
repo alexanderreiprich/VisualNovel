@@ -65,7 +65,7 @@ namespace Endabgabe {
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.deep_forest_split_bridge);
-      await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0001);
 
@@ -108,7 +108,7 @@ namespace Endabgabe {
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.deep_forest_split_bridge);
-      await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
       await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomright);
       await ƒS.update(0.3);
@@ -216,8 +216,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.cat, text3.Cat.T0004);
           await ƒS.Speech.tell(characters.narrator, text3.Narrator.T0005);
 
-          // TODO: Add return
-          return "";
+          return "FreeFox";
 
         case agreeWithFoxChoiceAnswer.disagree:
           let text4 = {
@@ -244,8 +243,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.june, text4.Fox.T0004);
           await ƒS.Speech.tell(characters.narrator, text4.Narrator.T0005);
 
-          // TODO: Add return
-          return "";
+          return "RevisitLake";
 
         case agreeWithFoxChoiceAnswer.complain:
           let text5 = {
@@ -307,7 +305,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.narrator, text5.Narrator.T0014);
 
           // TODO: Add return
-          return "";
+          return "ArrivalClearing";
       }
     }
   }

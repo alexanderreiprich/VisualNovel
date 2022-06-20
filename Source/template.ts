@@ -13,7 +13,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_table);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
   
     
   }

@@ -15,7 +15,7 @@ namespace Endabgabe {
     ƒS.Sound.fade(sound.nightclub, 0.2, 5, true);
     await ƒS.Location.show(locations.home_table);
 
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
     await ƒS.Location.show(locations.home_table);
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomleft);
 

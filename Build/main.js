@@ -34,7 +34,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Sound.fade(Endabgabe.sound.nightclub, 0.2, 5, true);
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomleft);
         await Endabgabe.ƒS.update();
@@ -110,7 +110,7 @@ var Endabgabe;
         nightclub: "Audio/nightclub.ogg",
         beach: "Audio/beach.mp3",
         // sfx
-        click: "Pfad",
+        click: "Audio/click.mp3",
         seagull: "Audio/Seagulls.mp3",
         swimming: "Audio/swimming.mp3",
         music: "Audio/music.mp3",
@@ -561,7 +561,7 @@ var Endabgabe;
         Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
     }
     Endabgabe.Template = Template;
 })(Endabgabe || (Endabgabe = {}));
@@ -578,7 +578,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         return "MeetingAgain";
     }
@@ -630,7 +630,7 @@ var Endabgabe;
             console.log("appended"); */
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -689,6 +689,7 @@ var Endabgabe;
             decline: "Decline and carry on alone"
         };
         let travelWithCat = await Endabgabe.ƒS.Menu.getInput(travelWithCatAnswer, "decision");
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.click, 0.2);
         switch (travelWithCat) {
             case travelWithCatAnswer.accept:
                 Endabgabe.dataForSave.travelWithCat = true;
@@ -714,7 +715,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         return "MeetingAgain";
@@ -735,7 +736,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         return "ForestAlone";
@@ -767,7 +768,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
@@ -778,7 +779,12 @@ var Endabgabe;
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0004);
+        let scene = document.getElementById("append");
+        let overlay = document.createElement("div");
+        overlay.id = "overlay";
+        scene.appendChild(overlay);
         await Endabgabe.ƒS.Speech.getInput();
+        document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
@@ -809,7 +815,7 @@ var Endabgabe;
         Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
     }
     Endabgabe.TravelWithoutCat = TravelWithoutCat;
 })(Endabgabe || (Endabgabe = {}));
@@ -849,6 +855,7 @@ var Endabgabe;
             eggs: "Scrambled Eggs with Bacon"
         };
         await Endabgabe.ƒS.Menu.getInput(breakfastAnswer, "decision");
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.click, 0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
@@ -866,6 +873,7 @@ var Endabgabe;
             song3: "Song 3"
         };
         let song = await Endabgabe.ƒS.Menu.getInput(songAnswer, "decision");
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.click, 0.2);
         switch (song) {
             case songAnswer.song1:
                 // ƒS.Sound.play(sound.song1);
@@ -878,7 +886,7 @@ var Endabgabe;
                 break;
         }
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
         let catAnswer = {
@@ -887,6 +895,7 @@ var Endabgabe;
             ignore: "Ignore the Cat"
         };
         let cat = await Endabgabe.ƒS.Menu.getInput(catAnswer, "decision");
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.click, 0.2);
         switch (cat) {
             case catAnswer.pet:
                 return "PetTheCat";
@@ -962,7 +971,7 @@ var Endabgabe;
             };
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_bush);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text.Fox.T0003);
@@ -1086,7 +1095,7 @@ var Endabgabe;
             };
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_bush);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text.Fox.T0003);
@@ -1193,7 +1202,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_bush);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text.Fox.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
@@ -1296,7 +1305,7 @@ var Endabgabe;
             };
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_bush);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
@@ -1359,7 +1368,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.forest_path_into);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1413,7 +1422,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.forest_path_into);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
@@ -1440,7 +1449,7 @@ var Endabgabe;
                 return "IntoDeepForest";
             case lookForCatAnswer.field:
                 await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_field);
-                await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
@@ -1493,7 +1502,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_forest);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
@@ -1555,7 +1564,7 @@ var Endabgabe;
             };
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_bush);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1607,7 +1616,7 @@ var Endabgabe;
             };
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_bush);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1656,7 +1665,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_entrance);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1722,7 +1731,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_castle);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1736,7 +1745,7 @@ var Endabgabe;
                 console.log("- - - Scene 9.1: Higher, higher! - - -");
                 Endabgabe.ƒS.Speech.hide();
                 await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
-                await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
@@ -1756,7 +1765,7 @@ var Endabgabe;
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0019);
                         Endabgabe.ƒS.Speech.hide();
                         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_bridge);
-                        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
                         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
                         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
@@ -1780,7 +1789,7 @@ var Endabgabe;
                 console.log("- - - Scene 9.2: Bridge - - -");
                 Endabgabe.ƒS.Speech.hide();
                 await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_bridge);
-                await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
                 await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
@@ -1831,7 +1840,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1842,7 +1851,7 @@ var Endabgabe;
         let examineLakeSmell = await Endabgabe.ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");
         if (examineLakeSmell == examineLakeSmellAnswer.examineSmell) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
@@ -1910,7 +1919,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         Endabgabe.ƒS.Speech.setTickerDelays(150);
@@ -1958,7 +1967,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -2025,7 +2034,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         Endabgabe.ƒS.Speech.setTickerDelays(150);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0002);
@@ -2092,7 +2101,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -2144,7 +2153,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_entrance);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
@@ -2191,7 +2200,7 @@ var Endabgabe;
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0021);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0022);
@@ -2204,7 +2213,7 @@ var Endabgabe;
             case splitPathForestAnswer.bridge:
                 return "CatBridge";
             case splitPathForestAnswer.path:
-                return ""; // TODO: Add Return
+                return "ArrivalClearing";
         }
     }
     Endabgabe.CatBackstory = CatBackstory;
@@ -2236,7 +2245,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
@@ -2431,7 +2440,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_entrance);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -2448,7 +2457,7 @@ var Endabgabe;
             case splitPathForestAnswer.bridge:
                 return "BridgeAlone";
             case splitPathForestAnswer.path:
-                return; // TODO: Add Return
+                return "ArrivalClearing";
         }
     }
     Endabgabe.DeepForestAlone = DeepForestAlone;
@@ -2513,7 +2522,7 @@ var Endabgabe;
             gameMenu.open();
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomleft);
@@ -2546,7 +2555,7 @@ var Endabgabe;
             gameMenu.open();
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
@@ -2629,8 +2638,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text3.Cat.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text3.Narrator.T0005);
-                    // TODO: Add return
-                    return "";
+                    return "FreeFox";
                 case agreeWithFoxChoiceAnswer.disagree:
                     let text4 = {
                         Narrator: {
@@ -2653,8 +2661,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0005);
-                    // TODO: Add return
-                    return "";
+                    return "RevisitLake";
                 case agreeWithFoxChoiceAnswer.complain:
                     let text5 = {
                         Narrator: {
@@ -2707,7 +2714,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0013);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0014);
                     // TODO: Add return
-                    return "";
+                    return "ArrivalClearing";
             }
         }
     }
@@ -2747,7 +2754,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         if (!Endabgabe.dataForSave.encounteredFox) {
             let text2 = {
                 Protagonist: {
@@ -2827,7 +2834,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0018a);
-            return ""; // TODO: Add return
+            return "FreeFox";
         }
         else {
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0018b);
@@ -2859,8 +2866,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text3.Protagonist.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text3.Narrator.T0004);
-                    // TODO: Add return
-                    return "";
+                    return "RevisitLake";
                 case agreeWithFoxChoiceAnswer.disagree:
                     let text4 = {
                         Narrator: {
@@ -2883,8 +2889,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0005);
-                    // TODO: Add return
-                    return "";
+                    return "RevisitLake";
                 case agreeWithFoxChoiceAnswer.complain:
                     let text5 = {
                         Narrator: {
@@ -2931,8 +2936,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0012);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0013);
-                    // TODO: Add return
-                    return "";
+                    return "ArrivalClearing";
             }
         }
     }
@@ -3009,7 +3013,8 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0018);
             Endabgabe.dataForSave.freedFox = true;
-            return ""; // TODO: Add return
+            Endabgabe.dataForSave.freedAnimals++;
+            return "ArrivalClearing";
         }
         else {
             console.log("- - - Scene 19: Music sounds better with you - - -");
@@ -3064,7 +3069,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
-            return ""; // TODO: Add return
+            return "ArrivalClearing";
         }
     }
     Endabgabe.FreeFox = FreeFox;
@@ -3074,7 +3079,7 @@ var Endabgabe;
     async function RevisitLake() {
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         if (Endabgabe.dataForSave.travelWithCat) {
             console.log("- - - Scene 17: Pollution never sounded that good - - -");
             let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
@@ -3156,7 +3161,9 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0020);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0022);
-            return ""; // TODO: Add Return
+            Endabgabe.dataForSave.freedFox = true;
+            Endabgabe.dataForSave.freedAnimals++;
+            return "ArrivalClearing";
         }
         else {
             console.log("- - - Scene 21: Pollution never sounded that good [no cat] - - -");
@@ -3221,7 +3228,9 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
-            return ""; // TODO: Add return
+            Endabgabe.dataForSave.freedFox = true;
+            Endabgabe.dataForSave.freedAnimals++;
+            return "ArrivalClearing";
         }
     }
     Endabgabe.RevisitLake = RevisitLake;
@@ -3242,7 +3251,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3263,7 +3272,7 @@ var Endabgabe;
                     let text1;
                     Endabgabe.ƒS.Speech.hide();
                     await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-                    await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                    await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1.Narrator.T0001);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1.Narrator.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1.Narrator.T0003);
@@ -3336,7 +3345,7 @@ var Endabgabe;
                     let text2;
                     Endabgabe.ƒS.Speech.hide();
                     await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-                    await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+                    await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
                     await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
@@ -3424,7 +3433,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.clearing_trees);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
@@ -3534,7 +3543,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_evening);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
@@ -3562,6 +3571,8 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0014);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
+        Endabgabe.dataForSave.freedDeer = true;
+        Endabgabe.dataForSave.freedAnimals++;
         return "WalkHome";
     }
     Endabgabe.FreeDeer = FreeDeer;
@@ -3664,6 +3675,9 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0026);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0027);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0028);
+        Endabgabe.dataForSave.freedDeer = true;
+        Endabgabe.dataForSave.freedCat = true;
+        Endabgabe.dataForSave.freedAnimals += 2;
         return "WalkHome";
     }
     Endabgabe.Reunion = Reunion;
@@ -3684,7 +3698,7 @@ var Endabgabe;
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3713,7 +3727,7 @@ var Endabgabe;
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3724,19 +3738,19 @@ var Endabgabe;
         Endabgabe.ƒS.Speech.hide();
         if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) > 0 && Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.rock) > 0) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_all);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         }
         else if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) > 0) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_bag);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         }
         else if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.rock) > 0) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_rock);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         }
         else {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_none);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Good Ending\nYou freed all animals.");
         return "Empty";
@@ -3771,7 +3785,7 @@ var Endabgabe;
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3836,7 +3850,7 @@ var Endabgabe;
         if (Endabgabe.dataForSave.freedAnimals == 0) {
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             if (Endabgabe.dataForSave.travelWithCat)
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001a);
             else
@@ -3849,7 +3863,7 @@ var Endabgabe;
         else {
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             if (Endabgabe.dataForSave.travelWithCat && !Endabgabe.dataForSave.freedCat)
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001a);
             else

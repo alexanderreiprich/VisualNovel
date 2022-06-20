@@ -32,7 +32,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_evening);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
 
@@ -69,6 +69,9 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0014);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0015);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0016);
+
+    dataForSave.freedDeer = true;
+    dataForSave.freedAnimals++;
 
     return "WalkHome";
   }

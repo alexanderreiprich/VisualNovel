@@ -37,7 +37,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.deep_forest_entrance);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002);
@@ -104,7 +104,7 @@ namespace Endabgabe {
     ƒS.Speech.hide();
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Location.show(locations.deep_forest_split);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0021);
@@ -121,7 +121,7 @@ namespace Endabgabe {
       case splitPathForestAnswer.bridge:
         return "CatBridge";
       case splitPathForestAnswer.path:
-        return "";  // TODO: Add Return
+        return "ArrivalClearing";
     }
   }
 }

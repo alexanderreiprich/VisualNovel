@@ -115,6 +115,10 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0027);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0028);
 
+    dataForSave.freedDeer = true;
+    dataForSave.freedCat = true;
+    dataForSave.freedAnimals += 2;
+
     return "WalkHome";
 
   }

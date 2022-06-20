@@ -3,7 +3,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_polluted_water);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     if (dataForSave.travelWithCat) {
       console.log("- - - Scene 17: Pollution never sounded that good - - -");
@@ -104,7 +104,10 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0021);
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0022);
 
-      return ""; // TODO: Add Return
+      dataForSave.freedFox = true;
+      dataForSave.freedAnimals++;
+
+      return "ArrivalClearing";
     }
 
     else {
@@ -182,7 +185,10 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0017);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0018);
 
-      return ""; // TODO: Add return
+      dataForSave.freedFox = true;
+      dataForSave.freedAnimals++;
+
+      return "ArrivalClearing";
 
     }
 

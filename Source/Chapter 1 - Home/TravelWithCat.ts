@@ -24,7 +24,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_path);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
     await ƒS.update(0.2);
@@ -38,7 +38,14 @@ namespace Endabgabe {
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0004);
 
+    let scene: HTMLElement = document.getElementById("append");
+    let overlay: HTMLDivElement = document.createElement("div");
+    overlay.id = "overlay";
+    scene.appendChild(overlay);
+
     await ƒS.Speech.getInput();
+
+    document.getElementById("append").children[0].remove();
 
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);

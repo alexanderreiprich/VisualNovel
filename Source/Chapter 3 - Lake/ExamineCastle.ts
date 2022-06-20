@@ -43,7 +43,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_castle);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -62,7 +62,7 @@ namespace Endabgabe {
 
         ƒS.Speech.hide();
         await ƒS.Location.show(locations.lake_rocks);
-        await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+        await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
@@ -88,7 +88,7 @@ namespace Endabgabe {
 
             ƒS.Speech.hide();
             await ƒS.Location.show(locations.lake_bridge);
-            await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+            await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
             await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
 
@@ -121,7 +121,7 @@ namespace Endabgabe {
 
         ƒS.Speech.hide();
         await ƒS.Location.show(locations.lake_bridge);
-        await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+        await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0009);
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);

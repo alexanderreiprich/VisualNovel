@@ -39,6 +39,7 @@ namespace Endabgabe {
     };
 
     await ƒS.Menu.getInput(breakfastAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
@@ -60,6 +61,7 @@ namespace Endabgabe {
     };
 
     let song = await ƒS.Menu.getInput(songAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     switch (song) {
       case songAnswer.song1:
@@ -74,7 +76,7 @@ namespace Endabgabe {
     }
 
     await ƒS.Location.show(locations.home_door);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0011);
@@ -86,7 +88,8 @@ namespace Endabgabe {
     };
 
     let cat = await ƒS.Menu.getInput(catAnswer, "decision");
-
+    ƒS.Sound.play(sound.click, 0.2);
+    
     switch (cat) {
       case catAnswer.pet:
         return "PetTheCat";

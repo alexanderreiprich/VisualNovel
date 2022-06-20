@@ -43,7 +43,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_rocks);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0001);
