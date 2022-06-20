@@ -16,6 +16,26 @@ declare namespace Endabgabe {
             alpha: string;
             edge: number;
         };
+        blink: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        reverse_blink: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        swoosh: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        swipe: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
     let sound: {
         nightclub: string;
@@ -156,6 +176,10 @@ declare namespace Endabgabe {
             background: string;
         };
         ending_none: {
+            name: string;
+            background: string;
+        };
+        blank: {
             name: string;
             background: string;
         };

@@ -80,9 +80,29 @@ var Endabgabe;
     // define transitions
     Endabgabe.transitions = {
         puzzle: {
-            duration: 3,
+            duration: 2,
             alpha: "Transitions/puzzle.png",
             edge: 1
+        },
+        blink: {
+            duration: 4,
+            alpha: "Transitions/blink.png",
+            edge: 0.2
+        },
+        reverse_blink: {
+            duration: 4,
+            alpha: "Transitions/reverse_blink.png",
+            edge: 0.2
+        },
+        swoosh: {
+            duration: 1.5,
+            alpha: "Transitions/swoosh.png",
+            edge: 0.4
+        },
+        swipe: {
+            duration: 1,
+            alpha: "Transitions/swipe.png",
+            edge: 0.4
         }
     };
     Endabgabe.sound = {
@@ -228,6 +248,10 @@ var Endabgabe;
         ending_none: {
             name: "No items collected",
             background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+        },
+        blank: {
+            name: "Blank",
+            background: "Images/Backgrounds/blank.png"
         }
     };
     Endabgabe.characters = {
@@ -497,6 +521,9 @@ var Endabgabe;
             { scene: Endabgabe.RevisitLake, name: "RevisitLake", id: "RevisitLake" },
             // Chapter 5 - Clearing
             { scene: Endabgabe.ArrivalClearing, name: "ArrivalClearing", id: "ArrivalClearing" },
+            { scene: Endabgabe.EncounterDeer, name: "EncounterDeer", id: "EncounterDeer" },
+            { scene: Endabgabe.FreeDeer, name: "FreeDeer", id: "FreeDeer" },
+            { scene: Endabgabe.Reunion, name: "Reunion", id: "Reunion" },
             // Chapter 6 - Walk Home & Endings
             { scene: Endabgabe.WalkHome, name: "WalkHome", id: "WalkHome" },
             { scene: Endabgabe.BadEnding, name: "BadEnding", id: "BadEnding" },
@@ -811,8 +838,8 @@ var Endabgabe;
             "Small particles raining from the sky this night…", "… scientists are not sure where if comes from…", "… no explanation what it is or what it does…",
             "… citizens are advised to keep windows closed…"];
         Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.puzzle.duration, Endabgabe.transitions.puzzle.alpha, Endabgabe.transitions.puzzle.edge);
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table); // TODO: Change to bedroom
+        await Endabgabe.ƒS.update(Endabgabe.transitions.blink.duration, Endabgabe.transitions.blink.alpha, Endabgabe.transitions.blink.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3545,6 +3572,99 @@ var Endabgabe;
         console.log("- - - Scene 28: Reunion - - -");
         let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
         gameMenu.open();
+        let text = {
+            Narrator: {
+                T0004: "The cat fell asleep next to the mysterious rock in the sun.",
+                T0006: "You can see the cat stretching and yawning before slowly getting up and trotting over to you.",
+                T0009: "Both, the cat and the deer freeze and look at each other.",
+                T0021: "Both, the cat and the deer are now cuddled up underneath a big tree. You don’t know how happy deer look like, but this is probably what comes closest to it.",
+                T0025: "You couldn’t finish your sentence, as you see the bright purple and green eyes fade into black.",
+                T0026: "After another second, both seem surprised to see you.",
+                T0027: "The previously very talkative animals seem to not recognize you anymore.",
+                T0028: "Surprise turns into fright, and both take off into the forest, never to be seen again. It seems like their souls are finally free."
+            },
+            Protagonist: {
+                T0001: "Where is Tommy?",
+                T0003: "Yes, he is a cat that I found this morning. He has been travelling with me the whole day.",
+                T0005: "Hey, Tommy, can you come here for a second?",
+                T0008: "Tommy, meet DEERNAME.",
+                T0013: "…have you already met?",
+                T0018: "Oh, it all makes sense now… the bright light you told me about when we first met… that was the car crash…",
+                T0024: "Well, I’m not going anywhere, so feel free to come visit-"
+            },
+            Cat: {
+                T0007: "Hmm?",
+                T0011: "Mom?!",
+                T0017: "Mom, I missed you too… Why are you here?",
+                T0023: "Thank you, " + Endabgabe.dataForSave.nameProtagonist + "! I’m going to miss you…"
+            },
+            Deer: {
+                T0002: "Tommy?",
+                T0010: "Tommy, is that you?",
+                T0012: "Oh, Tommy, I missed you so much…",
+                T0014: "No… this is my son, Tommy…",
+                T0015: "He died a couple of weeks ago in a car crash. Somebody crashed into our car when we stopped at a red light.",
+                T0016: "I couldn’t sleep after that… my life has been a mess…",
+                T0019: "Ever since he passed away, I couldn’t shut my eyes, I just kept seeing the accident in front of me…",
+                T0020: "I never really coped with all of this. I just… worked more. It just might have been too much…",
+                T0022: "Thank you so much, " + Endabgabe.dataForSave.nameProtagonist + ". I haven’t been so happy in a long time…"
+            }
+        };
+        // TODO: Do I need showLocation here?
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
+        /*     await ƒS.Character.hide(characters.deername);
+            await ƒS.Character.show(characters.deername, characters.deername.pose.curious, ƒS.positions.bottomcenter);
+            await ƒS.update(0.2); */
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0007);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0010);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0011);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.sad, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0012);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0013);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0014);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0015);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0016);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0017);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.crying, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0019);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0020);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0021);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0022);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0023);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0024);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0025);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0026);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0027);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0028);
+        return "WalkHome";
     }
     Endabgabe.Reunion = Reunion;
 })(Endabgabe || (Endabgabe = {}));

@@ -25,8 +25,8 @@ namespace Endabgabe {
    "… citizens are advised to keep windows closed…"];
 
     ƒS.Speech.hide();
-    await ƒS.Location.show(locations.home_table);
-    await ƒS.update(transitions.puzzle.duration, transitions.puzzle.alpha, transitions.puzzle.edge);
+    await ƒS.Location.show(locations.home_table); // TODO: Change to bedroom
+    await ƒS.update(transitions.blink.duration, transitions.blink.alpha, transitions.blink.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);

@@ -7,9 +7,29 @@ namespace Endabgabe {
   // define transitions
   export let transitions = {
     puzzle: {
-      duration: 3,
+      duration: 2,
       alpha: "Transitions/puzzle.png",
       edge: 1
+    },
+    blink: {
+      duration: 4,
+      alpha: "Transitions/blink.png",
+      edge: 0.2
+    },
+    reverse_blink: {
+      duration: 4,
+      alpha: "Transitions/reverse_blink.png",
+      edge: 0.2
+    },
+    swoosh: {
+      duration: 1.5,
+      alpha: "Transitions/swoosh.png",
+      edge: 0.4
+    },
+    swipe: {
+      duration: 1,
+      alpha: "Transitions/swipe.png",
+      edge: 0.4
     }
   };
 
@@ -158,6 +178,10 @@ namespace Endabgabe {
     ending_none: {
       name: "No items collected",
       background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+    },
+    blank: {
+      name: "Blank",
+      background: "Images/Backgrounds/blank.png"
     }
   };
 
