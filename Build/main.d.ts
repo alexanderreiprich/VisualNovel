@@ -103,6 +103,10 @@ declare namespace Endabgabe {
             name: string;
             background: string;
         };
+        lake_evening: {
+            name: string;
+            background: string;
+        };
         deep_forest_entrance: {
             name: string;
             background: string;
@@ -175,6 +179,9 @@ declare namespace Endabgabe {
         turtle: {
             name: string;
         };
+        deer: {
+            name: string;
+        };
         girl: {
             name: string;
         };
@@ -210,6 +217,18 @@ declare namespace Endabgabe {
                 happy: string;
                 neutral: string;
                 sad: string;
+            };
+        };
+        deername: {
+            name: string;
+            origin: ƒ.ORIGIN2D;
+            pose: {
+                happy: string;
+                neutral: string;
+                sad: string;
+                curious: string;
+                crying: string;
+                surprised: string;
             };
         };
     };
@@ -344,6 +363,15 @@ declare namespace Endabgabe {
 }
 declare namespace Endabgabe {
     function ArrivalClearing(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function EncounterDeer(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function FreeDeer(): ƒS.SceneReturn;
+}
+declare namespace Endabgabe {
+    function Reunion(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
     function BadEnding(): ƒS.SceneReturn;

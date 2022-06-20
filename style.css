@@ -28,6 +28,10 @@ canvas {
   margin: 0px;
   position: absolute;
   left: 43%;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #overlay {
@@ -73,6 +77,10 @@ input {
   height: 60px;
   margin-bottom: 5px;
   margin-top: 5px;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .decision button:hover {
@@ -185,6 +193,10 @@ dialog[type="text"] {
   width: 50%;
   height: 40%;
   white-space: pre-wrap;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 #appendedDiv {

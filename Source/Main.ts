@@ -7,9 +7,9 @@ namespace Endabgabe {
   // define transitions
   export let transitions = {
     puzzle: {
-      duration: 1,
+      duration: 3,
       alpha: "Transitions/puzzle.png",
-      edge: 2
+      edge: 1
     }
   };
 
@@ -103,6 +103,10 @@ namespace Endabgabe {
       name: "Bride",
       background: "Images/Backgrounds/lake_bridge.png"
     },
+    lake_evening: {
+      name: "Bride",
+      background: "Images/Backgrounds/lake_evening.png"
+    },
     deep_forest_entrance: {
       name: "Entrance to the deeper forest",
       background: "Images/Backgrounds/deep_forest_entrance.png"
@@ -176,6 +180,9 @@ namespace Endabgabe {
     turtle: {
       name: "Turtle"
     },
+    deer: {
+      name: "Deer"
+    },
     girl: {
       name: "Girl"
     },
@@ -213,6 +220,18 @@ namespace Endabgabe {
         happy: "",
         neutral: "",
         sad: ""
+      }
+    },
+    deername: {
+      name: "DEERNAME",
+      origin: ƒS.ORIGIN.BOTTOMCENTER, 
+      pose: {
+        happy: "",
+        neutral: "",
+        sad: "",
+        curious: "",
+        crying: "",
+        surprised: ""
       }
     }
   };
@@ -444,6 +463,9 @@ namespace Endabgabe {
 
       // Chapter 5 - Clearing
       { scene: ArrivalClearing, name: "ArrivalClearing", id: "ArrivalClearing" },
+      { scene: EncounterDeer, name: "EncounterDeer", id: "EncounterDeer" },
+      { scene: FreeDeer, name: "FreeDeer", id: "FreeDeer" },
+      { scene: Reunion, name: "Reunion", id: "Reunion" },
 
       // Chapter 6 - Walk Home & Endings
       { scene: WalkHome, name: "WalkHome", id: "WalkHome" },
@@ -451,7 +473,6 @@ namespace Endabgabe {
       { scene: GoodEnding, name: "GoodEnding", id: "GoodEnding" },
       { scene: NeutralEndings, name: "NeutralEndings", id: "NeutralEndings" },
       
-
       // Empty End Scene
       { id: "Empty Scene", scene: Empty, name: "End" }
     ];
