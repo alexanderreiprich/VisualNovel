@@ -15,6 +15,7 @@ var Endabgabe;
 var Endabgabe;
 (function (Endabgabe) {
     async function Empty() {
+        // stop snooping around >:(
     }
     Endabgabe.Empty = Empty;
 })(Endabgabe || (Endabgabe = {}));
@@ -100,7 +101,7 @@ var Endabgabe;
             edge: 0.4
         },
         swipe: {
-            duration: 1,
+            duration: 1.5,
             alpha: "Transitions/swipe.png",
             edge: 0.4
         }
@@ -119,7 +120,7 @@ var Endabgabe;
     Endabgabe.locations = {
         home_bedroom: {
             name: "Bedroom",
-            background: "" // TODO: Add Background
+            background: "Images/Backgrounds/home_bedroom.png" // TODO: Add Background
         },
         home_table: {
             name: "Table",
@@ -231,7 +232,7 @@ var Endabgabe;
         },
         home_bedroom_night: {
             name: "Bedroom at night",
-            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+            background: "Images/Backgrounds/home_bedroom_night.png"
         },
         ending_all: {
             name: "Ending: All items collected",
@@ -576,9 +577,6 @@ var Endabgabe;
                 T0001: "You continue your trip. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
             }
         };
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         return "MeetingAgain";
     }
@@ -630,7 +628,7 @@ var Endabgabe;
             console.log("appended"); */
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -713,9 +711,6 @@ var Endabgabe;
                 T0002: "After giving the cat a few belly rubs, you continue your trip. At last, you didn't even get three meters away from your front door. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
             }
         };
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         return "MeetingAgain";
@@ -734,9 +729,6 @@ var Endabgabe;
                 T0002: "Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
             }
         };
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         return "ForestAlone";
@@ -829,8 +821,8 @@ var Endabgabe;
             Narrator: {
                 T0001: "You open your eyes. The sun is already up and shining through your window. It is warm outside and not a single cloud obstructs the beautiful blue sky on this summer morning.",
                 T0002: "As you hear the birds chirping outside of your window, you begin to realize: the school year is over, all exams are behind you and you don't have any responsibilities for the next three months.",
-                T0003: "Slowly you start getting out of bed and begin thinking about breakfast. As you arrive in the kitchen, you face the inevitable question: What am I going to eat?",
-                T0004: "As you crunch away on your breakfast, you read a bit through the news of today. Besides the boring sports stuff and questionable claims of politicians, one headline caught your eye.",
+                T0003: "Slowly you start getting out of bed and begin to think about breakfast. As you arrive in the kitchen, you face the inevitable question: What am I going to eat?",
+                T0004: "As you crunch on your breakfast, you read a bit through the news of today. Besides the boring sports stuff and questionable claims of politicians, one headline caught your eye.",
                 T0005: "“Mysterious dust raining on earth”",
                 T0006: "“Huh, I guess the aliens started with their chemical warfare” you thought to yourself, before skimming through the article.",
                 T0007: "Well, it might not have been a good idea to keep the window open all night, but well, what can you do. It is summer after all, and the temperature is getting higher every day.",
@@ -844,10 +836,13 @@ var Endabgabe;
             "Small particles raining from the sky this night…", "… scientists are not sure where if comes from…", "… no explanation what it is or what it does…",
             "… citizens are advised to keep windows closed…"];
         Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table); // TODO: Change to bedroom
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom);
         await Endabgabe.ƒS.update(Endabgabe.transitions.blink.duration, Endabgabe.transitions.blink.alpha, Endabgabe.transitions.blink.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
         let breakfastAnswer = {
             cereal: "Cereal with Milk",
@@ -885,6 +880,7 @@ var Endabgabe;
                 // ƒS.Sound.play(sound.song3);
                 break;
         }
+        Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
@@ -1039,9 +1035,9 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0038);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0039);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0040);
-            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0041);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0041);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0042);
-            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0043);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0043);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
@@ -1153,7 +1149,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0034);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
-            return "DeepForestAlone"; // TODO: Deep Forest
+            return "DeepForestAlone";
         }
     }
     Endabgabe.BefriendFox = BefriendFox;
@@ -1368,7 +1364,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.forest_path_into);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1502,7 +1498,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.cat_search_forest);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
@@ -1529,7 +1525,9 @@ var Endabgabe;
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0014);
-        return "CatBackstoryForest";
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.update(0.2);
+        return "CatBackstory";
     }
     Endabgabe.IntoDeepForest = IntoDeepForest;
 })(Endabgabe || (Endabgabe = {}));
@@ -1665,7 +1663,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_entrance);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -1808,6 +1806,8 @@ var Endabgabe;
                 await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
                 await Endabgabe.ƒS.update(0.3);
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0017);
+                await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+                await Endabgabe.ƒS.update(0.3);
                 return "CatBackstory";
         }
     }
@@ -1850,6 +1850,7 @@ var Endabgabe;
         };
         let examineLakeSmell = await Endabgabe.ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");
         if (examineLakeSmell == examineLakeSmellAnswer.examineSmell) {
+            Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
@@ -1860,7 +1861,7 @@ var Endabgabe;
                 inspectBottle: "Inspect one of the bottles floating on the surface",
                 dontTouch: "Don't touch anything, as it is unhygenic"
             };
-            let examineLakeItems = await Endabgabe.ƒS.Menu.getInput(examineLakeItemsAnswer);
+            let examineLakeItems = await Endabgabe.ƒS.Menu.getInput(examineLakeItemsAnswer, "decision");
             switch (examineLakeItems) {
                 case examineLakeItemsAnswer.grabBag:
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
@@ -1870,7 +1871,7 @@ var Endabgabe;
                         takeBag: "Take the bag with you",
                         leaveBag: "Leave it there, you are no thief"
                     };
-                    let takeBag = await Endabgabe.ƒS.Menu.getInput(takeBagAnswer);
+                    let takeBag = await Endabgabe.ƒS.Menu.getInput(takeBagAnswer, "decision");
                     if (takeBag == takeBagAnswer.takeBag) {
                         Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
@@ -2032,9 +2033,6 @@ var Endabgabe;
             interrupt: "Interrupt",
             listen: "Listen"
         };
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_rocks);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         Endabgabe.ƒS.Speech.setTickerDelays(150);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0002);
@@ -2123,7 +2121,7 @@ var Endabgabe;
         gameMenu.open();
         let text = {
             Narrator: {
-                T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious",
+                T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious.",
                 T0010: "The cat hisses, as if it is still angry about the failed test.",
                 T0017: "The cat slowed down, jumped, and climbed onto your shoulder.",
                 T0020: "You reach the end of the path.",
@@ -2153,7 +2151,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_entrance);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0002);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
@@ -2440,7 +2438,7 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_entrance);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3697,13 +3695,15 @@ var Endabgabe;
         };
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
         Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom_night);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
-        await delay();
         Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.blank);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.reverse_blink.duration, Endabgabe.transitions.reverse_blink.alpha, Endabgabe.transitions.reverse_blink.edge);
+        await delay();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Bad Ending\nYou freed no animals.");
         return "Empty";
     }
@@ -3726,7 +3726,7 @@ var Endabgabe;
         };
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
         Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom_night);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
@@ -3734,23 +3734,29 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
         await delay();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.blank);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.reverse_blink.duration, Endabgabe.transitions.reverse_blink.alpha, Endabgabe.transitions.reverse_blink.edge);
         await delay();
         Endabgabe.ƒS.Speech.hide();
         if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) > 0 && Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.rock) > 0) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_all);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge); //TODO: Which looks better?
+            await Endabgabe.ƒS.update(0.5);
         }
         else if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) > 0) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_bag);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+            await Endabgabe.ƒS.update(0.5);
         }
         else if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.rock) > 0) {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_rock);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+            await Endabgabe.ƒS.update(0.5);
         }
         else {
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.ending_none);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+            await Endabgabe.ƒS.update(0.5);
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Good Ending\nYou freed all animals.");
         return "Empty";
@@ -3784,8 +3790,8 @@ var Endabgabe;
         };
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
         Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk); // TODO: Add bed location
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom_night);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3816,10 +3822,12 @@ var Endabgabe;
         if (Endabgabe.dataForSave.freedDeer) {
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010d);
         }
-        await delay();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
         Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.blank);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.reverse_blink.duration, Endabgabe.transitions.reverse_blink.alpha, Endabgabe.transitions.reverse_blink.edge);
+        await delay();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Neutral Ending\nYou freed " + Endabgabe.dataForSave.freedAnimals + " animals.");
         return "Empty";
     }
@@ -3850,7 +3858,7 @@ var Endabgabe;
         if (Endabgabe.dataForSave.freedAnimals == 0) {
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
             if (Endabgabe.dataForSave.travelWithCat)
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001a);
             else
@@ -3863,7 +3871,7 @@ var Endabgabe;
         else {
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.evening_walk);
-            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
             if (Endabgabe.dataForSave.travelWithCat && !Endabgabe.dataForSave.freedCat)
                 await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001a);
             else

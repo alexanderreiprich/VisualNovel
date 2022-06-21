@@ -145,7 +145,8 @@ namespace Endabgabe {
         await ƒS.update(0.3);
 
         await ƒS.Speech.tell(characters.tommy, text.Cat.T0017);
-
+        await ƒS.Character.hide(characters.tommy);
+        await ƒS.update(0.3);
         return "CatBackstory";
         
 

@@ -41,7 +41,7 @@ namespace Endabgabe {
     let examineLakeSmell = await ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");
 
     if (examineLakeSmell == examineLakeSmellAnswer.examineSmell) {
-
+      ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
@@ -55,7 +55,7 @@ namespace Endabgabe {
         dontTouch: "Don't touch anything, as it is unhygenic"
       };
 
-      let examineLakeItems = await ƒS.Menu.getInput(examineLakeItemsAnswer);
+      let examineLakeItems = await ƒS.Menu.getInput(examineLakeItemsAnswer, "decision");
       switch (examineLakeItems) {
         case examineLakeItemsAnswer.grabBag:
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0007);
@@ -67,7 +67,7 @@ namespace Endabgabe {
             leaveBag: "Leave it there, you are no thief"
           };
 
-          let takeBag = await ƒS.Menu.getInput(takeBagAnswer);
+          let takeBag = await ƒS.Menu.getInput(takeBagAnswer, "decision");
           if (takeBag == takeBagAnswer.takeBag) {
               ƒS.Inventory.add(items.bag);
               await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);

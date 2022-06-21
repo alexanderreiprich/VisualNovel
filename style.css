@@ -22,16 +22,26 @@ canvas {
 .gameMenu {
   background: none;
   border: none;
-  color: red;
   font-size: 20px;
   padding: 0px;
-  margin: 0px;
+  margin: 0 auto;
   position: absolute;
-  left: 43%;
   -webkit-user-select: none;     
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.gameMenu button {
+  background: rgba(0, 0, 0, 0.5);
+  height: 40px;
+  width: 100px;
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.gameMenu button:hover {
+  cursor: pointer;
 }
 
 #overlay {
@@ -60,7 +70,7 @@ input {
 
 .decision {
   background-color: rgba(128, 133, 128, 0.9);
-  width: 30%;
+  width: 35%;
   border-style: solid;
   border-radius: 15px;
   border-width: 5px;
@@ -127,6 +137,7 @@ speech name {
 speech content {
   position: absolute;
   left: 50px;
+  margin-right: 40px;
 }
 
 dialog[type=splash] {

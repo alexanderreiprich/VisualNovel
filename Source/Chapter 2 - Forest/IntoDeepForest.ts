@@ -29,7 +29,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.cat_search_forest);
-    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+    await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
 
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
@@ -64,7 +64,10 @@ namespace Endabgabe {
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0014);
 
-    return "CatBackstoryForest";
+    await ƒS.Character.hide(characters.tommy);
+    await ƒS.update(0.2);
+
+    return "CatBackstory";
     
   }
 }

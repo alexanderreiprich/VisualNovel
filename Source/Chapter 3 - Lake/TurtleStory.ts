@@ -41,10 +41,6 @@ namespace Endabgabe {
       listen: "Listen"
     };
 
-    ƒS.Speech.hide();
-    await ƒS.Location.show(locations.lake_rocks);
-    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
-
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0001);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0002);

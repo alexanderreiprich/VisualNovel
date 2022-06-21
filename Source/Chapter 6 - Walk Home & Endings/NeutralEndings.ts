@@ -28,8 +28,8 @@ namespace Endabgabe {
     let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(4)]);
 
     ƒS.Speech.hide();
-    await ƒS.Location.show(locations.evening_walk); // TODO: Add bed location
-    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+    await ƒS.Location.show(locations.home_bedroom_night);
+    await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -64,12 +64,15 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010d);
     }
 
-    await delay();
-
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0011);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0012);
 
     ƒS.Speech.hide();
+    await ƒS.Location.show(locations.blank);
+    await ƒS.update(transitions.reverse_blink.duration, transitions.reverse_blink.alpha, transitions.reverse_blink.edge);
+
+    await delay();
+
     await ƒS.Speech.tell(characters.narrator, "The Neutral Ending\nYou freed " + dataForSave.freedAnimals + " animals.");
 
     return "Empty";

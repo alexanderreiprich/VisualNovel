@@ -27,7 +27,7 @@ namespace Endabgabe {
       edge: 0.4
     },
     swipe: {
-      duration: 1,
+      duration: 1.5,
       alpha: "Transitions/swipe.png",
       edge: 0.4
     }
@@ -49,7 +49,7 @@ namespace Endabgabe {
   export let locations = {
     home_bedroom: {
       name: "Bedroom",
-      background: "" // TODO: Add Background
+      background: "Images/Backgrounds/home_bedroom.png" // TODO: Add Background
     },
     home_table: {
       name: "Table",
@@ -161,7 +161,7 @@ namespace Endabgabe {
     },
     home_bedroom_night: {
       name: "Bedroom at night",
-      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+      background: "Images/Backgrounds/home_bedroom_night.png"
     },
     ending_all: {
       name: "Ending: All items collected",

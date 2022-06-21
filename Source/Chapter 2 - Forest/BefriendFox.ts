@@ -151,9 +151,9 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0038);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0039);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0040);
-      await ƒS.Speech.tell(characters.cat, text.Cat.T0041);
+      await ƒS.Speech.tell(characters.tommy, text.Cat.T0041);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0042);
-      await ƒS.Speech.tell(characters.cat, text.Cat.T0043);
+      await ƒS.Speech.tell(characters.tommy, text.Cat.T0043);
 
       await ƒS.Character.hide(characters.tommy);
 
@@ -291,8 +291,7 @@ namespace Endabgabe {
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;
 
-      return "DeepForestAlone"; // TODO: Deep Forest
-
+      return "DeepForestAlone";
     }
   }
 }

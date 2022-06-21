@@ -17,7 +17,7 @@ namespace Endabgabe {
     let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(4)]);
 
     ƒS.Speech.hide();
-    await ƒS.Location.show(locations.evening_walk); // TODO: Add bed location
+    await ƒS.Location.show(locations.home_bedroom_night);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
@@ -29,24 +29,31 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
 
+    await ƒS.Location.show(locations.blank);
+    await ƒS.update(transitions.reverse_blink.duration, transitions.reverse_blink.alpha, transitions.reverse_blink.edge);
+
     await delay();
 
     ƒS.Speech.hide();
     if (ƒS.Inventory.getAmount(items.bag) > 0 && ƒS.Inventory.getAmount(items.rock) > 0) {
       await ƒS.Location.show(locations.ending_all);
-      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge); //TODO: Which looks better?
+      await ƒS.update(0.5);
     }
     else if (ƒS.Inventory.getAmount(items.bag) > 0) {
       await ƒS.Location.show(locations.ending_bag);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+      await ƒS.update(0.5);
     }
     else if (ƒS.Inventory.getAmount(items.rock) > 0) {
       await ƒS.Location.show(locations.ending_rock);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+      await ƒS.update(0.5);
     }
     else {
       await ƒS.Location.show(locations.ending_none);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+      await ƒS.update(0.5);
     }
 
     await ƒS.Speech.tell(characters.narrator, "The Good Ending\nYou freed all animals.");

@@ -6,7 +6,7 @@ namespace Endabgabe {
 
     let text = {
       Narrator: {
-        T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious",
+        T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious.",
         T0010: "The cat hisses, as if it is still angry about the failed test.",
         T0017: "The cat slowed down, jumped, and climbed onto your shoulder.",
         T0020: "You reach the end of the path.",
@@ -37,7 +37,7 @@ namespace Endabgabe {
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.deep_forest_entrance);
-    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+    await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002);
