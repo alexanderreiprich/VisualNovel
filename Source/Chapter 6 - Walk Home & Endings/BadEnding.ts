@@ -13,7 +13,8 @@ namespace Endabgabe {
     };
 
     let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(4)]);
-
+    
+    ƒS.Sound.play(sound.emotion, 0.5, true);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_bedroom_night);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);

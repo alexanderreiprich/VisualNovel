@@ -19,7 +19,7 @@ namespace Endabgabe {
         },
         Protagonist: {
           T0001: "Look what I found! Why would anybody throw this away?",
-          T0010: "Well, I haven't tried it, but let's give it a go.",
+          T0010: "I think so.",
           T0012: "…so, is it working?",
           T0015: "Well… I guess it did work after all…",
           T0017: "I have no idea. Come on, let's go into the direction that they went, maybe we can find them again?"
@@ -68,6 +68,8 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0010);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0011);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);
+
+      ƒS.Sound.play(sound.spacesong, 0.5);
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.hide(characters.tommy);

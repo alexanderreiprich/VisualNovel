@@ -1,11 +1,5 @@
 declare namespace Endabgabe {
-    function BeachScene(): ƒS.SceneReturn;
-}
-declare namespace Endabgabe {
     function Empty(): ƒS.SceneReturn;
-}
-declare namespace Endabgabe {
-    function ExampleScene(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
     export import ƒ = FudgeCore;
@@ -41,10 +35,16 @@ declare namespace Endabgabe {
         nightclub: string;
         beach: string;
         click: string;
-        seagull: string;
-        swimming: string;
-        music: string;
-        people: string;
+        cassette_in: string;
+        cassette_out: string;
+        cassette_scroll: string;
+        ophelia: string;
+        freaks: string;
+        twentymins: string;
+        fiveofive: string;
+        emotion: string;
+        righthere: string;
+        spacesong: string;
     };
     let locations: {
         home_bedroom: {
@@ -294,12 +294,6 @@ declare namespace Endabgabe {
         freedAnimals: number;
         travelWithCat: boolean;
     };
-}
-declare namespace Endabgabe {
-    function Scene(): ƒS.SceneReturn;
-}
-declare namespace Endabgabe {
-    function Template(): ƒS.SceneReturn;
 }
 declare namespace Endabgabe {
     function IgnoreTheCat(): ƒS.SceneReturn;

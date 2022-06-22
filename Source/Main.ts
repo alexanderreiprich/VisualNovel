@@ -34,16 +34,24 @@ namespace Endabgabe {
   };
 
   export let sound = {
-    // themes
+    // background
     nightclub: "Audio/nightclub.ogg",
     beach: "Audio/beach.mp3",
 
     // sfx
-    click: "Audio/click.mp3",
-    seagull: "Audio/Seagulls.mp3",
-    swimming: "Audio/swimming.mp3",
-    music: "Audio/music.mp3",
-    people: "Audio/clubambiente.mp3"
+    click: "Audio/SFX/click.mp3",
+    cassette_in: "Audio/SFX/cassette_in.mp3",
+    cassette_out: "Audio/SFX/cassette_out.mp3",
+    cassette_scroll: "Audio/SFX/cassette_scroll.mp3",
+
+    // songs
+    ophelia: "Audio/Songs/ophelia.mp3",
+    freaks: "Audio/Songs/freaks.mp3",
+    twentymins: "Audio/Songs/20mins.mp3",
+    fiveofive: "Audio/Songs/505.mp3",
+    emotion: "Audio/Songs/emotion.mp3",
+    righthere: "Audio/Songs/righthere.mp3",
+    spacesong: "Audio/Songs/spacesong.mp3"
   };
 
   export let locations = {
@@ -321,24 +329,50 @@ namespace Endabgabe {
   let musicOpen: boolean;
   let previousName: string;
   let previousContent: string;
+  let playlist: string[] = [sound.ophelia, sound.freaks, sound.twentymins, sound.fiveofive, sound.righthere];
+  let curSong: number = 0;
 
   function hndSkip(_event: Event): void {
     _event.stopPropagation();
+    ƒS.Sound.play(playlist[curSong], 0);
+    if (curSong == playlist.length - 1)
+      curSong = 0;
+    else 
+      curSong++;
+
+    ƒS.Sound.play(sound.cassette_scroll, 1);
+    window.setTimeout((): void => { ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
     console.log("SKIP");
   }
 
   function hndPrev(_event: Event): void {
     _event.stopPropagation();
+    ƒS.Sound.play(playlist[curSong], 0);
+    if (curSong == 0)
+      curSong = playlist.length - 1;
+    else
+      curSong--;
+    ƒS.Sound.play(sound.cassette_scroll, 1);
+    window.setTimeout((): void => { ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
     console.log("PREV");
   }
 
   function hndStop(_event: Event): void {
     _event.stopPropagation();
+    ƒS.Sound.play(playlist[curSong], 0);
+    curSong = 0;
+    ƒS.Sound.play(sound.cassette_out, 1);
     console.log("STOP");
   }
 
   function hndPlay(_event: Event): void {
     _event.stopPropagation();
+    ƒS.Sound.play(sound.cassette_in, 1);
+    window.setTimeout((): void => { ƒS.Sound.play(playlist[curSong], 0.5); }, 4000);
+    if (curSong == playlist.length - 1)
+      curSong = 0;
+    else
+      curSong = playlist.length - 1;
     console.log("PLAY");
   }
 
@@ -413,7 +447,7 @@ namespace Endabgabe {
         }
         break;
       case ƒ.KEYBOARD_CODE.M:
-        if (ƒS.Inventory.getAmount(items.bag) != 0) {
+        // if (ƒS.Inventory.getAmount(items.bag) != 0) {
           if (!musicOpen) {
             hndMusicPlayer();
             musicOpen = true;
@@ -422,7 +456,7 @@ namespace Endabgabe {
             hndMusicPlayer();
             musicOpen = false;
           }
-        }
+        // }
         break;
     }
   }

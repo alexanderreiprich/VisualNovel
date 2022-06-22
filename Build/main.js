@@ -1,77 +1,10 @@
 "use strict";
 var Endabgabe;
 (function (Endabgabe) {
-    async function BeachScene() {
-        Endabgabe.ƒS.Sound.fade(Endabgabe.sound.beach, 0.04, 2, true);
-        Endabgabe.ƒS.Sound.fade(Endabgabe.sound.music, 0.2, 5, true);
-        Endabgabe.ƒS.Sound.play(Endabgabe.sound.seagull, 0.05, false);
-        Endabgabe.ƒS.Sound.fade(Endabgabe.sound.swimming, 0.1, 5, true);
-        Endabgabe.ƒS.Sound.play(Endabgabe.sound.people, 0.15, true);
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update();
-    }
-    Endabgabe.BeachScene = BeachScene;
-})(Endabgabe || (Endabgabe = {}));
-var Endabgabe;
-(function (Endabgabe) {
     async function Empty() {
         // stop snooping around >:(
     }
     Endabgabe.Empty = Empty;
-})(Endabgabe || (Endabgabe = {}));
-var Endabgabe;
-(function (Endabgabe) {
-    async function ExampleScene() {
-        console.log("FudgeStory Template Scene starting");
-        let text = {
-            Aisaka: {
-                T0001: "toller text",
-                T0002: "noch tollerer text",
-                T0003: "yay"
-            },
-            Protagonist: {
-                T0001: "wheeee"
-            }
-        };
-        Endabgabe.ƒS.Sound.fade(Endabgabe.sound.nightclub, 0.2, 5, true);
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomleft);
-        await Endabgabe.ƒS.update();
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Aisaka.T0001);
-        Endabgabe.ƒS.Speech.clear();
-        await Endabgabe.ƒS.update(3);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Aisaka.T0002);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Aisaka.T0003);
-        Endabgabe.ƒS.Speech.hide();
-        // ƒS.Character.hide(characters.aisaka);
-        Endabgabe.ƒS.Character.hideAll();
-        await Endabgabe.ƒS.update();
-        let firstDialogueElementAnswers = {
-            iSayOk: "Okay.",
-            iSayYes: "Yes.",
-            iSayCoolio: "Coolio.🤠"
-        };
-        let firstDialogueElement = await Endabgabe.ƒS.Menu.getInput(firstDialogueElementAnswers, "individualCSSClass");
-        switch (firstDialogueElement) {
-            case firstDialogueElementAnswers.iSayOk:
-                // continue path here
-                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, "Okay.");
-                Endabgabe.ƒS.Speech.clear();
-                break;
-            case firstDialogueElementAnswers.iSayYes:
-                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, "Yes.");
-                Endabgabe.ƒS.Speech.clear();
-                break;
-            case firstDialogueElementAnswers.iSayCoolio:
-                await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
-                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, "Coolio.🤠");
-                Endabgabe.ƒS.Speech.clear();
-                break;
-        }
-    }
-    Endabgabe.ExampleScene = ExampleScene;
 })(Endabgabe || (Endabgabe = {}));
 var Endabgabe;
 (function (Endabgabe) {
@@ -107,15 +40,22 @@ var Endabgabe;
         }
     };
     Endabgabe.sound = {
-        // themes
+        // background
         nightclub: "Audio/nightclub.ogg",
         beach: "Audio/beach.mp3",
         // sfx
-        click: "Audio/click.mp3",
-        seagull: "Audio/Seagulls.mp3",
-        swimming: "Audio/swimming.mp3",
-        music: "Audio/music.mp3",
-        people: "Audio/clubambiente.mp3"
+        click: "Audio/SFX/click.mp3",
+        cassette_in: "Audio/SFX/cassette_in.mp3",
+        cassette_out: "Audio/SFX/cassette_out.mp3",
+        cassette_scroll: "Audio/SFX/cassette_scroll.mp3",
+        // songs
+        ophelia: "Audio/Songs/ophelia.mp3",
+        freaks: "Audio/Songs/freaks.mp3",
+        twentymins: "Audio/Songs/20mins.mp3",
+        fiveofive: "Audio/Songs/505.mp3",
+        emotion: "Audio/Songs/emotion.mp3",
+        righthere: "Audio/Songs/righthere.mp3",
+        spacesong: "Audio/Songs/spacesong.mp3"
     };
     Endabgabe.locations = {
         home_bedroom: {
@@ -383,20 +323,45 @@ var Endabgabe;
     let musicOpen;
     let previousName;
     let previousContent;
+    let playlist = [Endabgabe.sound.ophelia, Endabgabe.sound.freaks, Endabgabe.sound.twentymins, Endabgabe.sound.fiveofive, Endabgabe.sound.righthere];
+    let curSong = 0;
     function hndSkip(_event) {
         _event.stopPropagation();
+        Endabgabe.ƒS.Sound.play(playlist[curSong], 0);
+        if (curSong == playlist.length - 1)
+            curSong = 0;
+        else
+            curSong++;
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_scroll, 1);
+        window.setTimeout(() => { Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
         console.log("SKIP");
     }
     function hndPrev(_event) {
         _event.stopPropagation();
+        Endabgabe.ƒS.Sound.play(playlist[curSong], 0);
+        if (curSong == 0)
+            curSong = playlist.length - 1;
+        else
+            curSong--;
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_scroll, 1);
+        window.setTimeout(() => { Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
         console.log("PREV");
     }
     function hndStop(_event) {
         _event.stopPropagation();
+        Endabgabe.ƒS.Sound.play(playlist[curSong], 0);
+        curSong = 0;
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_out, 1);
         console.log("STOP");
     }
     function hndPlay(_event) {
         _event.stopPropagation();
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_in, 1);
+        window.setTimeout(() => { Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5); }, 4000);
+        if (curSong == playlist.length - 1)
+            curSong = 0;
+        else
+            curSong = playlist.length - 1;
         console.log("PLAY");
     }
     async function hndMusicPlayer() {
@@ -455,16 +420,16 @@ var Endabgabe;
                 }
                 break;
             case Endabgabe.ƒ.KEYBOARD_CODE.M:
-                if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) != 0) {
-                    if (!musicOpen) {
-                        hndMusicPlayer();
-                        musicOpen = true;
-                    }
-                    else {
-                        hndMusicPlayer();
-                        musicOpen = false;
-                    }
+                // if (ƒS.Inventory.getAmount(items.bag) != 0) {
+                if (!musicOpen) {
+                    hndMusicPlayer();
+                    musicOpen = true;
                 }
+                else {
+                    hndMusicPlayer();
+                    musicOpen = false;
+                }
+                // }
                 break;
         }
     }
@@ -540,31 +505,6 @@ var Endabgabe;
         // start the sequence
         Endabgabe.ƒS.Progress.go(scenes);
     }
-})(Endabgabe || (Endabgabe = {}));
-var Endabgabe;
-(function (Endabgabe) {
-    async function Scene() {
-        console.log("FudgeStory Template Scene starting");
-    }
-    Endabgabe.Scene = Scene;
-})(Endabgabe || (Endabgabe = {}));
-var Endabgabe;
-(function (Endabgabe) {
-    async function Template() {
-        console.log("- - - Scene X: Scenetitle - - -");
-        let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
-        gameMenu.open();
-        let text = {
-            Narrator: {
-                T0001: ""
-            }
-        };
-        Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
-    }
-    Endabgabe.Template = Template;
 })(Endabgabe || (Endabgabe = {}));
 var Endabgabe;
 (function (Endabgabe) {
@@ -2959,7 +2899,7 @@ var Endabgabe;
                 },
                 Protagonist: {
                     T0001: "Look what I found! Why would anybody throw this away?",
-                    T0010: "Well, I haven't tried it, but let's give it a go.",
+                    T0010: "I think so.",
                     T0012: "…so, is it working?",
                     T0015: "Well… I guess it did work after all…",
                     T0017: "I have no idea. Come on, let's go into the direction that they went, maybe we can find them again?"
@@ -2999,6 +2939,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0010);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
+            Endabgabe.ƒS.Sound.play(Endabgabe.sound.spacesong, 0.5);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
@@ -3096,7 +3037,7 @@ var Endabgabe;
                 Protagonist: {
                     T0004: "Yeah, you are right… This is disgusting. It's been so long in here that I can barely tell what all of these things are… What even is this…",
                     T0006: "A music player? And… a ton of albums…? Why would somebody throw this away?",
-                    T0014: "Well, I haven't tried it, but let's give it a go.",
+                    T0014: "Well, I don't know, but let's give it a go.",
                     T0016: "…so, is it working?",
                     T0019: "Well… I guess it did work after all…",
                     T0021: "I have no idea. Come on, let's go into the direction that they went, maybe we can find them again?"
@@ -3148,6 +3089,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0016);
+            Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
@@ -3161,6 +3103,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0022);
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
+            Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
             return "ArrivalClearing";
         }
         else {
@@ -3181,7 +3124,7 @@ var Endabgabe;
                 Protagonist: {
                     T0003: "Yeah, you are right… This is disgusting. It's been so long in here that I can barely tell what all of these things are… What even is this…",
                     T0005: "A music player? And… a ton of albums…? Why would somebody throw this away?",
-                    T0012: "Well, I haven't tried it, but let's give it a go.",
+                    T0012: "Well, I don't know, but let's give it a go.",
                     T0014: "…so, is it working?",
                     T0017: "Well… I guess it did work after all…",
                     T0018: "No way that I will catch up to them. I hope we meet again though…"
@@ -3219,6 +3162,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
+            Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
@@ -3228,6 +3172,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
+            Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
             return "ArrivalClearing";
         }
     }
@@ -3694,6 +3639,7 @@ var Endabgabe;
             }
         };
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom_night);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
@@ -3725,6 +3671,7 @@ var Endabgabe;
             }
         };
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom_night);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
@@ -3789,6 +3736,7 @@ var Endabgabe;
             }
         };
         let delay = Endabgabe.ƒS.Progress.defineSignal([() => Endabgabe.ƒS.Progress.delay(4)]);
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom_night);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);

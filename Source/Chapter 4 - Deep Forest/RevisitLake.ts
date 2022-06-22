@@ -25,7 +25,7 @@ namespace Endabgabe {
         Protagonist: {
           T0004: "Yeah, you are right… This is disgusting. It's been so long in here that I can barely tell what all of these things are… What even is this…",
           T0006: "A music player? And… a ton of albums…? Why would somebody throw this away?",
-          T0014: "Well, I haven't tried it, but let's give it a go.",
+          T0014: "Well, I don't know, but let's give it a go.",
           T0016: "…so, is it working?",
           T0019: "Well… I guess it did work after all…",
           T0021: "I have no idea. Come on, let's go into the direction that they went, maybe we can find them again?"
@@ -91,6 +91,8 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0015);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0016);
 
+      ƒS.Sound.play(sound.emotion, 0.5, true);
+
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.hide(characters.tommy);
       await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomright);
@@ -106,6 +108,7 @@ namespace Endabgabe {
 
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
+      ƒS.Inventory.add(items.bag);
 
       return "ArrivalClearing";
     }
@@ -129,7 +132,7 @@ namespace Endabgabe {
         Protagonist: {
           T0003: "Yeah, you are right… This is disgusting. It's been so long in here that I can barely tell what all of these things are… What even is this…",
           T0005: "A music player? And… a ton of albums…? Why would somebody throw this away?",
-          T0012: "Well, I haven't tried it, but let's give it a go.",
+          T0012: "Well, I don't know, but let's give it a go.",
           T0014: "…so, is it working?",
           T0017: "Well… I guess it did work after all…",
           T0018: "No way that I will catch up to them. I hope we meet again though…"
@@ -176,6 +179,8 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0014);
 
+      ƒS.Sound.play(sound.emotion, 0.5, true);
+
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomcenter);
       await ƒS.update(0.3);
@@ -187,6 +192,7 @@ namespace Endabgabe {
 
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
+      ƒS.Inventory.add(items.bag);
 
       return "ArrivalClearing";
 
