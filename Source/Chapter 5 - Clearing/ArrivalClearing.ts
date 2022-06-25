@@ -14,8 +14,10 @@ namespace Endabgabe {
     };
 
     ƒS.Speech.hide();
-    await ƒS.Location.show(locations.home_table);
+    await ƒS.Location.show(locations.clearing_center);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+    ƒS.Character.hideAll();
+    ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -36,7 +38,7 @@ namespace Endabgabe {
         case clearingChoiceAnswer.ground:
           console.log("- - - Scene 23: Burnt - - -");
           delete clearingChoiceAnswer.ground;
-          let text1: {
+          let text1 = {
             Narrator: {
               T0001: "You bow down and take a look at the ground.",
               T0002: "The dirt is dry, and it seems that everything that ever lived in there, whether it was flora or fauna, has perished.",
@@ -54,7 +56,7 @@ namespace Endabgabe {
           };
 
           ƒS.Speech.hide();
-          await ƒS.Location.show(locations.home_table);
+          await ƒS.Location.show(locations.clearing_ground);
           await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
           await ƒS.Speech.tell(characters.narrator, text1.Narrator.T0001);
@@ -140,7 +142,7 @@ namespace Endabgabe {
         case clearingChoiceAnswer.object: 
           console.log("- - - Scene 24: The sky is falling, the wind is calling - - -");
           delete clearingChoiceAnswer.object;
-          let text2: {
+          let text2 = {
             Narrator: {
               T0001: "You step closer to the ominous looking object in the middle. It appears to be a giant rock.",
               T0006: "It seems like there are small cracks in the rock. Some parts of it chipped off."
@@ -148,7 +150,7 @@ namespace Endabgabe {
             Protagonist: {
               T0003: "Why did you touch it?!",
               T0005: "I don't know… Perhaps because it was out in the sun all day? Hmm…"
-            }
+            },
             Cat: {
               T0002: "Ohh, a rock! Hehe… OUCH!",
               T0004: "Why not?! But why is it hot?? My paws hurt!"
@@ -156,7 +158,7 @@ namespace Endabgabe {
           };
 
           ƒS.Speech.hide();
-          await ƒS.Location.show(locations.home_table);
+          await ƒS.Location.show(locations.clearing_center);
           await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
   
           await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0001);
@@ -187,6 +189,7 @@ namespace Endabgabe {
           break;
 
         case clearingChoiceAnswer.trees:
+          ƒS.Character.hideAll();
           if (scaredDeer)
             return "DontEncounterDeer";
           else 

@@ -79,7 +79,7 @@ namespace Endabgabe {
         // ƒS.Sound.play(sound.song3);
         break;
     }
-  ƒS.Speech.hide();
+    ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_door);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
     

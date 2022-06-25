@@ -109,7 +109,8 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
       ƒS.Inventory.add(items.bag);
-
+      await ƒS.Character.hide(characters.june);
+      await ƒS.Character.hide(characters.tommy);
       return "ArrivalClearing";
     }
 

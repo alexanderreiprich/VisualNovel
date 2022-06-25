@@ -62,7 +62,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
 
-    await ƒS.Character.hide(characters.deername);
+    // await ƒS.Character.hide(characters.deername);
     await ƒS.Character.show(characters.deername, characters.deername.pose.neutral, ƒS.positions.bottomcenter);
     await ƒS.update(0.2);
 

@@ -156,7 +156,7 @@ var Endabgabe;
         },
         clearing_ground: {
             name: "The ground of the clearing",
-            background: "Images/Backgrounds/clearing_ground.png"
+            background: "Images/Backgrounds/clearing_center.png"
         },
         clearing_center: {
             name: "The center of the clearing",
@@ -176,19 +176,19 @@ var Endabgabe;
         },
         ending_all: {
             name: "Ending: All items collected",
-            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+            background: "Images/Backgrounds/ending_all.png"
         },
         ending_bag: {
             name: "Ending: Bag collected",
-            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+            background: "Images/Backgrounds/ending_bag.png"
         },
         ending_rock: {
             name: "Ending: Rock collected",
-            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+            background: "Images/Backgrounds/ending_rock.png"
         },
         ending_none: {
             name: "No items collected",
-            background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+            background: "Images/Backgrounds/ending_none.png"
         },
         blank: {
             name: "Blank",
@@ -250,20 +250,20 @@ var Endabgabe;
             name: "Richard",
             origin: Endabgabe.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                angry: "",
-                happy: "",
-                neutral: "",
-                sad: ""
+                angry: "Images/Characters/deer_happy.png",
+                happy: "Images/Characters/deer_happy.png",
+                neutral: "Images/Characters/deer_happy.png",
+                sad: "Images/Characters/deer_happy.png"
             }
         },
         deername: {
             name: "DEERNAME",
             origin: Endabgabe.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                happy: "",
-                neutral: "",
-                sad: "",
-                curious: "",
+                happy: "Images/Characters/deer_happy.png",
+                neutral: "Images/Characters/deer_neutral.png",
+                sad: "Images/Characters/deer_sad.png",
+                curious: "Images/Characters/deer_curious.png",
                 crying: "",
                 surprised: ""
             }
@@ -715,7 +715,8 @@ var Endabgabe;
         let overlay = document.createElement("div");
         overlay.id = "overlay";
         scene.appendChild(overlay);
-        await Endabgabe.ƒS.Speech.getInput();
+        let studies = await Endabgabe.ƒS.Speech.getInput();
+        Endabgabe.dataForSave.studiesProtagonist = studies;
         document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
@@ -3104,6 +3105,8 @@ var Endabgabe;
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
             Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             return "ArrivalClearing";
         }
         else {
@@ -3193,8 +3196,10 @@ var Endabgabe;
             }
         };
         Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.clearing_center);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        Endabgabe.ƒS.Character.hideAll();
+        Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
@@ -3212,9 +3217,24 @@ var Endabgabe;
                 case clearingChoiceAnswer.ground:
                     console.log("- - - Scene 23: Burnt - - -");
                     delete clearingChoiceAnswer.ground;
-                    let text1;
+                    let text1 = {
+                        Narrator: {
+                            T0001: "You bow down and take a look at the ground.",
+                            T0002: "The dirt is dry, and it seems that everything that ever lived in there, whether it was flora or fauna, has perished.",
+                            T0003: "The closer you get to the middle of the clearing, the more burnt the ground looks."
+                        },
+                        Protagonist: {
+                            T0005: "Do you want to climb on it?",
+                            T0007: "What, why?"
+                        },
+                        Cat: {
+                            T0004: "Oh, look! This branch is GIGANTIC!",
+                            T0006: "Hmmm… no. You should break it.",
+                            T0008: "It's fun. I love breaking stuff. I'm a cat, remember?"
+                        }
+                    };
                     Endabgabe.ƒS.Speech.hide();
-                    await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
+                    await Endabgabe.ƒS.Location.show(Endabgabe.locations.clearing_ground);
                     await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1.Narrator.T0001);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1.Narrator.T0002);
@@ -3285,9 +3305,22 @@ var Endabgabe;
                 case clearingChoiceAnswer.object:
                     console.log("- - - Scene 24: The sky is falling, the wind is calling - - -");
                     delete clearingChoiceAnswer.object;
-                    let text2;
+                    let text2 = {
+                        Narrator: {
+                            T0001: "You step closer to the ominous looking object in the middle. It appears to be a giant rock.",
+                            T0006: "It seems like there are small cracks in the rock. Some parts of it chipped off."
+                        },
+                        Protagonist: {
+                            T0003: "Why did you touch it?!",
+                            T0005: "I don't know… Perhaps because it was out in the sun all day? Hmm…"
+                        },
+                        Cat: {
+                            T0002: "Ohh, a rock! Hehe… OUCH!",
+                            T0004: "Why not?! But why is it hot?? My paws hurt!"
+                        }
+                    };
                     Endabgabe.ƒS.Speech.hide();
-                    await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
+                    await Endabgabe.ƒS.Location.show(Endabgabe.locations.clearing_center);
                     await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text2.Narrator.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
@@ -3310,6 +3343,7 @@ var Endabgabe;
                         Endabgabe.ƒS.Inventory.add(Endabgabe.items.rock);
                     break;
                 case clearingChoiceAnswer.trees:
+                    Endabgabe.ƒS.Character.hideAll();
                     if (scaredDeer)
                         return "DontEncounterDeer";
                     else
@@ -3380,7 +3414,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
-        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        // await ƒS.Character.hide(characters.deername);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deer, text.Deer.T0004);

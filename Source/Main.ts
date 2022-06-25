@@ -153,7 +153,7 @@ namespace Endabgabe {
     },
     clearing_ground: {
       name: "The ground of the clearing",
-      background: "Images/Backgrounds/clearing_ground.png"
+      background: "Images/Backgrounds/clearing_center.png"
     },
     clearing_center: {
       name: "The center of the clearing",
@@ -173,19 +173,19 @@ namespace Endabgabe {
     },
     ending_all: {
       name: "Ending: All items collected",
-      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+      background: "Images/Backgrounds/ending_all.png"
     },
     ending_bag: {
       name: "Ending: Bag collected",
-      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+      background: "Images/Backgrounds/ending_bag.png"
     },
     ending_rock: {
       name: "Ending: Rock collected",
-      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+      background: "Images/Backgrounds/ending_rock.png"
     },
     ending_none: {
       name: "No items collected",
-      background: "Images/Backgrounds/evening_walk.png" // TODO: Add Background
+      background: "Images/Backgrounds/ending_none.png"
     },
     blank: {
       name: "Blank",
@@ -248,20 +248,20 @@ namespace Endabgabe {
       name: "Richard",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "",
-        happy: "",
-        neutral: "",
-        sad: ""
+        angry: "Images/Characters/deer_happy.png",
+        happy: "Images/Characters/deer_happy.png",
+        neutral: "Images/Characters/deer_happy.png",
+        sad: "Images/Characters/deer_happy.png"
       }
     },
     deername: {
       name: "DEERNAME",
       origin: ƒS.ORIGIN.BOTTOMCENTER, 
       pose: {
-        happy: "",
-        neutral: "",
-        sad: "",
-        curious: "",
+        happy: "Images/Characters/deer_happy.png",
+        neutral: "Images/Characters/deer_neutral.png",
+        sad: "Images/Characters/deer_sad.png",
+        curious: "Images/Characters/deer_curious.png",
         crying: "",
         surprised: ""
       }
@@ -457,7 +457,7 @@ namespace Endabgabe {
             musicOpen = false;
           }
         // }
-        break;
+          break;
     }
   }
 
