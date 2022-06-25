@@ -6,7 +6,7 @@ namespace Endabgabe {
 
     let text = {
       Narrator: {
-        T0001: "You continue your trip. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
+        T0001: "You continue your trip. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly one kilometer away from your home."
       }
     };
 

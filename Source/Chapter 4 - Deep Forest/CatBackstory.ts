@@ -23,7 +23,7 @@ namespace Endabgabe {
       },
       Cat: {
         T0003: "What do you mean? It's been a great day so far!",
-        T0005: "Oh, right. Hmm, yea that is really weird. I couldn't even talk to animals when I was still in school!",
+        T0005: "Oh, right. Hmm, yeah that is really weird. I couldn't even talk to animals when I was still in school!",
         T0006: "I always tried to talk to Daisy, that's the neighbor's dog. She was so fluffy! But she never understood me…",
         T0008: "Well, I guess sometimes things happen that we can't explain.",
         T0009: "I once failed my math test even though I studied all week for it, can you believe that?",

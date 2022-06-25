@@ -11,7 +11,7 @@ namespace Endabgabe {
 
     let text = {
       Narrator: {
-        T0001: "Just as you turn the corner onto a dirt road leading into the forest, the music suddenly stops. You forgot to charge your Bluetooth headphones and the battery is empty now.",
+        T0001: "Just as you turn the corner onto a dirt road leading into the forest, the music suddenly stops - …you forgot to charge your Bluetooth headphones.",
         T0002: "Slightly annoyed you continue walking. The annoyance slowly subsides, however, as you notice the wind blowing through the leaves, making soft but distinct rustling sounds.",
         T0003: "Suddenly, the peaceful quiet gets disrupted, as you can hear movement coming from a bush on your left. As you peek through the leaves, you can see two bright green eyes staring back.",
         T0004: "After the initial shock, you step back and the cat you saw earlier hops out the bush.",

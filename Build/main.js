@@ -11,6 +11,7 @@ var Endabgabe;
     Endabgabe.ƒ = FudgeCore;
     Endabgabe.ƒS = FudgeStory;
     console.log("- - - Starting: An Unpolished Gem with a Tragic Backstory - - -");
+    // alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
     // define transitions
     Endabgabe.transitions = {
         puzzle: {
@@ -306,17 +307,28 @@ var Endabgabe;
                 await Endabgabe.ƒS.Progress.load();
                 break;
             case Endabgabe.ingameMenuButtons.credits:
-                showCredits();
+                toggleCredits();
                 break;
         }
     }
     Endabgabe.buttonFunctionalities = buttonFunctionalities;
-    function showCredits() {
-        // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
-        // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
-        // ƒS.Text.print("wee woo");    -   Text ausgeben!
+    let creditsOpen = false;
+    function toggleCredits() {
+        if (!creditsOpen) {
+            Endabgabe.ƒS.Speech.hide();
+            creditsOpen = true;
+            let credits = document.createElement("img");
+            credits.src = "Images/credits.png";
+            credits.id = "credits_img";
+            document.getElementById("append").appendChild(credits);
+        }
+        else {
+            Endabgabe.ƒS.Speech.show();
+            creditsOpen = false;
+            document.getElementById("append").removeChild(document.getElementById("credits_img"));
+        }
     }
-    Endabgabe.showCredits = showCredits;
+    Endabgabe.toggleCredits = toggleCredits;
     // Menu Shortcuts
     window.addEventListener("keydown", hndKeyPress);
     // Functions that manage the music player
@@ -514,7 +526,7 @@ var Endabgabe;
         gameMenu.open();
         let text = {
             Narrator: {
-                T0001: "You continue your trip. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
+                T0001: "You continue your trip. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly one kilometer away from your home."
             }
         };
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
@@ -533,7 +545,7 @@ var Endabgabe;
         gameMenu.open();
         let text = {
             Narrator: {
-                T0001: "Just as you turn the corner onto a dirt road leading into the forest, the music suddenly stops. You forgot to charge your Bluetooth headphones and the battery is empty now.",
+                T0001: "Just as you turn the corner onto a dirt road leading into the forest, the music suddenly stops - …you forgot to charge your Bluetooth headphones.",
                 T0002: "Slightly annoyed you continue walking. The annoyance slowly subsides, however, as you notice the wind blowing through the leaves, making soft but distinct rustling sounds.",
                 T0003: "Suddenly, the peaceful quiet gets disrupted, as you can hear movement coming from a bush on your left. As you peek through the leaves, you can see two bright green eyes staring back.",
                 T0004: "After the initial shock, you step back and the cat you saw earlier hops out the bush.",
@@ -648,7 +660,7 @@ var Endabgabe;
         let text = {
             Narrator: {
                 T0001: "You bend down to pet the cat, which now lays with its belly up in front of you. The first thing you notice however are the bright green eyes of the cat. They are so shiny, they look almost fake. It must be a special breed or something.",
-                T0002: "After giving the cat a few belly rubs, you continue your trip. At last, you didn't even get three meters away from your front door. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
+                T0002: "After giving the cat a few belly rubs, you continue your trip. At last, you didn't even get three meters away from your front door. Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly one kilometer away from your home."
             }
         };
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
@@ -666,7 +678,7 @@ var Endabgabe;
         let text = {
             Narrator: {
                 T0001: "With a “hush” and a sudden move of your hands, the cat gets scared and scurries away. With the cat gone, you continue your trip.",
-                T0002: "Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly two kilometers away from your home."
+                T0002: "Grooving with the sound of the music coming through your headphones, you carry on – your destination: a forest, roughly one kilometer away from your home."
             }
         };
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
@@ -766,9 +778,9 @@ var Endabgabe;
                 T0004: "As you crunch on your breakfast, you read a bit through the news of today. Besides the boring sports stuff and questionable claims of politicians, one headline caught your eye.",
                 T0005: "“Mysterious dust raining on earth”",
                 T0006: "“Huh, I guess the aliens started with their chemical warfare” you thought to yourself, before skimming through the article.",
-                T0007: "Well, it might not have been a good idea to keep the window open all night, but well, what can you do. It is summer after all, and the temperature is getting higher every day.",
+                T0007: "Well, it might not have been a good idea to keep the window open all night, but well, it is what it is. It is summer after all, and the temperature is rising every day.",
                 T0008: "Since the weather hasn't been this good in days, you decide to go for a little walk after eating. After all, you spent the last 4 weeks doing nothing but studying all day. Some fresh air after all this time should be refreshing.",
-                T0009: "What song do you want to listen to on your walk?",
+                T0009: "It’s also a great opportunity to use the new Bluetooth headphones you bought a while ago. I hope you remembered to charge them!",
                 T0010: "As you put your shoes on, you notice a small cat through the small window in your front door. It seems to be snooping around in your front yard, which is nothing out of the ordinary. Cats aren't exactly a rare sight in this part of your town.",
                 T0011: "You shut the door, turn around and see the cat curling up at your feet."
             }
@@ -803,24 +815,6 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
-        let songAnswer = {
-            song1: "Song 1",
-            song2: "Song 2",
-            song3: "Song 3"
-        };
-        let song = await Endabgabe.ƒS.Menu.getInput(songAnswer, "decision");
-        Endabgabe.ƒS.Sound.play(Endabgabe.sound.click, 0.2);
-        switch (song) {
-            case songAnswer.song1:
-                // ƒS.Sound.play(sound.song1);
-                break;
-            case songAnswer.song2:
-                // ƒS.Sound.play(sound.song2);
-                break;
-            case songAnswer.song3:
-                // ƒS.Sound.play(sound.song3);
-                break;
-        }
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
@@ -1787,7 +1781,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
         let examineLakeSmellAnswer = {
             examineSmell: "Examine the smell",
-            goBack: "Go back, since it might be dangerous"
+            goBack: "Go back, since it is disgusting"
         };
         let examineLakeSmell = await Endabgabe.ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");
         if (examineLakeSmell == examineLakeSmellAnswer.examineSmell) {
@@ -2011,9 +2005,15 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
         Endabgabe.dataForSave.freedTurtle = true;
         Endabgabe.dataForSave.freedAnimals++;
-        if (Endabgabe.dataForSave.travelWithCat)
+        if (Endabgabe.dataForSave.travelWithCat) {
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0022);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0023);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0023);
+            return "CatBackstory";
+        }
+        else {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0023);
+            return "DeepForestAlone";
+        }
     }
     Endabgabe.TurtleStory = TurtleStory;
 })(Endabgabe || (Endabgabe = {}));
@@ -2079,7 +2079,7 @@ var Endabgabe;
             },
             Cat: {
                 T0003: "What do you mean? It's been a great day so far!",
-                T0005: "Oh, right. Hmm, yea that is really weird. I couldn't even talk to animals when I was still in school!",
+                T0005: "Oh, right. Hmm, yeah that is really weird. I couldn't even talk to animals when I was still in school!",
                 T0006: "I always tried to talk to Daisy, that's the neighbor's dog. She was so fluffy! But she never understood me…",
                 T0008: "Well, I guess sometimes things happen that we can't explain.",
                 T0009: "I once failed my math test even though I studied all week for it, can you believe that?",
@@ -3017,9 +3017,6 @@ var Endabgabe;
 var Endabgabe;
 (function (Endabgabe) {
     async function RevisitLake() {
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         if (Endabgabe.dataForSave.travelWithCat) {
             console.log("- - - Scene 17: Pollution never sounded that good - - -");
             let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
@@ -3056,6 +3053,9 @@ var Endabgabe;
                     T0013: "Hey, does the Walkman still work?"
                 }
             };
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
@@ -3139,6 +3139,9 @@ var Endabgabe;
                     T0011: "Hey, does the Walkman still work?"
                 }
             };
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);

@@ -1,10 +1,6 @@
 namespace Endabgabe {
   export async function RevisitLake(): ƒS.SceneReturn {
 
-    ƒS.Speech.hide();
-    await ƒS.Location.show(locations.lake_polluted_water);
-    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
-
     if (dataForSave.travelWithCat) {
       console.log("- - - Scene 17: Pollution never sounded that good - - -");
       let gameMenu = ƒS.Menu.create(ingameMenuButtons, buttonFunctionalities, "gameMenu");
@@ -44,6 +40,10 @@ namespace Endabgabe {
           T0013: "Hey, does the Walkman still work?"
         }
       };
+
+      ƒS.Speech.hide();
+      await ƒS.Location.show(locations.lake_polluted_water);
+      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.show(characters.june, characters.june.pose.angry, ƒS.positions.bottomleft);
@@ -145,6 +145,10 @@ namespace Endabgabe {
           T0011: "Hey, does the Walkman still work?"
         }
       };
+
+      ƒS.Speech.hide();
+      await ƒS.Location.show(locations.lake_polluted_water);
+      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.show(characters.june, characters.june.pose.angry, ƒS.positions.bottomcenter);

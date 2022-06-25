@@ -35,7 +35,7 @@ namespace Endabgabe {
 
     let examineLakeSmellAnswer = {
       examineSmell: "Examine the smell",
-      goBack: "Go back, since it might be dangerous"
+      goBack: "Go back, since it is disgusting"
     };
 
     let examineLakeSmell = await ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");

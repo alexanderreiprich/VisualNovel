@@ -112,7 +112,7 @@ namespace Endabgabe {
             await ƒS.Speech.tell(characters.narrator, text1a.Narrator.T0003);
             await ƒS.Speech.tell(characters.narrator, text1a.Narrator.T0004);
 
-            await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, ƒS.positions.bottomcenter);
+            await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
             await ƒS.update(0.2);
 
             await ƒS.Speech.tell(characters.tommy, text1a.Cat.T0005);

@@ -88,9 +88,14 @@ namespace Endabgabe {
     dataForSave.freedTurtle = true;
     dataForSave.freedAnimals++;
 
-    if (dataForSave.travelWithCat)
+    if (dataForSave.travelWithCat) {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0022);
-
-    await ƒS.Speech.tell(characters.narrator, text.Narrator.T0023);
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0023);
+      return "CatBackstory";
+    }
+    else {
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0023);
+      return "DeepForestAlone";
+    } 
   }
 }

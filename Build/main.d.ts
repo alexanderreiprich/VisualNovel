@@ -277,7 +277,7 @@ declare namespace Endabgabe {
         credits: string;
     };
     function buttonFunctionalities(_option: string): Promise<void>;
-    function showCredits(): void;
+    function toggleCredits(): void;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
     let dataForSave: {
         nameProtagonist: string;

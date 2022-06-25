@@ -4,6 +4,8 @@ namespace Endabgabe {
 
   console.log("- - - Starting: An Unpolished Gem with a Tragic Backstory - - -");
 
+  // alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
+
   // define transitions
   export let transitions = {
     puzzle: {
@@ -309,17 +311,27 @@ namespace Endabgabe {
         await ƒS.Progress.load();
         break;
       case ingameMenuButtons.credits:
-        showCredits();
+        toggleCredits();
         break;
     }
   }
 
-  export function showCredits(): void {
+  let creditsOpen: boolean = false;
 
-    // ƒS.Text.setClass("class");   -   Alle CSS Klassen löschen und diese hinzufügen!
-    // ƒS.Text.addClass("class");   -   Eine CSS Klasse hinzufügen!
-
-    // ƒS.Text.print("wee woo");    -   Text ausgeben!
+  export function toggleCredits(): void {
+    if (!creditsOpen) {
+      ƒS.Speech.hide();
+      creditsOpen = true;
+      let credits: HTMLImageElement = document.createElement("img");
+      credits.src = "Images/credits.png";
+      credits.id = "credits_img";
+      document.getElementById("append").appendChild(credits);
+    }
+    else {
+      ƒS.Speech.show();
+      creditsOpen = false;
+      document.getElementById("append").removeChild(document.getElementById("credits_img"));
+    }
   }
 
   // Menu Shortcuts
