@@ -12,12 +12,12 @@ namespace Endabgabe {
       edge: 1
     },
     blink: {
-      duration: 4,
+      duration: 2,
       alpha: "Transitions/blink.png",
       edge: 0.2
     },
     reverse_blink: {
-      duration: 4,
+      duration: 2,
       alpha: "Transitions/reverse_blink.png",
       edge: 0.2
     },
