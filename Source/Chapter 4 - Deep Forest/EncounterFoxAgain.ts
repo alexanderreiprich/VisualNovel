@@ -68,10 +68,9 @@ namespace Endabgabe {
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0001);
-
       await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.surprised, ƒS.positions.bottomleft);
-      await ƒS.Character.show(characters.june, characters.june.pose.uncomfortable, ƒS.positions.bottomright);
+      await ƒS.Character.animate(characters.tommy, characters.tommy.pose.surprised, animate(animations.midToLeft));
+      await ƒS.Character.animate(characters.june, characters.june.pose.uncomfortable, animate(animations.midToRight));
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.fox, text2.Fox.T0002);
@@ -79,7 +78,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.tommy, text2.Cat.T0004);
 
       await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, ƒS.positions.bottomleft);
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, newPositions.bottomleft);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.fox, text2.Fox.T0005);
@@ -89,7 +88,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.tommy, text2.Cat.T0009);
 
       await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomleft);
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, newPositions.bottomleft);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.fox, text2.Fox.T0010);
@@ -97,7 +96,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.fox, text2.Fox.T0012);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.happy, ƒS.positions.bottomright);
+      await ƒS.Character.show(characters.june, characters.june.pose.happy, newPositions.bottomright);
       await ƒS.update(0.3);
     }
 
@@ -110,20 +109,21 @@ namespace Endabgabe {
       await ƒS.Location.show(locations.deep_forest_split_bridge);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
-      await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomright);
+      await ƒS.Character.animate(characters.tommy, characters.tommy.pose.curious, animate(animations.midToLeft));
+      await ƒS.Character.animate(characters.june, characters.june.pose.neutral, animate(animations.midToRight));
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.happy, ƒS.positions.bottomright);
+      await ƒS.Character.show(characters.june, characters.june.pose.happy, newPositions.bottomright);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.june, text.Fox.T0003);
 
       await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, ƒS.positions.bottomleft);
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, newPositions.bottomleft);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0004);
@@ -133,20 +133,20 @@ namespace Endabgabe {
     }
 
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, ƒS.positions.bottomleft);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, newPositions.bottomleft);
     await ƒS.update(0.3);
 
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0008);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0009);
 
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.neutral, ƒS.positions.bottomleft);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.neutral, newPositions.bottomleft);
     await ƒS.update(0.3);
 
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0010);
 
     await ƒS.Character.hide(characters.june);
-    await ƒS.Character.show(characters.june, characters.june.pose.uncomfortable, ƒS.positions.bottomright);
+    await ƒS.Character.show(characters.june, characters.june.pose.uncomfortable, newPositions.bottomright);
     await ƒS.update(0.3);
 
     await ƒS.Speech.tell(characters.june, text.Fox.T0011);
@@ -167,7 +167,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0018);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.concerned, ƒS.positions.bottomright);
+      await ƒS.Character.show(characters.june, characters.june.pose.concerned, newPositions.bottomright);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.june, text.Fox.T0019a);
@@ -210,7 +210,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.june, text3.Fox.T0003);
 
           await ƒS.Character.hide(characters.june);
-          await ƒS.Character.show(characters.june, characters.june.pose.concerned, ƒS.positions.bottomright);
+          await ƒS.Character.show(characters.june, characters.june.pose.concerned, newPositions.bottomright);
           await ƒS.update(0.3);
 
           await ƒS.Speech.tell(characters.cat, text3.Cat.T0004);
@@ -235,7 +235,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.protagonist, text4.Protagonist.T0001);
 
           await ƒS.Character.hide(characters.june);
-          await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomright);
+          await ƒS.Character.show(characters.june, characters.june.pose.neutral, newPositions.bottomright);
           await ƒS.update(0.3);
 
           await ƒS.Speech.tell(characters.june, text4.Fox.T0002);
@@ -273,7 +273,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.protagonist, text5.Protagonist.T0001);
 
           await ƒS.Character.hide(characters.june);
-          await ƒS.Character.show(characters.june, characters.june.pose.surprised, ƒS.positions.bottomright);
+          await ƒS.Character.show(characters.june, characters.june.pose.surprised, newPositions.bottomright);
           await ƒS.update(0.3);
 
           await ƒS.Speech.tell(characters.june, text5.Fox.T0002);
@@ -282,13 +282,13 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.protagonist, text5.Protagonist.T0005);
 
           await ƒS.Character.hide(characters.june);
-          await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomright);
+          await ƒS.Character.show(characters.june, characters.june.pose.neutral, newPositions.bottomright);
           await ƒS.update(0.3);
 
           await ƒS.Speech.tell(characters.narrator, text5.Narrator.T0006);
 
           await ƒS.Character.hide(characters.june);
-          await ƒS.Character.show(characters.june, characters.june.pose.angry, ƒS.positions.bottomright);
+          await ƒS.Character.show(characters.june, characters.june.pose.angry, newPositions.bottomright);
           await ƒS.update(0.3);
 
           await ƒS.Speech.tell(characters.june, text5.Fox.T0007);
@@ -298,13 +298,13 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.narrator, text5.Narrator.T0011);
 
           await ƒS.Character.hide(characters.june);
-          await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomleft);
+          await ƒS.Character.animate(characters.tommy, characters.tommy.pose.angry, animate(animations.leftToMid));
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, newPositions.bottomleft);
           await ƒS.update(0.3);
           await ƒS.Speech.tell(characters.tommy, text5.Cat.T0012);
           await ƒS.Speech.tell(characters.protagonist, text5.Protagonist.T0013);
           await ƒS.Speech.tell(characters.narrator, text5.Narrator.T0014);
 
-          // TODO: Add return
           return "ArrivalClearing";
       }
     }

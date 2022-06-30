@@ -195,6 +195,21 @@ namespace Endabgabe {
     }
   };
 
+  export let animations = {
+    leftToMid: "leftToMid",
+    rightToMid: "rightToMid",
+    midToLeft: "midToLeft",
+    midToRight: "midToRight",
+    rightOut: "rightOut",
+    leftOut: "leftOut"
+  };
+
+  export let newPositions = {
+    bottomleft: new FudgeStory.Position(-450, -500),
+    bottomright: new FudgeStory.Position(450, -500),
+    bottomcenter: new FudgeStory.Position(0, -500)
+  };
+
   export let characters = {
     narrator: {
       name: ""
@@ -470,6 +485,66 @@ namespace Endabgabe {
           }
         // }
           break;
+    }
+  }
+
+  export function animate(_animation: string): ƒS.AnimationDefinition {
+    switch (_animation) {
+      case animations.leftToMid:
+        return {
+          start: { translation: new ƒS.Position(-450, -500) },
+          end: { translation: newPositions.bottomcenter},
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+
+      case animations.rightToMid:
+        return {
+          start: { translation: new ƒS.Position(450, -500) },
+          end: { translation: newPositions.bottomcenter },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+
+      case animations.midToLeft:
+        return {
+          start: { translation: newPositions.bottomcenter },
+          end: { translation: new ƒS.Position(-450, -500) },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+
+      case animations.midToRight:
+        return {
+          start: { translation: ƒS.positions.bottomcenter },
+          end: { translation: new ƒS.Position(450, ƒS.positions.bottomcenter.y) },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+
+      case animations.rightOut:
+        return {
+          start: { translation: new ƒS.Position(450, -500) },
+          end: { translation: new ƒS.Position(2450, -500) },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+      
+      case animations.leftOut:
+        return {
+          start: { translation: new ƒS.Position(-450, -500) },
+          end: { translation: new ƒS.Position(-2450, -500) },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+
+      default: 
+        return {
+          start: { translation: ƒS.positions.bottomcenter },
+          end: { translation: ƒS.positions.bottomcenter },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
     }
   }
 

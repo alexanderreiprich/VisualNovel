@@ -196,6 +196,19 @@ var Endabgabe;
             background: "Images/Backgrounds/blank.png"
         }
     };
+    Endabgabe.animations = {
+        leftToMid: "leftToMid",
+        rightToMid: "rightToMid",
+        midToLeft: "midToLeft",
+        midToRight: "midToRight",
+        rightOut: "rightOut",
+        leftOut: "leftOut"
+    };
+    Endabgabe.newPositions = {
+        bottomleft: new FudgeStory.Position(-450, -500),
+        bottomright: new FudgeStory.Position(450, -500),
+        bottomcenter: new FudgeStory.Position(0, -500)
+    };
     Endabgabe.characters = {
         narrator: {
             name: ""
@@ -446,6 +459,60 @@ var Endabgabe;
         }
     }
     Endabgabe.hndKeyPress = hndKeyPress;
+    function animate(_animation) {
+        switch (_animation) {
+            case Endabgabe.animations.leftToMid:
+                return {
+                    start: { translation: new Endabgabe.ƒS.Position(-450, -500) },
+                    end: { translation: Endabgabe.newPositions.bottomcenter },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.rightToMid:
+                return {
+                    start: { translation: new Endabgabe.ƒS.Position(450, -500) },
+                    end: { translation: Endabgabe.newPositions.bottomcenter },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.midToLeft:
+                return {
+                    start: { translation: Endabgabe.newPositions.bottomcenter },
+                    end: { translation: new Endabgabe.ƒS.Position(-450, -500) },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.midToRight:
+                return {
+                    start: { translation: Endabgabe.ƒS.positions.bottomcenter },
+                    end: { translation: new Endabgabe.ƒS.Position(450, Endabgabe.ƒS.positions.bottomcenter.y) },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.rightOut:
+                return {
+                    start: { translation: new Endabgabe.ƒS.Position(450, -500) },
+                    end: { translation: new Endabgabe.ƒS.Position(2450, -500) },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.leftOut:
+                return {
+                    start: { translation: new Endabgabe.ƒS.Position(-450, -500) },
+                    end: { translation: new Endabgabe.ƒS.Position(-2450, -500) },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            default:
+                return {
+                    start: { translation: Endabgabe.ƒS.positions.bottomcenter },
+                    end: { translation: Endabgabe.ƒS.positions.bottomcenter },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+        }
+    }
+    Endabgabe.animate = animate;
     // Data to be saved
     Endabgabe.dataForSave = {
         nameProtagonist: "",
@@ -587,7 +654,8 @@ var Endabgabe;
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path_close);
         await Endabgabe.ƒS.update(1);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        //await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.animate("midToLeft"));
         await Endabgabe.ƒS.update(1);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
@@ -2464,14 +2532,14 @@ var Endabgabe;
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomleft);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.animate(Endabgabe.animations.midToLeft));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.animate(Endabgabe.animations.midToRight));
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0003);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0004);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0006);
@@ -2479,13 +2547,13 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0008);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0009);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0010);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0011);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0012);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
         }
         else {
@@ -2495,16 +2563,17 @@ var Endabgabe;
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.animate(Endabgabe.animations.midToLeft));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.animate(Endabgabe.animations.midToRight));
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
@@ -2512,16 +2581,16 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0007);
         }
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomleft);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0009);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomleft);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.newPositions.bottomleft);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0010);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.ƒS.positions.bottomright);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.newPositions.bottomright);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0011);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
@@ -2537,7 +2606,7 @@ var Endabgabe;
             gameMenu.open();
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0019a);
         }
@@ -2573,7 +2642,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0003);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomright);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text3.Cat.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text3.Narrator.T0005);
@@ -2594,7 +2663,7 @@ var Endabgabe;
                     };
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text4.Protagonist.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0003);
@@ -2628,18 +2697,18 @@ var Endabgabe;
                     };
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomright);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0005);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0006);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.newPositions.bottomright);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0007);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0008);
@@ -2647,12 +2716,12 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0010);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0011);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.ƒS.positions.bottomleft);
+                    await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.animate(Endabgabe.animations.leftToMid));
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text5.Cat.T0012);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0013);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0014);
-                    // TODO: Add return
                     return "ArrivalClearing";
             }
         }
@@ -2716,12 +2785,12 @@ var Endabgabe;
             console.log("- - - Scene 18.2: What does the fox say? [no cat] - - -");
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0003);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0005);
@@ -2729,7 +2798,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0007);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0008);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0009);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0010);
@@ -2741,21 +2810,21 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003);
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0005);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0006);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0009);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.ƒS.positions.bottomright);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0010);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
@@ -2764,13 +2833,13 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0014);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0015);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomright);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0016);
         if (Endabgabe.ƒS.Inventory.getAmount(Endabgabe.items.bag) != 0) {
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0018a);
             return "FreeFox";
@@ -2801,7 +2870,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text3.Protagonist.T0001);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0002);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomcenter);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text3.Protagonist.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text3.Narrator.T0004);
@@ -2822,7 +2891,7 @@ var Endabgabe;
                     };
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text4.Protagonist.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomcenter);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0003);
@@ -2853,18 +2922,18 @@ var Endabgabe;
                     };
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomcenter);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0005);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomcenter);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0006);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.newPositions.bottomcenter);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0007);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0008);
@@ -2919,22 +2988,22 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0003);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0007);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0009);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0010);
@@ -2943,11 +3012,14 @@ var Endabgabe;
             Endabgabe.ƒS.Sound.play(Endabgabe.sound.spacesong, 0.5);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0014);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.animate("rightOut"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("leftToMid"));
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0015);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0016);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
@@ -2985,18 +3057,18 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0006);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0008);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0009);
@@ -3004,6 +3076,8 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.animate("rightOut"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("leftToMid"));
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
@@ -3056,35 +3130,34 @@ var Endabgabe;
             Endabgabe.ƒS.Speech.hide();
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
-            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.hideAll();
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.animate(Endabgabe.animations.midToRight));
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
-            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate(Endabgabe.animations.midToLeft));
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0003);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0006);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0007);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0008);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0011);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.ƒS.positions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0013);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
@@ -3093,11 +3166,14 @@ var Endabgabe;
             Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomright);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0017);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0018);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.animate("rightOut"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("leftToMid"));
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0020);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
@@ -3105,7 +3181,6 @@ var Endabgabe;
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
             Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
-            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             return "ArrivalClearing";
         }
@@ -3282,7 +3357,7 @@ var Endabgabe;
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1a.Narrator.T0002);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1a.Narrator.T0003);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text1a.Narrator.T0004);
-                        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+                        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
                         await Endabgabe.ƒS.update(0.2);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text1a.Cat.T0005);
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text1a.Protagonist.T0006);

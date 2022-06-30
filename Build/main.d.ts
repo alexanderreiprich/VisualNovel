@@ -184,6 +184,19 @@ declare namespace Endabgabe {
             background: string;
         };
     };
+    let animations: {
+        leftToMid: string;
+        rightToMid: string;
+        midToLeft: string;
+        midToRight: string;
+        rightOut: string;
+        leftOut: string;
+    };
+    let newPositions: {
+        bottomleft: ƒ.Vector2;
+        bottomright: ƒ.Vector2;
+        bottomcenter: ƒ.Vector2;
+    };
     let characters: {
         narrator: {
             name: string;
@@ -279,6 +292,7 @@ declare namespace Endabgabe {
     function buttonFunctionalities(_option: string): Promise<void>;
     function toggleCredits(): void;
     function hndKeyPress(_event: KeyboardEvent): Promise<void>;
+    function animate(_animation: string): ƒS.AnimationDefinition;
     let dataForSave: {
         nameProtagonist: string;
         studiesProtagonist: string;

@@ -60,10 +60,12 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
 
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+    //await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+    await ƒS.Character.animate(characters.tommy, characters.tommy.pose.happy, animate("midToLeft"));
     await ƒS.update(1);
 
     await ƒS.Speech.tell(characters.cat, text.Cat.T0005);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
 
     await ƒS.Character.hide(characters.tommy);

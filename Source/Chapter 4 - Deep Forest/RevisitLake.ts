@@ -45,15 +45,15 @@ namespace Endabgabe {
       await ƒS.Location.show(locations.lake_polluted_water);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
-      await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.angry, ƒS.positions.bottomleft);
+      await ƒS.Character.hideAll();
+      await ƒS.Character.animate(characters.june, characters.june.pose.angry, animate(animations.midToRight));
+
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.june, text.Fox.T0001);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
 
-      await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, ƒS.positions.bottomleft);
+      await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate(animations.midToLeft));
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0003);
@@ -62,13 +62,13 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0006);
 
       await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomleft);
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, newPositions.bottomleft);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0007);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.happy, ƒS.positions.bottomright);
+      await ƒS.Character.show(characters.june, characters.june.pose.happy, newPositions.bottomright);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.june, text.Fox.T0008);
@@ -77,13 +77,13 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.june, text.Fox.T0011);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.surprised, ƒS.positions.bottomright);
+      await ƒS.Character.show(characters.june, characters.june.pose.surprised, newPositions.bottomright);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0012);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.happy, ƒS.positions.bottomright);
+      await ƒS.Character.show(characters.june, characters.june.pose.happy, newPositions.bottomright);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.june, text.Fox.T0013);
@@ -95,12 +95,15 @@ namespace Endabgabe {
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.hide(characters.tommy);
-      await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomright);
-      await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, ƒS.positions.bottomleft);
+      await ƒS.Character.show(characters.june, characters.june.pose.neutral, newPositions.bottomright);
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, newPositions.bottomleft);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0017);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0018);
+      await ƒS.Character.animate(characters.june, characters.june.pose.surprised, animate("rightOut"));
+      await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate("leftToMid"));
+      await ƒS.Character.hide(characters.june);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0019);
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0020);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0021);
@@ -109,7 +112,6 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
       ƒS.Inventory.add(items.bag);
-      await ƒS.Character.hide(characters.june);
       await ƒS.Character.hide(characters.tommy);
       return "ArrivalClearing";
     }
