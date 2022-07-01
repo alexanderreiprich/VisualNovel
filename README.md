@@ -1,7 +1,9 @@
 # Visual Novel - Endabgabe
 
 Abgegeben von: Alexander Reiprich
+
 Modul: Visual Novel
+
 Semester: SoSe22
 
 
