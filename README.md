@@ -6,6 +6,7 @@ Modul: Visual Novel
 
 Semester: SoSe22
 
+---
 
 Link zur Visual Novel: https://alexanderreiprich.github.io/VisualNovel/
 
