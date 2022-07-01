@@ -64,6 +64,11 @@ namespace Endabgabe {
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
     
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
+
+    ƒS.Speech.hide();
+    await ƒS.Location.show(locations.home_door_ground);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0011);
 
     let catAnswer = {

@@ -69,6 +69,10 @@ namespace Endabgabe {
       name: "Door",
       background: "Images/Backgrounds/home_door.png"
     },
+    home_door_ground: {
+      name: "Door Ground",
+      background: "Images/Backgrounds/home_door_ground.png"
+    },
     home_path: {
       name: "Path Behind Your Home",
       background: "Images/Backgrounds/home_path.png"
@@ -155,7 +159,7 @@ namespace Endabgabe {
     },
     clearing_ground: {
       name: "The ground of the clearing",
-      background: "Images/Backgrounds/clearing_center.png"
+      background: "Images/Backgrounds/clearing_ground.png"
     },
     clearing_center: {
       name: "The center of the clearing",

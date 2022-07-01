@@ -71,6 +71,10 @@ var Endabgabe;
             name: "Door",
             background: "Images/Backgrounds/home_door.png"
         },
+        home_door_ground: {
+            name: "Door Ground",
+            background: "Images/Backgrounds/home_door_ground.png"
+        },
         home_path: {
             name: "Path Behind Your Home",
             background: "Images/Backgrounds/home_path.png"
@@ -157,7 +161,7 @@ var Endabgabe;
         },
         clearing_ground: {
             name: "The ground of the clearing",
-            background: "Images/Backgrounds/clearing_center.png"
+            background: "Images/Backgrounds/clearing_ground.png"
         },
         clearing_center: {
             name: "The center of the clearing",
@@ -887,6 +891,9 @@ var Endabgabe;
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door_ground);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0011);
         let catAnswer = {
             pet: "Pet the Cat",

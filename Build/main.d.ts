@@ -59,6 +59,10 @@ declare namespace Endabgabe {
             name: string;
             background: string;
         };
+        home_door_ground: {
+            name: string;
+            background: string;
+        };
         home_path: {
             name: string;
             background: string;
