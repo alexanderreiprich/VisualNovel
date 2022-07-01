@@ -32,7 +32,7 @@ namespace Endabgabe {
           T0007: "I remember these things, my mom told me she had one back when she was younger!",
           T0020: "What was that?",
           T0022: "I doubt that, but yes, let's go."
-        },  
+        },
         Fox: {
           T0001: "Look at this. Who throws all of this away?",
           T0008: "Oh wow, I love cassettes, let me take a look!",
@@ -112,6 +112,11 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
       ƒS.Inventory.add(items.bag);
+
+      ƒS.Speech.hide();
+      await ƒS.Progress.delay(2);
+      await ƒS.Speech.tell(characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
+
       await ƒS.Character.hide(characters.tommy);
       return "ArrivalClearing";
     }
@@ -200,6 +205,9 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
       ƒS.Inventory.add(items.bag);
+      ƒS.Speech.hide();
+      await ƒS.Progress.delay(2);
+      await ƒS.Speech.tell(characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
 
       return "ArrivalClearing";
 

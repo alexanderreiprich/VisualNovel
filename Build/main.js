@@ -61,7 +61,7 @@ var Endabgabe;
     Endabgabe.locations = {
         home_bedroom: {
             name: "Bedroom",
-            background: "Images/Backgrounds/home_bedroom.png" // TODO: Add Background
+            background: "Images/Backgrounds/home_bedroom.png"
         },
         home_table: {
             name: "Table",
@@ -287,13 +287,13 @@ var Endabgabe;
         rock: {
             name: "Rock",
             description: "A mysterious part of a rock, found in the middle of the forest.",
-            image: "",
+            image: "Images/Items/rock.png",
             static: true
         },
         bag: {
             name: "Bag",
-            description: "A bag with a Walkman and a couple of cassettes inside. It look like it could still work.",
-            image: "",
+            description: "A bag with a Walkman and a couple of cassettes inside. It looks like it could still work.",
+            image: "Images/Items/bag.png",
             static: true
         }
     };
@@ -1877,6 +1877,9 @@ var Endabgabe;
                     let takeBag = await Endabgabe.ƒS.Menu.getInput(takeBagAnswer, "decision");
                     if (takeBag == takeBagAnswer.takeBag) {
                         Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
+                        Endabgabe.ƒS.Speech.hide();
+                        await Endabgabe.ƒS.Progress.delay(2);
+                        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
                         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
                     }
                     else {
@@ -3181,6 +3184,9 @@ var Endabgabe;
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
             Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Progress.delay(2);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             return "ArrivalClearing";
         }
@@ -3254,6 +3260,9 @@ var Endabgabe;
             Endabgabe.dataForSave.freedFox = true;
             Endabgabe.dataForSave.freedAnimals++;
             Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Progress.delay(2);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
             return "ArrivalClearing";
         }
     }

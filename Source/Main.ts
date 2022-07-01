@@ -59,7 +59,7 @@ namespace Endabgabe {
   export let locations = {
     home_bedroom: {
       name: "Bedroom",
-      background: "Images/Backgrounds/home_bedroom.png" // TODO: Add Background
+      background: "Images/Backgrounds/home_bedroom.png"
     },
     home_table: {
       name: "Table",
@@ -273,7 +273,7 @@ namespace Endabgabe {
     },
     deername: {
       name: "DEERNAME",
-      origin: ƒS.ORIGIN.BOTTOMCENTER, 
+      origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         happy: "Images/Characters/deer_happy.png",
         neutral: "Images/Characters/deer_neutral.png",
@@ -289,13 +289,13 @@ namespace Endabgabe {
     rock: {
       name: "Rock",
       description: "A mysterious part of a rock, found in the middle of the forest.",
-      image: "",
+      image: "Images/Items/rock.png",
       static: true
     },
     bag: {
       name: "Bag",
-      description: "A bag with a Walkman and a couple of cassettes inside. It look like it could still work.",
-      image: "",
+      description: "A bag with a Walkman and a couple of cassettes inside. It looks like it could still work.",
+      image: "Images/Items/bag.png",
       static: true
     }
   };
@@ -312,6 +312,7 @@ namespace Endabgabe {
 
   // ƒS.Speech.setTickerDelays();
   // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
+
 
   export async function buttonFunctionalities(_option: string): Promise<void> {
     console.log(_option);
@@ -364,7 +365,7 @@ namespace Endabgabe {
     ƒS.Sound.play(playlist[curSong], 0);
     if (curSong == playlist.length - 1)
       curSong = 0;
-    else 
+    else
       curSong++;
 
     ƒS.Sound.play(sound.cassette_scroll, 1);
@@ -442,10 +443,10 @@ namespace Endabgabe {
 
       previousName = nameDiv.innerHTML;
       previousContent = contentDiv.innerHTML;
-  
+
       nameDiv.innerHTML = "";
       contentDiv.innerHTML = "You grab the music player. Skip the songs using the << and >> buttons, play using the > button and stop the music altogether by pressing the ▪ button";
-  
+
       walkmanDiv.appendChild(img);
       parentDiv.appendChild(walkmanDiv);
       document.getElementById("append").appendChild(parentDiv);
@@ -475,16 +476,16 @@ namespace Endabgabe {
         break;
       case ƒ.KEYBOARD_CODE.M:
         // if (ƒS.Inventory.getAmount(items.bag) != 0) {
-          if (!musicOpen) {
-            hndMusicPlayer();
-            musicOpen = true;
-          }
-          else {
-            hndMusicPlayer();
-            musicOpen = false;
-          }
+        if (!musicOpen) {
+          hndMusicPlayer();
+          musicOpen = true;
+        }
+        else {
+          hndMusicPlayer();
+          musicOpen = false;
+        }
         // }
-          break;
+        break;
     }
   }
 
@@ -493,7 +494,7 @@ namespace Endabgabe {
       case animations.leftToMid:
         return {
           start: { translation: new ƒS.Position(-450, -500) },
-          end: { translation: newPositions.bottomcenter},
+          end: { translation: newPositions.bottomcenter },
           duration: 2,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
@@ -529,7 +530,7 @@ namespace Endabgabe {
           duration: 2,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
-      
+
       case animations.leftOut:
         return {
           start: { translation: new ƒS.Position(-450, -500) },
@@ -538,7 +539,7 @@ namespace Endabgabe {
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
-      default: 
+      default:
         return {
           start: { translation: ƒS.positions.bottomcenter },
           end: { translation: ƒS.positions.bottomcenter },
@@ -617,7 +618,7 @@ namespace Endabgabe {
       { scene: BadEnding, name: "BadEnding", id: "BadEnding" },
       { scene: GoodEnding, name: "GoodEnding", id: "GoodEnding" },
       { scene: NeutralEndings, name: "NeutralEndings", id: "NeutralEndings" },
-      
+
       // Empty End Scene
       { id: "Empty Scene", scene: Empty, name: "End" }
     ];

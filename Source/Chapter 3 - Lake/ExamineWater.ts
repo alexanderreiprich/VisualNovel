@@ -18,7 +18,7 @@ namespace Endabgabe {
         T0011: "As soon as you hold it in your hand, you realize that this is where the horrible smell came from. Out of reflex, you throw the disgusting bottle back into the water.",
         T0012: "Some things are better left untouched.",
         T0013: "With the horrid smell still stuck in your nose, you make your way back to the castle."
-     
+
       },
       Protagonist: {
         T0009: "Oh wow, these albums look pretty new, some are still sealed. This is too cool to throw away. But… would it be stealing if I just took it?"
@@ -69,14 +69,17 @@ namespace Endabgabe {
 
           let takeBag = await ƒS.Menu.getInput(takeBagAnswer, "decision");
           if (takeBag == takeBagAnswer.takeBag) {
-              ƒS.Inventory.add(items.bag);
-              await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
+            ƒS.Inventory.add(items.bag);
+            ƒS.Speech.hide();
+            await ƒS.Progress.delay(2);
+            await ƒS.Speech.tell(characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
+            await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
           }
           else {
             await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
           }
           return "ExamineCastle";
-        
+
         case examineLakeItemsAnswer.inspectBottle:
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0011);
@@ -84,7 +87,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
           return "ExamineCastle";
 
-        case examineLakeItemsAnswer.dontTouch: 
+        case examineLakeItemsAnswer.dontTouch:
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
           return "ExamineCastle";
       }

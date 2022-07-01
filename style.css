@@ -163,31 +163,53 @@ dialog[type=splash]>img#FudgeStoryLogo {
 }
 
 dialog[type=inventory] {
-  background-color: lightblue;
+  background: rgba(0, 0, 0, 0.801);
+  color: white;
   border: 6px;
   border-color: lightcyan;
   border-style: solid;
+  border-radius: 15px;
+  -webkit-user-select: none;     
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 dialog[type="inventory"] > p{
   font-size: xx-large;
   font-weight: bold;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Candara;
+  width: 20%;
+  display:contents;
 }
 
+dialog[type="inventory"] > button { 
+  border: none;
+  background-color: rgba(128, 133, 128, 0);
+  color: white;
+  font-size: 35px;
+  margin-left: 85%;
+  cursor: pointer;
+}
+
+
 dialog[type="inventory"] > ul > li{
+  background-color: rgba(255, 255, 255, 0.801);
+  border-radius: 15px;
+  padding: 24px;
   display: flex;
   justify-content: baseline;
   align-items: center;
   flex-direction: row;
-  margin-bottom: 70px;
-  margin-top: 70px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 40px;
+  margin-top: 40px;
+  font-family: Candara;
 }
 
 dialog[type="inventory"] > ul > li > amount{
-  padding-left: 10px;
-  font-size: small;
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
 dialog[type="inventory"] > ul > li > description{
@@ -198,13 +220,14 @@ dialog[type="inventory"] > ul > li > description{
 
 dialog[type="inventory"] > ul > li > name{
   padding-right: 10px;
-  font-size: large;
+  font-size: 20px;
   font-style: bold;
+  color: black;
 }
 
 dialog[type="inventory"] img{
   position: absolute;
-  right: 0;
+  right: 50px;
 }
 
 dialog[type="text"] {
