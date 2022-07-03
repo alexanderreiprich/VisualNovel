@@ -70,6 +70,20 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0006);
     await ƒS.Speech.tell(characters.deer, text.Deer.T0007);
+
+    if (dataForSave.nameProtagonist == "") {
+      await ƒS.Speech.tell(characters.narrator, "What is your name?");
+      let scene: HTMLElement = document.getElementById("append");
+      let overlay: HTMLDivElement = document.createElement("div");
+      overlay.id = "overlay";
+      scene.appendChild(overlay);
+  
+      let name: string = await ƒS.Speech.getInput();
+      dataForSave.nameProtagonist = name;
+  
+      document.getElementById("append").children[0].remove();
+    }
+
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0008);
     await ƒS.Speech.tell(characters.deername, text.Deer.T0009);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0010);

@@ -18,8 +18,7 @@ namespace Endabgabe {
         T0003: "You might like it there, follow me.",
         T0007: "It is. And since you live here, feel free to come here as often as you want to.",
         T0008: "You don't have to stress yourself over things that you don't have any control over anymore.",
-        T0012: "No problem, take care and-",
-
+        T0012: "No problem, take care and-"
       },
       Deer: {
         T0002: "Hmm, no, I don't think so.",

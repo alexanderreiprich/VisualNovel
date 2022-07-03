@@ -620,9 +620,6 @@ var Endabgabe;
 })(Endabgabe || (Endabgabe = {}));
 var Endabgabe;
 (function (Endabgabe) {
-    /*   function clickResponse(): void {
-        console.log("AYO");
-      } */
     async function MeetingAgain() {
         console.log("- - - Scene 3: Meeting again - - -");
         let gameMenu = Endabgabe.ƒS.Menu.create(Endabgabe.ingameMenuButtons, Endabgabe.buttonFunctionalities, "gameMenu");
@@ -657,11 +654,6 @@ var Endabgabe;
                 T0021: "You tell me, I don't know either. It just happened. So, can I come with you now? It is so boring here, please let me come with you!"
             }
         };
-        /*     let newDiv: HTMLDivElement = document.createElement("div");
-            newDiv.classList.add("musicplayer");
-            newDiv.addEventListener("click", clickResponse);
-            document.getElementById("append").appendChild(newDiv);
-            console.log("appended"); */
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
@@ -1223,6 +1215,13 @@ var Endabgabe;
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text.Fox.T0002);
+        let scene = document.getElementById("append");
+        let overlay = document.createElement("div");
+        overlay.id = "overlay";
+        scene.appendChild(overlay);
+        let name = await Endabgabe.ƒS.Speech.getInput();
+        Endabgabe.dataForSave.nameProtagonist = name;
+        document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text.Fox.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
@@ -2018,6 +2017,16 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
         Endabgabe.ƒS.Speech.setTickerDelays(150);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.questionmark, text.Turtle.T0012);
+        if (Endabgabe.dataForSave.nameProtagonist == "") {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "What is your name?");
+            let scene = document.getElementById("append");
+            let overlay = document.createElement("div");
+            overlay.id = "overlay";
+            scene.appendChild(overlay);
+            let name = await Endabgabe.ƒS.Speech.getInput();
+            Endabgabe.dataForSave.nameProtagonist = name;
+            document.getElementById("append").children[0].remove();
+        }
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0013);
         return "TurtleStory";
@@ -2819,14 +2828,14 @@ var Endabgabe;
                     T0003: "What?",
                     T0005: "I can hear you. Can you understand me?",
                     T0007: "Uh, to be honest, I have no idea.",
-                    T0008: "Neither do I. Well… my name is " + Endabgabe.dataForSave.nameProtagonist + ". This… feels weird.",
+                    T0008: "Well… my name is " + Endabgabe.dataForSave.nameProtagonist + ". This… feels weird.",
                     T0010: "Nice to meet you too. What are you doing around here?",
                     T0012: "Oh, yes… obviously you live here, apologies."
                 },
                 Fox: {
                     T0002: "I don't want to hurt you, no worries.",
                     T0004: "…what?",
-                    T0006: "Oh… yes, I can. What, how can you hear me?",
+                    T0006: "Oh… yes, I can. What, how can you hear me? What's your name?",
                     T0009: "Well, looks like you unlocked a new talent or something overnight. My name is June, nice to meet you.",
                     T0011: "I mean… I live in the forest. I was just looking for some food around here."
                 }
@@ -2844,6 +2853,15 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0006);
+            if (Endabgabe.dataForSave.nameProtagonist == "") {
+                let scene = document.getElementById("append");
+                let overlay = document.createElement("div");
+                overlay.id = "overlay";
+                scene.appendChild(overlay);
+                let name = await Endabgabe.ƒS.Speech.getInput();
+                Endabgabe.dataForSave.nameProtagonist = name;
+                document.getElementById("append").children[0].remove();
+            }
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0007);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0008);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
@@ -3564,6 +3582,16 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0006);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deer, text.Deer.T0007);
+        if (Endabgabe.dataForSave.nameProtagonist == "") {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "What is your name?");
+            let scene = document.getElementById("append");
+            let overlay = document.createElement("div");
+            overlay.id = "overlay";
+            scene.appendChild(overlay);
+            let name = await Endabgabe.ƒS.Speech.getInput();
+            Endabgabe.dataForSave.nameProtagonist = name;
+            document.getElementById("append").children[0].remove();
+        }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0009);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0010);
@@ -3651,7 +3679,7 @@ var Endabgabe;
                 T0003: "You might like it there, follow me.",
                 T0007: "It is. And since you live here, feel free to come here as often as you want to.",
                 T0008: "You don't have to stress yourself over things that you don't have any control over anymore.",
-                T0012: "No problem, take care and-",
+                T0012: "No problem, take care and-"
             },
             Deer: {
                 T0002: "Hmm, no, I don't think so.",

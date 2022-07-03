@@ -53,6 +53,20 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0011);
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.questionmark, text.Turtle.T0012);
+    
+    if (dataForSave.nameProtagonist == "") {
+      await ƒS.Speech.tell(characters.narrator, "What is your name?");
+      let scene: HTMLElement = document.getElementById("append");
+      let overlay: HTMLDivElement = document.createElement("div");
+      overlay.id = "overlay";
+      scene.appendChild(overlay);
+  
+      let name: string = await ƒS.Speech.getInput();
+      dataForSave.nameProtagonist = name;
+  
+      document.getElementById("append").children[0].remove();
+    }
+
     ƒS.Speech.setTickerDelays(50);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0013);
 

@@ -47,6 +47,17 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
     await ƒS.Speech.tell(characters.fox, text.Fox.T0002);
+
+    let scene: HTMLElement = document.getElementById("append");
+    let overlay: HTMLDivElement = document.createElement("div");
+    overlay.id = "overlay";
+    scene.appendChild(overlay);
+
+    let name: string = await ƒS.Speech.getInput();
+    dataForSave.nameProtagonist = name;
+
+    document.getElementById("append").children[0].remove();
+
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
     await ƒS.Speech.tell(characters.fox, text.Fox.T0004);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0005);

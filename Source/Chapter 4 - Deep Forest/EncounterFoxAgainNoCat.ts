@@ -45,14 +45,14 @@ namespace Endabgabe {
           T0003: "What?",
           T0005: "I can hear you. Can you understand me?",
           T0007: "Uh, to be honest, I have no idea.",
-          T0008: "Neither do I. Well… my name is " + dataForSave.nameProtagonist + ". This… feels weird.",
+          T0008: "Well… my name is " + dataForSave.nameProtagonist + ". This… feels weird.",
           T0010: "Nice to meet you too. What are you doing around here?",
           T0012: "Oh, yes… obviously you live here, apologies."
         },
         Fox: {
           T0002: "I don't want to hurt you, no worries.",
           T0004: "…what?",
-          T0006: "Oh… yes, I can. What, how can you hear me?",
+          T0006: "Oh… yes, I can. What, how can you hear me? What's your name?",
           T0009: "Well, looks like you unlocked a new talent or something overnight. My name is June, nice to meet you.",
           T0011: "I mean… I live in the forest. I was just looking for some food around here."
         }
@@ -74,6 +74,19 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.fox, text2.Fox.T0004);
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0005);
       await ƒS.Speech.tell(characters.fox, text2.Fox.T0006);
+
+      if (dataForSave.nameProtagonist == "") {
+        let scene: HTMLElement = document.getElementById("append");
+        let overlay: HTMLDivElement = document.createElement("div");
+        overlay.id = "overlay";
+        scene.appendChild(overlay);
+
+        let name: string = await ƒS.Speech.getInput();
+        dataForSave.nameProtagonist = name;
+
+        document.getElementById("append").children[0].remove();
+      }
+
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0007);
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0008);
 
