@@ -46,6 +46,10 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.questionmark, text.Turtle.T0009);
     ƒS.Speech.setTickerDelays(50);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
+
+    await ƒS.Character.show(characters.richard, characters.richard.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0011);
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.questionmark, text.Turtle.T0012);

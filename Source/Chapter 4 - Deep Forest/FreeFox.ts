@@ -149,9 +149,14 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0011);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0012);
+
+      await ƒS.Character.hide(characters.june);
+      await ƒS.Character.show(characters.june, characters.june.pose.empty, newPositions.bottomcenter);
+      await ƒS.update(0.3);
+
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
 
-      await ƒS.Character.animate(characters.june, characters.june.pose.surprised, animate("rightOut"));
+      await ƒS.Character.animate(characters.june, characters.june.pose.empty, animate("rightOut"));
       await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate("leftToMid"));
       await ƒS.Character.hide(characters.june);
       await ƒS.update(0.3);

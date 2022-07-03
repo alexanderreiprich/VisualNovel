@@ -61,14 +61,19 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.deername, text.Deer.T0010);
     await ƒS.Speech.tell(characters.deername, text.Deer.T0011);
 
-    await ƒS.Character.hide(characters.deername);
-    await ƒS.update(0.2);
-
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
+    
+    await ƒS.Character.hide(characters.deername);
+    await ƒS.Character.show(characters.deername, characters.deername.pose.empty, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0014);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0015);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0016);
+
+    await ƒS.Character.animate(characters.deername, characters.deername.pose.empty, animate("rightOut"));
+    await ƒS.update(0.3);
 
     dataForSave.freedDeer = true;
     dataForSave.freedAnimals++;

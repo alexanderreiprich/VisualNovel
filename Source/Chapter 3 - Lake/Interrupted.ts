@@ -26,10 +26,19 @@ namespace Endabgabe {
     ƒS.Speech.setTickerDelays(50);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
     ƒS.Speech.setTickerDelays(150);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.angry, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0002);
     ƒS.Speech.setTickerDelays(50);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.update(0.2);
+
     if (dataForSave.travelWithCat) {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
       return "CatBackstory";

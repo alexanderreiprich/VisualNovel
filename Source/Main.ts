@@ -205,7 +205,8 @@ namespace Endabgabe {
     midToLeft: "midToLeft",
     midToRight: "midToRight",
     rightOut: "rightOut",
-    leftOut: "leftOut"
+    leftOut: "leftOut",
+    outToLeft: "outToLeft"
   };
 
   export let newPositions = {
@@ -248,7 +249,10 @@ namespace Endabgabe {
         neutral: "Images/Characters/cat_neutral.png",
         sad: "Images/Characters/cat_sad.png",
         curious: "Images/Characters/cat_curious.png",
-        surprised: "Images/Characters/cat_surprised.png"
+        surprised: "Images/Characters/cat_surprised.png",
+        crying: "Images/Characters/cat_crying.png",
+        yawning: "Images/Characters/cat_yawn.png",
+        empty: "Images/Characters/cat_empty.png"
       }
     },
     june: {
@@ -258,21 +262,21 @@ namespace Endabgabe {
         angry: "Images/Characters/fox_mad.png",
         happy: "Images/Characters/fox_laughing.png",
         neutral: "Images/Characters/fox_neutral.png",
-        //sad: "Images/Characters/fox_sad.png",
-        //curious: "Images/Characters/fox_curious.png",
         surprised: "Images/Characters/fox_surprised.png",
         uncomfortable: "Images/Characters/fox_uncomfortable.png",
-        concerned: "Images/Characters/fox_concerned.png"
+        concerned: "Images/Characters/fox_concerned.png",
+        empty: "Images/Characters/fox_empty.png"
       }
     },
     richard: {
       name: "Richard",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
-        angry: "Images/Characters/deer_happy.png",
-        happy: "Images/Characters/deer_happy.png",
-        neutral: "Images/Characters/deer_happy.png",
-        sad: "Images/Characters/deer_happy.png"
+        angry: "Images/Characters/turtle_angry.png",
+        crying: "Images/Characters/turtle_crying.png",
+        neutral: "Images/Characters/turtle_neutral.png",
+        dreaming: "Images/Characters/turtle_dreaming.png",
+        empty: "Images/Characters/turtle_empty.png"
       }
     },
     deername: {
@@ -283,8 +287,9 @@ namespace Endabgabe {
         neutral: "Images/Characters/deer_neutral.png",
         sad: "Images/Characters/deer_sad.png",
         curious: "Images/Characters/deer_curious.png",
-        crying: "",
-        surprised: ""
+        crying: "Images/Characters/deer_crying.png",
+        surprised: "Images/Characters/deer_surprised.png",
+        empty: "Images/Characters/deer_empty.png"
       }
     }
   };
@@ -298,7 +303,7 @@ namespace Endabgabe {
     },
     bag: {
       name: "Bag",
-      description: "A bag with a Walkman and a couple of cassettes inside. It looks like it could still work.",
+      description: "A bag with an old SUNY Walkman and a couple of cassettes inside. It looks like it could still work.",
       image: "Images/Items/bag.png",
       static: true
     }
@@ -421,7 +426,7 @@ namespace Endabgabe {
       walkmanDiv.id = "walkmanDiv";
 
       let img: HTMLImageElement = document.createElement("img");
-      img.src = "Images/Walkman/sideview.jpg";
+      img.src = "Images/Walkman/walkman.png";
       img.id = "walkman";
 
       let skipDiv: HTMLDivElement = document.createElement("div");
@@ -469,6 +474,7 @@ namespace Endabgabe {
   export async function hndKeyPress(_event: KeyboardEvent): Promise<void> {
     switch (_event.code) {
       case ƒ.KEYBOARD_CODE.I:
+        ƒS.Inventory.add(items.bag);
         if (!inventoryOpen) {
           ƒS.Inventory.open();
           inventoryOpen = true;
@@ -542,6 +548,14 @@ namespace Endabgabe {
           duration: 2,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
+
+      case animations.outToLeft:
+        return {
+          start: { translation: new ƒS.Position(-2450, -500) },
+          end: { translation: new ƒS.Position(-450, -500) },
+          duration: 2,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        }; 
 
       default:
         return {

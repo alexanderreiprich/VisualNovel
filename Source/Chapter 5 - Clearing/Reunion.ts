@@ -47,9 +47,9 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
 
-/*     await ƒS.Character.hide(characters.deername);
-    await ƒS.Character.show(characters.deername, characters.deername.pose.curious, ƒS.positions.bottomcenter);
-    await ƒS.update(0.2); */
+    /*     await ƒS.Character.hide(characters.deername);
+        await ƒS.Character.show(characters.deername, characters.deername.pose.curious, ƒS.positions.bottomcenter);
+        await ƒS.update(0.2); */
 
     await ƒS.Speech.tell(characters.deername, text.Deer.T0002);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
@@ -57,7 +57,8 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0005);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
 
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, ƒS.positions.bottomcenter);
+    await ƒS.Character.animate(characters.deername, characters.deername.pose.curious, animate("midToRight"));
+    await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate("outToLeft"));
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0007);
@@ -74,7 +75,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0011);
 
     await ƒS.Character.hide(characters.deername);
-    await ƒS.Character.show(characters.deername, characters.deername.pose.sad, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.deername, characters.deername.pose.sad, newPositions.bottomright);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.deername, text.Deer.T0012);
@@ -82,38 +83,46 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.deername, text.Deer.T0014);
     await ƒS.Speech.tell(characters.deername, text.Deer.T0015);
     await ƒS.Speech.tell(characters.deername, text.Deer.T0016);
-      
+
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, newPositions.bottomleft);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0017);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0018);
 
     await ƒS.Character.hide(characters.deername);
-    await ƒS.Character.show(characters.deername, characters.deername.pose.crying, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.deername, characters.deername.pose.crying, newPositions.bottomright);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.deername, text.Deer.T0019);
     await ƒS.Speech.tell(characters.deername, text.Deer.T0020);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0021);
     await ƒS.Speech.tell(characters.deername, text.Deer.T0022);
-  
+
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, newPositions.bottomleft);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0023);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0024);
 
-    await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.hide(characters.deername);
-    await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0025);
+
+    await ƒS.Character.hide(characters.tommy);
+    await ƒS.Character.hide(characters.deername);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.empty, newPositions.bottomleft);
+    await ƒS.Character.show(characters.deername, characters.deername.pose.empty, newPositions.bottomright);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0026);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0027);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0028);
+
+    await ƒS.Character.animate(characters.deername, characters.deername.pose.empty, animate("rightOut"));
+    await ƒS.Character.animate(characters.tommy, characters.tommy.pose.empty, animate("leftOut"));
+    await ƒS.update(0.2);
 
     dataForSave.freedDeer = true;
     dataForSave.freedCat = true;

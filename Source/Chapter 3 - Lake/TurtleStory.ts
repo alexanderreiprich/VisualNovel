@@ -43,6 +43,11 @@ namespace Endabgabe {
 
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0001);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.dreaming, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0002);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0003);
 
@@ -52,8 +57,17 @@ namespace Endabgabe {
     }
 
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0004);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0005);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0006);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.dreaming, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
 
     interrupt = await ƒS.Menu.getInput(interruptAnswer, "decision");
     if (interrupt == interruptAnswer.interrupt) {
@@ -62,6 +76,11 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0007);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0008);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0009);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0010);
 
@@ -72,14 +91,27 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0011);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0012);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.crying, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0013);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0014);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0015);
 
     ƒS.Speech.setTickerDelays(50);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0016);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.empty, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0017);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0018);
+    
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0019);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);

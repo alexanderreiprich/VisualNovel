@@ -206,7 +206,8 @@ var Endabgabe;
         midToLeft: "midToLeft",
         midToRight: "midToRight",
         rightOut: "rightOut",
-        leftOut: "leftOut"
+        leftOut: "leftOut",
+        outToLeft: "outToLeft"
     };
     Endabgabe.newPositions = {
         bottomleft: new FudgeStory.Position(-450, -500),
@@ -247,7 +248,10 @@ var Endabgabe;
                 neutral: "Images/Characters/cat_neutral.png",
                 sad: "Images/Characters/cat_sad.png",
                 curious: "Images/Characters/cat_curious.png",
-                surprised: "Images/Characters/cat_surprised.png"
+                surprised: "Images/Characters/cat_surprised.png",
+                crying: "Images/Characters/cat_crying.png",
+                yawning: "Images/Characters/cat_yawn.png",
+                empty: "Images/Characters/cat_empty.png"
             }
         },
         june: {
@@ -257,21 +261,21 @@ var Endabgabe;
                 angry: "Images/Characters/fox_mad.png",
                 happy: "Images/Characters/fox_laughing.png",
                 neutral: "Images/Characters/fox_neutral.png",
-                //sad: "Images/Characters/fox_sad.png",
-                //curious: "Images/Characters/fox_curious.png",
                 surprised: "Images/Characters/fox_surprised.png",
                 uncomfortable: "Images/Characters/fox_uncomfortable.png",
-                concerned: "Images/Characters/fox_concerned.png"
+                concerned: "Images/Characters/fox_concerned.png",
+                empty: "Images/Characters/fox_empty.png"
             }
         },
         richard: {
             name: "Richard",
             origin: Endabgabe.ƒS.ORIGIN.BOTTOMCENTER,
             pose: {
-                angry: "Images/Characters/deer_happy.png",
-                happy: "Images/Characters/deer_happy.png",
-                neutral: "Images/Characters/deer_happy.png",
-                sad: "Images/Characters/deer_happy.png"
+                angry: "Images/Characters/turtle_angry.png",
+                crying: "Images/Characters/turtle_crying.png",
+                neutral: "Images/Characters/turtle_neutral.png",
+                dreaming: "Images/Characters/turtle_dreaming.png",
+                empty: "Images/Characters/turtle_empty.png"
             }
         },
         deername: {
@@ -282,8 +286,9 @@ var Endabgabe;
                 neutral: "Images/Characters/deer_neutral.png",
                 sad: "Images/Characters/deer_sad.png",
                 curious: "Images/Characters/deer_curious.png",
-                crying: "",
-                surprised: ""
+                crying: "Images/Characters/deer_crying.png",
+                surprised: "Images/Characters/deer_surprised.png",
+                empty: "Images/Characters/deer_empty.png"
             }
         }
     };
@@ -296,7 +301,7 @@ var Endabgabe;
         },
         bag: {
             name: "Bag",
-            description: "A bag with a Walkman and a couple of cassettes inside. It looks like it could still work.",
+            description: "A bag with an old SUNY Walkman and a couple of cassettes inside. It looks like it could still work.",
             image: "Images/Items/bag.png",
             static: true
         }
@@ -402,7 +407,7 @@ var Endabgabe;
             let walkmanDiv = document.createElement("div");
             walkmanDiv.id = "walkmanDiv";
             let img = document.createElement("img");
-            img.src = "Images/Walkman/sideview.jpg";
+            img.src = "Images/Walkman/walkman.png";
             img.id = "walkman";
             let skipDiv = document.createElement("div");
             skipDiv.addEventListener("pointerdown", hndSkip);
@@ -439,6 +444,7 @@ var Endabgabe;
     async function hndKeyPress(_event) {
         switch (_event.code) {
             case Endabgabe.ƒ.KEYBOARD_CODE.I:
+                Endabgabe.ƒS.Inventory.add(Endabgabe.items.bag);
                 if (!inventoryOpen) {
                     Endabgabe.ƒS.Inventory.open();
                     inventoryOpen = true;
@@ -504,6 +510,13 @@ var Endabgabe;
                 return {
                     start: { translation: new Endabgabe.ƒS.Position(-450, -500) },
                     end: { translation: new Endabgabe.ƒS.Position(-2450, -500) },
+                    duration: 2,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.outToLeft:
+                return {
+                    start: { translation: new Endabgabe.ƒS.Position(-2450, -500) },
+                    end: { translation: new Endabgabe.ƒS.Position(-450, -500) },
                     duration: 2,
                     playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
                 };
@@ -658,8 +671,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path_close);
         await Endabgabe.ƒS.update(1);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
-        //await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
-        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.animate("midToLeft"));
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
         await Endabgabe.ƒS.update(1);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
@@ -1937,10 +1949,15 @@ var Endabgabe;
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         Endabgabe.ƒS.Speech.setTickerDelays(150);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.angry, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0002);
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.update(0.2);
         if (Endabgabe.dataForSave.travelWithCat) {
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
             return "CatBackstory";
@@ -1996,6 +2013,8 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.questionmark, text.Turtle.T0009);
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
         Endabgabe.ƒS.Speech.setTickerDelays(150);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.questionmark, text.Turtle.T0012);
@@ -2048,6 +2067,9 @@ var Endabgabe;
         };
         Endabgabe.ƒS.Speech.setTickerDelays(150);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0001);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.dreaming, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0003);
         let interrupt = await Endabgabe.ƒS.Menu.getInput(interruptAnswer, "decision");
@@ -2055,14 +2077,23 @@ var Endabgabe;
             return "Interrupted";
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0004);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0006);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.dreaming, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         interrupt = await Endabgabe.ƒS.Menu.getInput(interruptAnswer, "decision");
         if (interrupt == interruptAnswer.interrupt) {
             return "Interrupted";
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0008);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0009);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0010);
         interrupt = await Endabgabe.ƒS.Menu.getInput(interruptAnswer, "decision");
@@ -2071,13 +2102,21 @@ var Endabgabe;
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0011);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0012);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.crying, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0013);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0014);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.richard, text.Turtle.T0015);
         Endabgabe.ƒS.Speech.setTickerDelays(50);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.richard, Endabgabe.characters.richard.pose.empty, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0017);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0018);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.richard);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0020);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0021);
@@ -3085,8 +3124,11 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0010);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.newPositions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.animate("rightOut"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("rightOut"));
             await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("leftToMid"));
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.update(0.3);
@@ -3180,8 +3222,11 @@ var Endabgabe;
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0017);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.newPositions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0018);
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.animate("rightOut"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("rightOut"));
             await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("leftToMid"));
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0019);
@@ -3261,7 +3306,11 @@ var Endabgabe;
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.newPositions.bottomcenter);
+            await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("rightOut"));
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
             Endabgabe.dataForSave.freedFox = true;
@@ -3635,13 +3684,16 @@ var Endabgabe;
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0010);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0011);
-        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
-        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.empty, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0014);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.empty, Endabgabe.animate("rightOut"));
+        await Endabgabe.ƒS.update(0.3);
         Endabgabe.dataForSave.freedDeer = true;
         Endabgabe.dataForSave.freedAnimals++;
         return "WalkHome";
@@ -3702,7 +3754,8 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.curious, Endabgabe.animate("midToRight"));
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("outToLeft"));
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
@@ -3715,7 +3768,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0010);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0011);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.sad, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.sad, Endabgabe.newPositions.bottomright);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0012);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0013);
@@ -3723,29 +3776,34 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0015);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0016);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomleft);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0017);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.crying, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.crying, Endabgabe.newPositions.bottomright);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0019);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0020);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0021);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deername, text.Deer.T0022);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomleft);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0023);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0024);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0025);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.deername);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.empty, Endabgabe.newPositions.bottomleft);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.empty, Endabgabe.newPositions.bottomright);
         await Endabgabe.ƒS.update(0.2);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0025);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0026);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0027);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0028);
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.deername, Endabgabe.characters.deername.pose.empty, Endabgabe.animate("rightOut"));
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.empty, Endabgabe.animate("leftOut"));
+        await Endabgabe.ƒS.update(0.2);
         Endabgabe.dataForSave.freedDeer = true;
         Endabgabe.dataForSave.freedCat = true;
         Endabgabe.dataForSave.freedAnimals += 2;

@@ -195,6 +195,7 @@ declare namespace Endabgabe {
         midToRight: string;
         rightOut: string;
         leftOut: string;
+        outToLeft: string;
     };
     let newPositions: {
         bottomleft: ƒ.Vector2;
@@ -236,6 +237,9 @@ declare namespace Endabgabe {
                 sad: string;
                 curious: string;
                 surprised: string;
+                crying: string;
+                yawning: string;
+                empty: string;
             };
         };
         june: {
@@ -248,6 +252,7 @@ declare namespace Endabgabe {
                 surprised: string;
                 uncomfortable: string;
                 concerned: string;
+                empty: string;
             };
         };
         richard: {
@@ -255,9 +260,10 @@ declare namespace Endabgabe {
             origin: ƒ.ORIGIN2D;
             pose: {
                 angry: string;
-                happy: string;
+                crying: string;
                 neutral: string;
-                sad: string;
+                dreaming: string;
+                empty: string;
             };
         };
         deername: {
@@ -270,6 +276,7 @@ declare namespace Endabgabe {
                 curious: string;
                 crying: string;
                 surprised: string;
+                empty: string;
             };
         };
     };
