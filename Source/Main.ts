@@ -4,7 +4,7 @@ namespace Endabgabe {
 
   console.log("- - - Starting: An Unpolished Gem with a Tragic Backstory - - -");
 
-  // alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
+  alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
 
   // define transitions
   export let transitions = {
@@ -53,7 +53,8 @@ namespace Endabgabe {
     fiveofive: "Audio/Songs/505.mp3",
     emotion: "Audio/Songs/emotion.mp3",
     righthere: "Audio/Songs/righthere.mp3",
-    spacesong: "Audio/Songs/spacesong.mp3"
+    spacesong: "Audio/Songs/spacesong.mp3",
+    icanthandlechange: "Audio/Songs/icanthandlechange.mp3"
   };
 
   export let locations = {
@@ -252,7 +253,7 @@ namespace Endabgabe {
         surprised: "Images/Characters/cat_surprised.png",
         crying: "Images/Characters/cat_crying.png",
         yawning: "Images/Characters/cat_yawn.png",
-        empty: "Images/Characters/cat_empty.png"
+        empty: "Images/Characters/cat_neutral.png"
       }
     },
     june: {
@@ -265,7 +266,7 @@ namespace Endabgabe {
         surprised: "Images/Characters/fox_surprised.png",
         uncomfortable: "Images/Characters/fox_uncomfortable.png",
         concerned: "Images/Characters/fox_concerned.png",
-        empty: "Images/Characters/fox_empty.png"
+        empty: "Images/Characters/fox_neutral.png"
       }
     },
     richard: {
@@ -276,7 +277,7 @@ namespace Endabgabe {
         crying: "Images/Characters/turtle_crying.png",
         neutral: "Images/Characters/turtle_neutral.png",
         dreaming: "Images/Characters/turtle_dreaming.png",
-        empty: "Images/Characters/turtle_empty.png"
+        empty: "Images/Characters/turtle_neutral.png"
       }
     },
     deername: {
@@ -289,7 +290,7 @@ namespace Endabgabe {
         curious: "Images/Characters/deer_curious.png",
         crying: "Images/Characters/deer_crying.png",
         surprised: "Images/Characters/deer_surprised.png",
-        empty: "Images/Characters/deer_empty.png"
+        empty: "Images/Characters/deer_neutral.png"
       }
     }
   };
@@ -366,7 +367,7 @@ namespace Endabgabe {
   let musicOpen: boolean;
   let previousName: string;
   let previousContent: string;
-  let playlist: string[] = [sound.ophelia, sound.freaks, sound.twentymins, sound.fiveofive, sound.righthere];
+  let playlist: string[] = [sound.ophelia, sound.freaks, sound.twentymins, sound.fiveofive, sound.righthere, sound.icanthandlechange];
   let curSong: number = 0;
 
   function hndSkip(_event: Event): void {
@@ -405,12 +406,16 @@ namespace Endabgabe {
   function hndPlay(_event: Event): void {
     _event.stopPropagation();
     ƒS.Sound.play(sound.cassette_in, 1);
-    window.setTimeout((): void => { ƒS.Sound.play(playlist[curSong], 0.5); }, 4000);
-    if (curSong == playlist.length - 1)
-      curSong = 0;
-    else
-      curSong = playlist.length - 1;
-    console.log("PLAY");
+    window.setTimeout((): void => {
+      ƒS.Sound.play(playlist[curSong], 0.5);
+      document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
+      if (curSong == playlist.length - 1)
+        curSong = 0;
+      else
+        curSong++;
+      console.log("PLAY");
+    },                4000);
+
   }
 
   async function hndMusicPlayer(): Promise<void> {
@@ -555,7 +560,7 @@ namespace Endabgabe {
           end: { translation: new ƒS.Position(-450, -500) },
           duration: 2,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
-        }; 
+        };
 
       default:
         return {

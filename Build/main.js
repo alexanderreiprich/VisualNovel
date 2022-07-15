@@ -11,7 +11,7 @@ var Endabgabe;
     Endabgabe.ƒ = FudgeCore;
     Endabgabe.ƒS = FudgeStory;
     console.log("- - - Starting: An Unpolished Gem with a Tragic Backstory - - -");
-    // alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
+    alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
     // define transitions
     Endabgabe.transitions = {
         puzzle: {
@@ -56,7 +56,8 @@ var Endabgabe;
         fiveofive: "Audio/Songs/505.mp3",
         emotion: "Audio/Songs/emotion.mp3",
         righthere: "Audio/Songs/righthere.mp3",
-        spacesong: "Audio/Songs/spacesong.mp3"
+        spacesong: "Audio/Songs/spacesong.mp3",
+        icanthandlechange: "Audio/Songs/icanthandlechange.mp3"
     };
     Endabgabe.locations = {
         home_bedroom: {
@@ -251,7 +252,7 @@ var Endabgabe;
                 surprised: "Images/Characters/cat_surprised.png",
                 crying: "Images/Characters/cat_crying.png",
                 yawning: "Images/Characters/cat_yawn.png",
-                empty: "Images/Characters/cat_empty.png"
+                empty: "Images/Characters/cat_neutral.png"
             }
         },
         june: {
@@ -264,7 +265,7 @@ var Endabgabe;
                 surprised: "Images/Characters/fox_surprised.png",
                 uncomfortable: "Images/Characters/fox_uncomfortable.png",
                 concerned: "Images/Characters/fox_concerned.png",
-                empty: "Images/Characters/fox_empty.png"
+                empty: "Images/Characters/fox_neutral.png"
             }
         },
         richard: {
@@ -275,7 +276,7 @@ var Endabgabe;
                 crying: "Images/Characters/turtle_crying.png",
                 neutral: "Images/Characters/turtle_neutral.png",
                 dreaming: "Images/Characters/turtle_dreaming.png",
-                empty: "Images/Characters/turtle_empty.png"
+                empty: "Images/Characters/turtle_neutral.png"
             }
         },
         deername: {
@@ -288,7 +289,7 @@ var Endabgabe;
                 curious: "Images/Characters/deer_curious.png",
                 crying: "Images/Characters/deer_crying.png",
                 surprised: "Images/Characters/deer_surprised.png",
-                empty: "Images/Characters/deer_empty.png"
+                empty: "Images/Characters/deer_neutral.png"
             }
         }
     };
@@ -357,7 +358,7 @@ var Endabgabe;
     let musicOpen;
     let previousName;
     let previousContent;
-    let playlist = [Endabgabe.sound.ophelia, Endabgabe.sound.freaks, Endabgabe.sound.twentymins, Endabgabe.sound.fiveofive, Endabgabe.sound.righthere];
+    let playlist = [Endabgabe.sound.ophelia, Endabgabe.sound.freaks, Endabgabe.sound.twentymins, Endabgabe.sound.fiveofive, Endabgabe.sound.righthere, Endabgabe.sound.icanthandlechange];
     let curSong = 0;
     function hndSkip(_event) {
         _event.stopPropagation();
@@ -391,12 +392,15 @@ var Endabgabe;
     function hndPlay(_event) {
         _event.stopPropagation();
         Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_in, 1);
-        window.setTimeout(() => { Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5); }, 4000);
-        if (curSong == playlist.length - 1)
-            curSong = 0;
-        else
-            curSong = playlist.length - 1;
-        console.log("PLAY");
+        window.setTimeout(() => {
+            Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5);
+            document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
+            if (curSong == playlist.length - 1)
+                curSong = 0;
+            else
+                curSong++;
+            console.log("PLAY");
+        }, 4000);
     }
     async function hndMusicPlayer() {
         let nameDiv = document.getElementsByTagName("name")[0];
@@ -3052,6 +3056,9 @@ var Endabgabe;
                     T0018: "I doubt that, but yes, let's go."
                 }
             };
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
@@ -3121,6 +3128,9 @@ var Endabgabe;
                     T0008: "Hey, does the Walkman still work?"
                 }
             };
+            Endabgabe.ƒS.Speech.hide();
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_polluted_water);
+            await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
