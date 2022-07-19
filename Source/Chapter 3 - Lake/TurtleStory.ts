@@ -41,6 +41,12 @@ namespace Endabgabe {
       listen: "Listen"
     };
 
+    let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(1)]);
+
+    ƒS.Speech.hide();
+    await ƒS.Location.show(locations.lake_rocks);
+    await ƒS.update();
+
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0001);
 
@@ -50,6 +56,22 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0002);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0003);
+
+    await ƒS.Character.hide(characters.richard);
+
+    ƒS.Speech.hide();
+    await ƒS.Location.show(locations.lake_flashback);
+    await ƒS.update(transitions.dream.duration, transitions.dream.alpha, transitions.dream.edge);
+
+    await delay();
+
+    ƒS.Speech.hide();
+    await ƒS.Location.show(locations.lake_rocks);
+    await ƒS.update(transitions.dream_reverse.duration, transitions.dream_reverse.alpha, transitions.dream_reverse.edge);
+
+    await ƒS.Character.hide(characters.richard);
+    await ƒS.Character.show(characters.richard, characters.richard.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.update(0.2);
 
     let interrupt = await ƒS.Menu.getInput(interruptAnswer, "decision");
     if (interrupt == interruptAnswer.interrupt) {

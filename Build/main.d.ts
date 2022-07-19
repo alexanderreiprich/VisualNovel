@@ -30,6 +30,16 @@ declare namespace Endabgabe {
             alpha: string;
             edge: number;
         };
+        dream: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
+        dream_reverse: {
+            duration: number;
+            alpha: string;
+            edge: number;
+        };
     };
     let sound: {
         nightclub: string;
@@ -128,6 +138,10 @@ declare namespace Endabgabe {
             name: string;
             background: string;
         };
+        lake_flashback: {
+            name: string;
+            background: string;
+        };
         lake_evening: {
             name: string;
             background: string;
@@ -202,6 +216,8 @@ declare namespace Endabgabe {
         bottomleft: ƒ.Vector2;
         bottomright: ƒ.Vector2;
         bottomcenter: ƒ.Vector2;
+        rightout: ƒ.Vector2;
+        leftout: ƒ.Vector2;
     };
     let characters: {
         narrator: {
@@ -267,7 +283,7 @@ declare namespace Endabgabe {
                 empty: string;
             };
         };
-        deername: {
+        olivia: {
             name: string;
             origin: ƒ.ORIGIN2D;
             pose: {

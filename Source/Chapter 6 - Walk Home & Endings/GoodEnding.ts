@@ -14,9 +14,9 @@ namespace Endabgabe {
       }
     };
 
-    let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(4)]);
+    let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(1)]);
 
-    ƒS.Sound.play(sound.emotion, 0.5, true);
+    ƒS.Sound.play(sound.emotion, 0.5, false);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_bedroom_night);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
@@ -57,7 +57,9 @@ namespace Endabgabe {
       await ƒS.update(0.5);
     }
 
-    await ƒS.Speech.tell(characters.narrator, "The Good Ending\nYou freed all animals.");
+    await ƒS.Speech.tell(characters.narrator, "The Good Ending.");
+    await ƒS.Speech.tell(characters.narrator, "You freed all animals.");
+    await ƒS.Speech.tell(characters.narrator, "Thank you for playing! <3");
 
     return "Empty";
   }

@@ -109,6 +109,7 @@ namespace Endabgabe {
       await ƒS.Location.show(locations.deep_forest_split_bridge);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
+      ƒS.Character.hideAll();
       await ƒS.Character.animate(characters.tommy, characters.tommy.pose.curious, animate(animations.midToLeft));
       await ƒS.Character.animate(characters.june, characters.june.pose.neutral, animate(animations.midToRight));
       await ƒS.update(0.3);
@@ -172,6 +173,7 @@ namespace Endabgabe {
 
       await ƒS.Speech.tell(characters.june, text.Fox.T0019a);
 
+      return "FreeFox";
     }
     else {
       console.log("- - - Scene 14.3: Doesn't sound familiar - - -");
@@ -215,6 +217,8 @@ namespace Endabgabe {
 
           await ƒS.Speech.tell(characters.cat, text3.Cat.T0004);
           await ƒS.Speech.tell(characters.narrator, text3.Narrator.T0005);
+
+          await ƒS.Character.hideAll();
 
           return "FreeFox";
 

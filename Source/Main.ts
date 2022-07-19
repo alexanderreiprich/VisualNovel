@@ -32,6 +32,16 @@ namespace Endabgabe {
       duration: 1.5,
       alpha: "Transitions/swipe.png",
       edge: 0.4
+    },
+    dream: {
+      duration: 1.5,
+      alpha: "Transitions/dream.png",
+      edge: 0.4
+    },
+    dream_reverse: {
+      duration: 1.5,
+      alpha: "Transitions/dream_reverse.png",
+      edge: 0.4
     }
   };
 
@@ -135,11 +145,15 @@ namespace Endabgabe {
       background: "Images/Backgrounds/lake_rocks.png"
     },
     lake_bridge: {
-      name: "Bride",
+      name: "Bridge",
       background: "Images/Backgrounds/lake_bridge.png"
     },
+    lake_flashback: {
+      name: "Lake Flashback",
+      background: "Images/Backgrounds/lake_flashback.png"
+    },
     lake_evening: {
-      name: "Bride",
+      name: "Lake Evening",
       background: "Images/Backgrounds/lake_evening.png"
     },
     deep_forest_entrance: {
@@ -211,9 +225,11 @@ namespace Endabgabe {
   };
 
   export let newPositions = {
-    bottomleft: new FudgeStory.Position(-450, -500),
-    bottomright: new FudgeStory.Position(450, -500),
-    bottomcenter: new FudgeStory.Position(0, -500)
+    bottomleft: new FudgeStory.Position(-470, -540),
+    bottomright: new FudgeStory.Position(470, -540),
+    bottomcenter: new FudgeStory.Position(0, -540),
+    rightout: new FudgeStory.Position(2470, -540),
+    leftout: new FudgeStory.Position(-2470, -540)
   };
 
   export let characters = {
@@ -253,7 +269,7 @@ namespace Endabgabe {
         surprised: "Images/Characters/cat_surprised.png",
         crying: "Images/Characters/cat_crying.png",
         yawning: "Images/Characters/cat_yawn.png",
-        empty: "Images/Characters/cat_neutral.png"
+        empty: "Images/Characters/cat_empty.png"
       }
     },
     june: {
@@ -266,7 +282,7 @@ namespace Endabgabe {
         surprised: "Images/Characters/fox_surprised.png",
         uncomfortable: "Images/Characters/fox_uncomfortable.png",
         concerned: "Images/Characters/fox_concerned.png",
-        empty: "Images/Characters/fox_neutral.png"
+        empty: "Images/Characters/fox_empty.png"
       }
     },
     richard: {
@@ -277,11 +293,11 @@ namespace Endabgabe {
         crying: "Images/Characters/turtle_crying.png",
         neutral: "Images/Characters/turtle_neutral.png",
         dreaming: "Images/Characters/turtle_dreaming.png",
-        empty: "Images/Characters/turtle_neutral.png"
+        empty: "Images/Characters/turtle_empty.png"
       }
     },
-    deername: {
-      name: "DEERNAME",
+    olivia: {
+      name: "Olivia",
       origin: ƒS.ORIGIN.BOTTOMCENTER,
       pose: {
         happy: "Images/Characters/deer_happy.png",
@@ -290,7 +306,7 @@ namespace Endabgabe {
         curious: "Images/Characters/deer_curious.png",
         crying: "Images/Characters/deer_crying.png",
         surprised: "Images/Characters/deer_surprised.png",
-        empty: "Images/Characters/deer_neutral.png"
+        empty: "Images/Characters/deer_empty.png"
       }
     }
   };
@@ -318,11 +334,6 @@ namespace Endabgabe {
     load: "Load",
     credits: "Credits"
   };
-
-
-  // ƒS.Speech.setTickerDelays();
-  // ƒS.Speech.set(); // Ohne Textgeschwindigkeit
-
 
   export async function buttonFunctionalities(_option: string): Promise<void> {
     console.log(_option);
@@ -508,57 +519,57 @@ namespace Endabgabe {
     switch (_animation) {
       case animations.leftToMid:
         return {
-          start: { translation: new ƒS.Position(-450, -500) },
+          start: { translation: newPositions.bottomleft },
           end: { translation: newPositions.bottomcenter },
-          duration: 2,
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
       case animations.rightToMid:
         return {
-          start: { translation: new ƒS.Position(450, -500) },
+          start: { translation: newPositions.bottomright },
           end: { translation: newPositions.bottomcenter },
-          duration: 2,
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
       case animations.midToLeft:
         return {
           start: { translation: newPositions.bottomcenter },
-          end: { translation: new ƒS.Position(-450, -500) },
-          duration: 2,
+          end: { translation: newPositions.bottomleft },
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
       case animations.midToRight:
         return {
-          start: { translation: ƒS.positions.bottomcenter },
-          end: { translation: new ƒS.Position(450, ƒS.positions.bottomcenter.y) },
-          duration: 2,
+          start: { translation: newPositions.bottomcenter },
+          end: { translation: newPositions.bottomright },
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
       case animations.rightOut:
         return {
-          start: { translation: new ƒS.Position(450, -500) },
-          end: { translation: new ƒS.Position(2450, -500) },
-          duration: 2,
+          start: { translation: newPositions.bottomright },
+          end: { translation: newPositions.rightout },
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
       case animations.leftOut:
         return {
-          start: { translation: new ƒS.Position(-450, -500) },
-          end: { translation: new ƒS.Position(-2450, -500) },
-          duration: 2,
+          start: { translation: newPositions.bottomleft },
+          end: { translation: newPositions.rightout },
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
       case animations.outToLeft:
         return {
-          start: { translation: new ƒS.Position(-2450, -500) },
-          end: { translation: new ƒS.Position(-450, -500) },
-          duration: 2,
+          start: { translation: newPositions.leftout },
+          end: { translation: newPositions.bottomleft },
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
 
@@ -566,7 +577,7 @@ namespace Endabgabe {
         return {
           start: { translation: ƒS.positions.bottomcenter },
           end: { translation: ƒS.positions.bottomcenter },
-          duration: 2,
+          duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
     }

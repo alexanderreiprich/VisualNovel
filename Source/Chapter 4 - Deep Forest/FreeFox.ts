@@ -15,7 +15,9 @@ namespace Endabgabe {
           T0008: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
           T0011: "You lay the tape into the player and put the headphones over the fox's ears.",
           T0013: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
-          T0014: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest."
+          T0014: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest.",
+          T0019: "You start running deeper into the forest, in the hopes of catching up.",
+          T0020: "After a few minutes, you cross the bridge again and reach the dirt path."
         },
         Protagonist: {
           T0001: "Look what I found! Why would anybody throw this away?",
@@ -75,22 +77,35 @@ namespace Endabgabe {
 
       ƒS.Sound.play(sound.spacesong, 0.5);
 
-      await ƒS.Character.hide(characters.june);
-      await ƒS.Character.hide(characters.tommy);
+      ƒS.Character.hideAll();
       await ƒS.Character.show(characters.june, characters.june.pose.neutral, newPositions.bottomright);
       await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, newPositions.bottomleft);
       await ƒS.update(0.3);
 
 
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
+
+      await ƒS.Character.hide(characters.june);
+      await ƒS.Character.show(characters.june, characters.june.pose.empty, newPositions.bottomright);
+      await ƒS.update(0.3);
+
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0014);
-      await ƒS.Character.animate(characters.june, characters.june.pose.surprised, animate("rightOut"));
+      await ƒS.Character.hide(characters.june);
+      await ƒS.Character.animate(characters.june, characters.june.pose.empty, animate("rightOut"));
+      await ƒS.Character.hide(characters.tommy);
       await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate("leftToMid"));
       await ƒS.Character.hide(characters.june);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0015);
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0016);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0017);
       await ƒS.Speech.tell(characters.tommy, text.Cat.T0018);
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0019);
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
+
+      await ƒS.Character.hide(characters.tommy);
+
+      if (ƒS.Inventory.getAmount(items.bag) == 0)
+        ƒS.Inventory.add(items.bag);
 
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
@@ -111,7 +126,8 @@ namespace Endabgabe {
           T0007: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
           T0010: "You lay the tape into the player and put the headphones over the fox's ears.",
           T0012: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
-          T0013: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest."
+          T0013: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest.",
+          T0015: "You decide to head back into to forest. Soon after, you cross the bridge and reach the dirt path you came across earlier."
         },
         Protagonist: {
           T0001: "Look what I found! Why would anybody throw this away?",
@@ -170,6 +186,7 @@ namespace Endabgabe {
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0014);
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0015);
 
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;

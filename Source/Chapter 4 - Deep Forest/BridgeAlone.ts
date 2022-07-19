@@ -7,10 +7,10 @@ namespace Endabgabe {
 
     let text = {
       Narrator: {
-        T0001: "You cross the bridge and reach a dirt path. After a couple of meters, more light shines through the trees, until you step out of the forest.",
-        T0002: "You are now on the side of the field, at the edge of the forest. The sun is still shining, but it isn't as hot as when you entered the forest.",
+        T0001: "You cross the bridge. After a couple of meters, more light shines through the trees, until you step out of the forest.",
+        T0002: "You are now on the side of the field, on a gravel path, at the edge of the forest. The sun is still shining, but it isn't as hot as when you entered the forest.",
         T0003: "Gazing over the fields, you realize how far you can actually see. You could run for hours and see nothing but grass, some trees and the occasional animal.",
-        T0004: "You start walking along the dirt path, lost in your thoughts, not noticing the huge tree root sticking out of the ground.",
+        T0004: "You start walking along the path, lost in your thoughts, not noticing the huge tree root sticking out of the ground.",
         T0005: "Well, that is until you trip over it, resulting in you falling face first on the ground.",
         T0007: "As you lift your head to look around, you notice two blue eyes staring at you from inside the bush you just landed next to.",
         T0009: "The eyes come closer, still staring at you, until a fox appears out of the bush."

@@ -34,6 +34,7 @@ namespace Endabgabe {
 
     do {
       let clearingChoice = await ƒS.Menu.getInput(clearingChoiceAnswer, "decision");
+      await ƒS.Character.hideAll();
       switch (clearingChoice) {
         case clearingChoiceAnswer.ground:
           console.log("- - - Scene 23: Burnt - - -");
@@ -168,6 +169,11 @@ namespace Endabgabe {
           await ƒS.update(0.2);
 
           await ƒS.Speech.tell(characters.tommy, text2.Cat.T0002);
+
+          await ƒS.Character.hide(characters.tommy);
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.surprised, ƒS.positions.bottomcenter);
+          await ƒS.update(0.2);
+
           await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0003);
 
           await ƒS.Character.hide(characters.tommy);

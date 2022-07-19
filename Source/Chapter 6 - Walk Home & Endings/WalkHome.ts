@@ -24,7 +24,7 @@ namespace Endabgabe {
     if (dataForSave.freedAnimals == 0) {
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.evening_walk);
-      await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
+      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
       if (dataForSave.travelWithCat)
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
@@ -55,7 +55,7 @@ namespace Endabgabe {
         return "GoodEnding";
       }
       else {
-        return "NeutralEnding";
+        return "NeutralEndings";
       }
     }
   }

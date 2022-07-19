@@ -6,7 +6,7 @@ namespace Endabgabe {
 
     let text = {
       Narrator: {
-        T0001: "You cross the bridge and reach a dirt path. After a couple of meters, more light shines through the trees, until you step out of the forest.",
+        T0001: "You cross the bridge. After a couple of meters, more light shines through the trees, until you step out of the forest.",
         T0002: "You are now on the side of the field, at the edge of the forest. The sun is still shining, but it isn't as hot as when you entered the forest.",
         T0006: "The cat jumps from your shoulder onto the ground."
 
