@@ -15,8 +15,10 @@ namespace Endabgabe {
         T0008: "Still, it hurts, and this is something you should've seen coming. As you get up, you see that, after your short-lived climbing adventure, all stones are scattered around.",
         T0009: "Standing on the bridge, you can get a better view of both, the lake and the mansion. You take a few pictures and sit down in the shade.",
         T0010: "A few minutes pass, and by now, the cat made itself comfortable on your lap.",
+        T0010a: "A few minutes pass, and after admiring the view for a bit, you are back on your feet and ready to continue.",
         T0019: "Still a bit in pain, you get back to your feet and go back to bridge to sit on the small wall next to it.",
-        T0020: "A few minutes pass, and by the time the pain has faded away, the cat made itself comfortable on your lap."
+        T0020: "A few minutes pass, and by the time the pain has faded away, the cat made itself comfortable on your lap.",
+        T0020a: "A few minutes pass, and by the time the pain has faded away, you are back on your feet and ready to continue."
       },
       Protagonist: {
         T0007: "Ugh… why am I so stupid…?",
@@ -57,7 +59,7 @@ namespace Endabgabe {
     let repositionLake = await ƒS.Menu.getInput(repositionLakeAnswer, "decision");
 
     switch (repositionLake) {
-      case repositionLakeAnswer.climbRocks: 
+      case repositionLakeAnswer.climbRocks:
         console.log("- - - Scene 9.1: Higher, higher! - - -");
 
         ƒS.Speech.hide();
@@ -80,7 +82,7 @@ namespace Endabgabe {
         switch (pickRocksUp) {
           case pickRocksUpAnswer.pickUp:
             return "MeetTurtle";
-          
+
           case pickRocksUpAnswer.leave:
             console.log("- - - Scene 11: They are just stones - - -");
             await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0018);
@@ -89,30 +91,35 @@ namespace Endabgabe {
             ƒS.Speech.hide();
             await ƒS.Location.show(locations.lake_bridge);
             await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+            if (dataForSave.travelWithCat) {
+              await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
 
-            await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
+              await ƒS.Character.hide(characters.tommy);
+              await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+              await ƒS.update(0.3);
+              await ƒS.Speech.tell(characters.tommy, text.Cat.T0021);
+              await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0022);
+              await ƒS.Speech.tell(characters.tommy, text.Cat.T0023);
+              await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0024);
 
-            await ƒS.Character.hide(characters.tommy);
-            await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter); 
-            await ƒS.update(0.3);
-            await ƒS.Speech.tell(characters.tommy, text.Cat.T0021);
-            await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0022);
-            await ƒS.Speech.tell(characters.tommy, text.Cat.T0023);
-            await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0024);
-            
-            await ƒS.Character.hide(characters.tommy);
-            await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomcenter);
-            await ƒS.update(0.3);
-            await ƒS.Speech.tell(characters.tommy, text.Cat.T0025);
-            await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0026);
-    
-            await ƒS.Character.hide(characters.tommy);
-            await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
-            await ƒS.update(0.3);
-    
-            await ƒS.Speech.tell(characters.tommy, text.Cat.T0027);
-    
-            return "CatBackstory";
+              await ƒS.Character.hide(characters.tommy);
+              await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomcenter);
+              await ƒS.update(0.3);
+              await ƒS.Speech.tell(characters.tommy, text.Cat.T0025);
+              await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0026);
+
+              await ƒS.Character.hide(characters.tommy);
+              await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+              await ƒS.update(0.3);
+
+              await ƒS.Speech.tell(characters.tommy, text.Cat.T0027);
+
+              return "CatBackstory";
+            }
+            else {
+              await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020a);
+              return "DeepForestAlone";
+            }
 
         }
 
@@ -124,32 +131,39 @@ namespace Endabgabe {
         await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0009);
-        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
+        if (dataForSave.travelWithCat) {
+          await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
 
-        await ƒS.Character.hide(characters.tommy);
-        await ƒS.Character.show(characters.tommy, characters.tommy.pose.neutral, ƒS.positions.bottomcenter); // TODO: Add yawning pose
-        await ƒS.update(0.3);
-        await ƒS.Speech.tell(characters.tommy, text.Cat.T0011);
-        await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);
-        await ƒS.Speech.tell(characters.tommy, text.Cat.T0013);
-        await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0014);
-        
-        await ƒS.Character.hide(characters.tommy);
-        await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomcenter);
-        await ƒS.update(0.3);
-        await ƒS.Speech.tell(characters.tommy, text.Cat.T0015);
-        await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0016);
-
-        await ƒS.Character.hide(characters.tommy);
-        await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
-        await ƒS.update(0.3);
-
-        await ƒS.Speech.tell(characters.tommy, text.Cat.T0017);
-        await ƒS.Character.hide(characters.tommy);
-        await ƒS.update(0.3);
-        return "CatBackstory";
-        
-
+          await ƒS.Character.hide(characters.tommy);
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.yawning, ƒS.positions.bottomcenter); // TODO: Add yawning pose
+          await ƒS.update(0.3);
+          await ƒS.Speech.tell(characters.tommy, text.Cat.T0011);
+          await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);
+          await ƒS.Character.hide(characters.tommy);
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+          await ƒS.update(0.3);
+          await ƒS.Speech.tell(characters.tommy, text.Cat.T0013);
+          await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0014);
+  
+          await ƒS.Character.hide(characters.tommy);
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.angry, ƒS.positions.bottomcenter);
+          await ƒS.update(0.3);
+          await ƒS.Speech.tell(characters.tommy, text.Cat.T0015);
+          await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0016);
+  
+          await ƒS.Character.hide(characters.tommy);
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+          await ƒS.update(0.3);
+  
+          await ƒS.Speech.tell(characters.tommy, text.Cat.T0017);
+          await ƒS.Character.hide(characters.tommy);
+          await ƒS.update(0.3);
+          return "CatBackstory";
+        }
+        else {
+          await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010a);
+          return "DeepForestAlone";
+        }
     }
   }
 }

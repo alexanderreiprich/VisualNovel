@@ -4,7 +4,7 @@ namespace Endabgabe {
 
   console.log("- - - Starting: An Unpolished Gem with a Tragic Backstory - - -");
 
-  alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
+  // alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
 
   // define transitions
   export let transitions = {
@@ -587,7 +587,6 @@ namespace Endabgabe {
 
   export let dataForSave = {
     nameProtagonist: "",
-    studiesProtagonist: "",
     encounteredAnyAnimal: false,
     encounteredCat: false,
     encounteredFox: false,
@@ -598,7 +597,8 @@ namespace Endabgabe {
     freedTurtle: false,
     freedDeer: false,
     freedAnimals: 0,
-    travelWithCat: false
+    travelWithCat: false,
+    groundAndObjectAnalyzed: false // Used to determine if player can go back to previous choices in DontEncounterDeer()
   };
 
   window.addEventListener("load", start);
@@ -659,11 +659,9 @@ namespace Endabgabe {
 
     let uiElement: HTMLElement = document.querySelector("[type=interface]");
     dataForSave = ƒS.Progress.setData(dataForSave, uiElement);
-    // hide speech on title screen
+
+    ƒS.Speech.setTickerDelays(20);
     ƒS.Speech.hide();
-    // start the sequence
     ƒS.Progress.go(scenes);
   }
-
-
 }

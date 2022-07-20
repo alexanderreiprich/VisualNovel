@@ -122,7 +122,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0014);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0015);
 
-    ƒS.Speech.setTickerDelays(50);
+    ƒS.Speech.setTickerDelays(25);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0016);
 
     await ƒS.Character.hide(characters.richard);

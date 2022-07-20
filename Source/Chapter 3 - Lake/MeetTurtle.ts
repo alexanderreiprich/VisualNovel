@@ -39,12 +39,12 @@ namespace Endabgabe {
     
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.questionmark, text.Turtle.T0006);
-    ƒS.Speech.setTickerDelays(50);
+    ƒS.Speech.setTickerDelays(25);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0007);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0008);
     ƒS.Speech.setTickerDelays(150);
     await ƒS.Speech.tell(characters.questionmark, text.Turtle.T0009);
-    ƒS.Speech.setTickerDelays(50);
+    ƒS.Speech.setTickerDelays(25);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
 
     await ƒS.Character.show(characters.richard, characters.richard.pose.neutral, ƒS.positions.bottomcenter);
@@ -65,9 +65,10 @@ namespace Endabgabe {
       dataForSave.nameProtagonist = name;
   
       document.getElementById("append").children[0].remove();
+      text.Protagonist.T0013 = "Nice to meet you too, my name is " + dataForSave.nameProtagonist + ". Have you been lying there all this time?";
     }
 
-    ƒS.Speech.setTickerDelays(50);
+    ƒS.Speech.setTickerDelays(25);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0013);
 
     return "TurtleStory";

@@ -43,8 +43,7 @@ namespace Endabgabe {
     overlay.id = "overlay";
     scene.appendChild(overlay);
 
-    let studies: string = await ƒS.Speech.getInput();
-    dataForSave.studiesProtagonist = studies;
+    await ƒS.Speech.getInput();
 
     document.getElementById("append").children[0].remove();
 

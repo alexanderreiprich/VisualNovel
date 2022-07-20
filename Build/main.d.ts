@@ -323,7 +323,6 @@ declare namespace Endabgabe {
     function animate(_animation: string): ƒS.AnimationDefinition;
     let dataForSave: {
         nameProtagonist: string;
-        studiesProtagonist: string;
         encounteredAnyAnimal: boolean;
         encounteredCat: boolean;
         encounteredFox: boolean;
@@ -335,6 +334,7 @@ declare namespace Endabgabe {
         freedDeer: boolean;
         freedAnimals: number;
         travelWithCat: boolean;
+        groundAndObjectAnalyzed: boolean;
     };
 }
 declare namespace Endabgabe {

@@ -23,7 +23,7 @@ namespace Endabgabe {
     await ƒS.Location.show(locations.lake_rocks);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
-    ƒS.Speech.setTickerDelays(50);
+    ƒS.Speech.setTickerDelays(25);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
     ƒS.Speech.setTickerDelays(150);
 
@@ -32,7 +32,7 @@ namespace Endabgabe {
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0002);
-    ƒS.Speech.setTickerDelays(50);
+    ƒS.Speech.setTickerDelays(25);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
 

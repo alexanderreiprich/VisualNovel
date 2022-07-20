@@ -8,7 +8,7 @@ namespace Endabgabe {
       Narrator: {
         T0001: "As you walk deeper and deeper into the forest, you start to be more and more curious.",
         T0002: "What is happening today?",
-        T0003: "Why is today such a weird day?",
+        T0003: "Why does today feel like such a weird day?",
         T0004: "There are so many questions but you simply do not know the answers.",
         T0005: "You reach the end of the path.",
         T0006: "To your left is a small bridge leading over a small river. It leads to the edge of the forest.",

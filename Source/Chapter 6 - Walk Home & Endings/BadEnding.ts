@@ -8,7 +8,7 @@ namespace Endabgabe {
       Narrator: {
         T0001: "As you close your eyes, you hear a quiet meow from outside your window.",
         T0002: "You have the feeling that you did something wrong, but you can't put the finger on it.",
-        T0003: "The feeling starts to grow and grow, as you drift more and more to sleep, not knowing the nightmares of the forest you are about to encounter."
+        T0003: "The feeling starts to grow and grow, as you drift more and more to sleep, unaware of the nightmares of the forest you are about to have."
       }
     };
 

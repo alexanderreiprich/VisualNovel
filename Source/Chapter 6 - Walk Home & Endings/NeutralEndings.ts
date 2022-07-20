@@ -96,7 +96,11 @@ namespace Endabgabe {
     }
 
     await ƒS.Speech.tell(characters.narrator, "The Neutral Ending.");
-    await ƒS.Speech.tell(characters.narrator, "You freed " + dataForSave.freedAnimals + " animals.");
+    if (dataForSave.freedAnimals == 1)
+      await ƒS.Speech.tell(characters.narrator, "You freed 1 animal.");
+    else 
+      await ƒS.Speech.tell(characters.narrator, "You freed " + dataForSave.freedAnimals + " animals.");
+      
     await ƒS.Speech.tell(characters.narrator, "Thank you for playing! <3");
 
     return "Empty";
