@@ -24,17 +24,16 @@ namespace Endabgabe {
     "Small particles raining from the sky this night…", "… scientists are not sure where it comes from…", "… no explanation what it is or what it does…",
    "… citizens are advised to keep windows closed…"];
    
+    ƒS.Sound.play(sound.forest_bird, 0.4, true);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_bedroom);
     await ƒS.update(transitions.blink.duration, transitions.blink.alpha, transitions.blink.edge);
-
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_table);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
-
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
 
     let breakfastAnswer = {
@@ -47,6 +46,9 @@ namespace Endabgabe {
     ƒS.Sound.play(sound.click, 0.2);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
+
+    ƒS.Sound.play(sound.newspaper, 0.3);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
     
@@ -68,7 +70,7 @@ namespace Endabgabe {
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_door_ground);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
-
+    ƒS.Sound.play(sound.door, 0.3);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0011);
 
     let catAnswer = {

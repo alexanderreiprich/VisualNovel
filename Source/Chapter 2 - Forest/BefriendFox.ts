@@ -138,6 +138,7 @@ namespace Endabgabe {
       
 
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0032);
+      ƒS.Sound.play(sound.meow, 0.6);
       await ƒS.Speech.tell(characters.girl, text.Girl.T0033);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0034);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0035);

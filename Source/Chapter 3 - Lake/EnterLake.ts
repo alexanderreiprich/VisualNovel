@@ -19,6 +19,8 @@ namespace Endabgabe {
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_entrance);
     await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
+    ƒS.Sound.fade(sound.forest_ambience_1, 0, 2, false);
+    ƒS.Sound.play(sound.lake, 0.4, true);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
@@ -27,6 +29,7 @@ namespace Endabgabe {
       // ƒS.Speech.setTickerDelays(150);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0004);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
+      ƒS.Sound.play(sound.cat_slurp, 0.5);
     }
 
     let examineAnswer = {
@@ -35,6 +38,7 @@ namespace Endabgabe {
     };
 
     let examine = await ƒS.Menu.getInput(examineAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     switch (examine) {
       case examineAnswer.water:

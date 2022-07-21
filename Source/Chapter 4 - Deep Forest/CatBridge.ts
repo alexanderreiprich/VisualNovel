@@ -25,7 +25,7 @@ namespace Endabgabe {
     };
 
     await ƒS.Character.hide(characters.tommy);
-
+    ƒS.Sound.play(sound.grasshoppers, 0.3);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.deep_forest_split_bridge);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
@@ -64,6 +64,7 @@ namespace Endabgabe {
     };
 
     let playWithCat = await ƒS.Menu.getInput(playWithCatAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     if (playWithCat == playWithCatAnswer.stick) {
       console.log("- - - Scene 13.1: DIY Toys - - -");
@@ -125,6 +126,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.tommy, text2.Cat.T0012);
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0013);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0014);
+      ƒS.Sound.play(sound.rustle_1, 0.3);
 
       return "EncounterFoxAgain";
 
@@ -189,6 +191,7 @@ namespace Endabgabe {
 
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0013);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0014);
+      ƒS.Sound.play(sound.rustle_1, 0.3);
 
       return "EncounterFoxAgain";
 
@@ -231,6 +234,7 @@ namespace Endabgabe {
 
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0004);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0005);
+      ƒS.Sound.play(sound.rustle_1, 0.3);
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0006);
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0007);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0008);

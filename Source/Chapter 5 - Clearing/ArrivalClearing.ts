@@ -18,6 +18,8 @@ namespace Endabgabe {
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
     ƒS.Character.hideAll();
     ƒS.update(0.2);
+    ƒS.Sound.fade(sound.forest_ambience_1, 0, 2, false);
+    ƒS.Sound.play(sound.clearing_ambience, 0.3);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -34,6 +36,7 @@ namespace Endabgabe {
 
     do {
       let clearingChoice = await ƒS.Menu.getInput(clearingChoiceAnswer, "decision");
+      ƒS.Sound.play(sound.click, 0.2);
       await ƒS.Character.hideAll();
       switch (clearingChoice) {
         case clearingChoiceAnswer.ground:
@@ -94,6 +97,7 @@ namespace Endabgabe {
             };
   
             let breakBranch = await ƒS.Menu.getInput(breakBranchAnswer, "decision");
+            ƒS.Sound.play(sound.click, 0.2);
             if (breakBranch == breakBranchAnswer.break) {
               console.log("- - - Scene 23.1: Breaking the Branch - - -");
               let text1a = {
@@ -114,6 +118,7 @@ namespace Endabgabe {
               await ƒS.Character.hide(characters.tommy);
   
               await ƒS.Speech.tell(characters.narrator, text1a.Narrator.T0002);
+              ƒS.Sound.play(sound.branch_break, 0.6);
               await ƒS.Speech.tell(characters.narrator, text1a.Narrator.T0003);
               await ƒS.Speech.tell(characters.narrator, text1a.Narrator.T0004);
   
@@ -145,11 +150,11 @@ namespace Endabgabe {
           }
           else {
             await ƒS.Speech.tell(characters.narrator, text1.Narrator.T0009);
+            ƒS.Sound.play(sound.branch_break, 0.3);
             await ƒS.Speech.tell(characters.narrator, text1.Narrator.T0010);
             await ƒS.Speech.tell(characters.narrator, text1.Narrator.T0011);
             scaredDeer = true;
           }
-
           break;
         case clearingChoiceAnswer.object: 
           console.log("- - - Scene 24: The sky is falling, the wind is calling - - -");
@@ -208,6 +213,7 @@ namespace Endabgabe {
           };
   
           let pickUp = await ƒS.Menu.getInput(pickUpAnswer, "decision");
+          ƒS.Sound.play(sound.click, 0.2);
           if (pickUp == pickUpAnswer.yes) {
             ƒS.Inventory.add(items.rock);
             await ƒS.Speech.tell(characters.narrator, "The rock has been added to your inventory.");
@@ -241,6 +247,7 @@ namespace Endabgabe {
               await ƒS.Speech.tell(characters.narrator, text3.Narrator.T0002);
               let leaveAnswer = {yes: "Yes", no: "No"};
               let leave = await ƒS.Menu.getInput(leaveAnswer, "decision");
+              ƒS.Sound.play(sound.click, 0.2);
 
               if (leave == leaveAnswer.yes)
                 return "WalkHome";

@@ -47,14 +47,32 @@ namespace Endabgabe {
 
   export let sound = {
     // background
-    nightclub: "Audio/nightclub.ogg",
-    beach: "Audio/beach.mp3",
+    forest_ambience_1: "Audio/SFX/forest_ambience_1.mp3",
+    forest_ambience_2: "Audio/SFX/forest_ambience_2.mp3",
+    forest_bird: "Audio/SFX/forest_bird.mp3",
+    clearing_ambience: "Audio/SFX/clearing_ambience.mp3",
 
     // sfx
     click: "Audio/SFX/click.mp3",
     cassette_in: "Audio/SFX/cassette_in.mp3",
     cassette_out: "Audio/SFX/cassette_out.mp3",
     cassette_scroll: "Audio/SFX/cassette_scroll.mp3",
+    door: "Audio/SFX/door.mp3",
+    lake: "Audio/SFX/lake.mp3",
+    meow: "Audio/SFX/meow.mp3",
+    mosquitos: "Audio/SFX/mosquitos.mp3",
+    newspaper: "Audio/SFX/newspaper.mp3",
+    purr: "Audio/SFX/purr.mp3",
+    cat_slurp: "Audio/SFX/cat_slurp.mp3",
+    crickets: "Audio/SFX/crickets.mp3",
+    grasshoppers: "Audio/SFX/grasshoppers.mp3",
+    bird_flying: "Audio/SFX/bird_flying.mp3",
+    branch_break: "Audio/SFX/branch_break.mp3",
+    rustle_1: "Audio/SFX/rustle_1.mp3",
+    rustle_2: "Audio/SFX/rustle_2.mp3",
+    stones_falling: "Audio/SFX/stones_falling.mp3",
+    dream_start: "Audio/SFX/dream.mp3",
+    dream_end: "Audio/SFX/dream_end.mp3",
 
     // songs
     ophelia: "Audio/Songs/ophelia.mp3",

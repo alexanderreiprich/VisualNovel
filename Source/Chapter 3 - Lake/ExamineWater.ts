@@ -29,6 +29,7 @@ namespace Endabgabe {
     await ƒS.Location.show(locations.lake);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
+    ƒS.Sound.play(sound.mosquitos, 0.3);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
@@ -39,6 +40,7 @@ namespace Endabgabe {
     };
 
     let examineLakeSmell = await ƒS.Menu.getInput(examineLakeSmellAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     if (examineLakeSmell == examineLakeSmellAnswer.examineSmell) {
       ƒS.Speech.hide();
@@ -56,6 +58,8 @@ namespace Endabgabe {
       };
 
       let examineLakeItems = await ƒS.Menu.getInput(examineLakeItemsAnswer, "decision");
+      ƒS.Sound.play(sound.click, 0.2);
+
       switch (examineLakeItems) {
         case examineLakeItemsAnswer.grabBag:
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0007);
@@ -68,6 +72,8 @@ namespace Endabgabe {
           };
 
           let takeBag = await ƒS.Menu.getInput(takeBagAnswer, "decision");
+          ƒS.Sound.play(sound.click, 0.2);
+          
           if (takeBag == takeBagAnswer.takeBag) {
             ƒS.Inventory.add(items.bag);
             ƒS.Speech.hide();

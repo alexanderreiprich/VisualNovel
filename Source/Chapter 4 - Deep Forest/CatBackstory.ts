@@ -116,7 +116,8 @@ namespace Endabgabe {
     };
 
     let splitPathForest = await ƒS.Menu.getInput(splitPathForestAnswer, "decision");
-
+    ƒS.Sound.play(sound.click, 0.2);
+    
     switch (splitPathForest) {
       case splitPathForestAnswer.bridge:
         return "CatBridge";

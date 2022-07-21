@@ -46,6 +46,7 @@ namespace Endabgabe {
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_castle);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+    ƒS.Sound.play(sound.bird_flying, 0.3);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -57,6 +58,7 @@ namespace Endabgabe {
     };
 
     let repositionLake = await ƒS.Menu.getInput(repositionLakeAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     switch (repositionLake) {
       case repositionLakeAnswer.climbRocks:
@@ -68,6 +70,7 @@ namespace Endabgabe {
 
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
+        ƒS.Sound.play(sound.stones_falling, 0.3);
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
         await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0007);
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0008);
@@ -78,6 +81,7 @@ namespace Endabgabe {
         };
 
         let pickRocksUp = await ƒS.Menu.getInput(pickRocksUpAnswer, "decision");
+        ƒS.Sound.play(sound.click, 0.2);
 
         switch (pickRocksUp) {
           case pickRocksUpAnswer.pickUp:
@@ -93,7 +97,7 @@ namespace Endabgabe {
             await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
             if (dataForSave.travelWithCat) {
               await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
-
+              ƒS.Sound.play(sound.purr, 0.5);
               await ƒS.Character.hide(characters.tommy);
               await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
               await ƒS.update(0.3);
@@ -133,9 +137,9 @@ namespace Endabgabe {
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0009);
         if (dataForSave.travelWithCat) {
           await ƒS.Speech.tell(characters.narrator, text.Narrator.T0010);
-
+          ƒS.Sound.play(sound.purr, 0.5);
           await ƒS.Character.hide(characters.tommy);
-          await ƒS.Character.show(characters.tommy, characters.tommy.pose.yawning, ƒS.positions.bottomcenter); // TODO: Add yawning pose
+          await ƒS.Character.show(characters.tommy, characters.tommy.pose.yawning, ƒS.positions.bottomcenter);
           await ƒS.update(0.3);
           await ƒS.Speech.tell(characters.tommy, text.Cat.T0011);
           await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);

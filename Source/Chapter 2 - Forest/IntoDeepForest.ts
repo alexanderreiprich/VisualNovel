@@ -27,6 +27,8 @@ namespace Endabgabe {
       }
     };
 
+    ƒS.Sound.play(sound.grasshoppers, 0.3);
+
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.cat_search_forest);
     await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);

@@ -26,6 +26,8 @@ namespace Endabgabe {
         T0012: "Tommy? Stop hiding!"
       }
     };
+    ƒS.Sound.fade(sound.forest_ambience_2, 0, 2, false);
+    ƒS.Sound.play(sound.forest_ambience_1, 0.3, true);
 
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.forest_path_into);
@@ -55,7 +57,8 @@ namespace Endabgabe {
     };
     
     let lookForCat = await ƒS.Menu.getInput(lookForCatAnswer, "decision");
- // delete lookForCatAnswer.forest löscht die sachen aus der decision
+    ƒS.Sound.play(sound.click, 0.2);
+
     switch (lookForCat) {
       case lookForCatAnswer.forest:
         return "IntoDeepForest";
@@ -75,7 +78,8 @@ namespace Endabgabe {
         };
         
         let lookForCatAgain = await ƒS.Menu.getInput(lookForCatAgainAnswer, "decision");
-        switch(lookForCatAgain) {
+        ƒS.Sound.play(sound.click, 0.2);
+        switch (lookForCatAgain) {
           case lookForCatAgainAnswer.forest:
             return "IntoDeepForest";
 

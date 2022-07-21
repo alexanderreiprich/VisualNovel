@@ -53,27 +53,29 @@ namespace Endabgabe {
     await ƒS.Character.hide(characters.richard);
     await ƒS.Character.show(characters.richard, characters.richard.pose.dreaming, ƒS.positions.bottomcenter);
     await ƒS.update(0.2);
-
+    
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0002);
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0003);
-
     await ƒS.Character.hide(characters.richard);
 
+    ƒS.Sound.play(sound.dream_start, 0.5);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_flashback);
     await ƒS.update(transitions.dream.duration, transitions.dream.alpha, transitions.dream.edge);
-
     await delay();
-
+    
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.lake_rocks);
+    ƒS.Sound.play(sound.dream_end, 0.5);
     await ƒS.update(transitions.dream_reverse.duration, transitions.dream_reverse.alpha, transitions.dream_reverse.edge);
+    
 
     await ƒS.Character.hide(characters.richard);
     await ƒS.Character.show(characters.richard, characters.richard.pose.neutral, ƒS.positions.bottomcenter);
     await ƒS.update(0.2);
 
     let interrupt = await ƒS.Menu.getInput(interruptAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
     if (interrupt == interruptAnswer.interrupt) {
       return "Interrupted";
     }
@@ -92,6 +94,7 @@ namespace Endabgabe {
     await ƒS.update(0.2);
 
     interrupt = await ƒS.Menu.getInput(interruptAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
     if (interrupt == interruptAnswer.interrupt) {
       return "Interrupted";
     }
@@ -107,6 +110,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.richard, text.Turtle.T0010);
 
     interrupt = await ƒS.Menu.getInput(interruptAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
     if (interrupt == interruptAnswer.interrupt) {
       return "Interrupted";
     }

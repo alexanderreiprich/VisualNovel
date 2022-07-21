@@ -37,6 +37,9 @@ namespace Endabgabe {
       }
     };
 
+    ƒS.Sound.fade(sound.forest_bird, 0, 2, false);
+    ƒS.Sound.play(sound.forest_ambience_2, 0.3, true);
+
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_path);
     await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
@@ -44,7 +47,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
-
+    ƒS.Sound.play(sound.rustle_1, 0.3);
     await ƒS.Location.show(locations.home_path_close);
     await ƒS.update(1);
 

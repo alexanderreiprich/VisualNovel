@@ -40,6 +40,9 @@ namespace Endabgabe {
           T0013: "Hey, does the Walkman still work?"
         }
       };
+      ƒS.Sound.fade(sound.forest_ambience_1, 0, 3, false);
+      ƒS.Sound.play(sound.lake, 0.3);
+      ƒS.Sound.play(sound.crickets, 0.3);
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);
@@ -158,6 +161,9 @@ namespace Endabgabe {
           T0011: "Hey, does the Walkman still work?"
         }
       };
+
+      ƒS.Sound.play(sound.lake, 0.3);
+      ƒS.Sound.play(sound.crickets, 0.3);
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);

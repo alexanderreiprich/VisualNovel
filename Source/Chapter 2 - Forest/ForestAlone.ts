@@ -19,6 +19,8 @@ namespace Endabgabe {
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.forest_path_into);
     await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
+    ƒS.Sound.fade(sound.forest_ambience_2, 0, 2, false);
+    ƒS.Sound.play(sound.forest_ambience_1, 0.3, true);
   
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
@@ -38,6 +40,7 @@ namespace Endabgabe {
     };
 
     let forestSplit = await ƒS.Menu.getInput(forestSplitAnswer, "decision");
+    ƒS.Sound.play(sound.click, 0.2);
 
     switch (forestSplit) {
       case forestSplitAnswer.forest:

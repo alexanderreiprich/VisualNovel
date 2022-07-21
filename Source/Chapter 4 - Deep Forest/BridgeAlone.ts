@@ -34,7 +34,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0007);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0008);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0009);
-
+    ƒS.Sound.play(sound.rustle_1, 0.3);
     return "EncounterFoxAgainNoCat";
   }
 }

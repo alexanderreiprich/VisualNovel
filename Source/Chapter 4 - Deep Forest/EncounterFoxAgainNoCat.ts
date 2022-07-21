@@ -167,6 +167,7 @@ namespace Endabgabe {
       };
 
       let agreeWithFoxChoice = await ƒS.Menu.getInput(agreeWithFoxChoiceAnswer, "decision");
+      ƒS.Sound.play(sound.click, 0.2);
 
       switch (agreeWithFoxChoice) {
         case agreeWithFoxChoiceAnswer.agree:
