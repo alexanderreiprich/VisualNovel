@@ -55,6 +55,7 @@ namespace Endabgabe {
 
     let name: string = await ƒS.Speech.getInput();
     dataForSave.nameProtagonist = name;
+    text.Protagonist.T0003 = "Umm, my name is " + dataForSave.nameProtagonist + ". Who are you? And why can you talk? Is this some sort of prank?";
 
     document.getElementById("append").children[0].remove();
 
@@ -124,6 +125,7 @@ namespace Endabgabe {
 
     dataForSave.encounteredAnyAnimal = true;
     dataForSave.encounteredFox = true;
+    dataForSave.foxTrustsProtagonist = true;
 
     return "DeepForestAlone";
 

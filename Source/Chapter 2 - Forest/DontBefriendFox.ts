@@ -7,7 +7,7 @@ namespace Endabgabe {
 
       let text = {
         Narrator: {
-          T0002: "The fox looks at you suspiciously, almost as if it knows that you are hiding something",
+          T0002: "The fox looks at you suspiciously, almost as if it knows that you are hiding something.",
           T0008: "You take a step back, snapping a small twig in half, that was laying on the floor.",
           T0009: "The fox flinches from the sudden noise.",
           T0012: "The fox stopped in the middle of the sentence, turning its head into the direction of a small family, that is approaching you.",
@@ -70,7 +70,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
 
       await ƒS.Character.hide(characters.june);
-      await ƒS.Character.show(characters.june, characters.june.pose.concerned, ƒS.positions.bottomcenter);
+      await ƒS.Location.show(locations.forest_path_into);
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.girl, text.Girl.T0014);
@@ -94,6 +94,9 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.cat, text.Cat.T0025);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0026);
       await ƒS.Speech.tell(characters.cat, text.Cat.T0027);
+
+      await ƒS.Character.hide(characters.tommy);
+      await ƒS.update(0.3);
 
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;

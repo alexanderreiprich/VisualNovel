@@ -91,7 +91,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0015);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0016);
 
-      ƒS.Sound.play(sound.emotion, 0.5, true);
+      ƒS.Sound.play(sound.spacesong, 0.5, true);
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.hide(characters.tommy);
@@ -140,7 +140,8 @@ namespace Endabgabe {
           T0010: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
           T0013: "You lay the tape into the player and put the headphones over the fox's ears.",
           T0015: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
-          T0016: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest."
+          T0016: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest.",
+          T0019: "You make your way through the forest, trying to keep up with the fox, when you arrive at a small path."
         },
         Protagonist: {
           T0003: "Yeah, you are right… This is disgusting. It's been so long in here that I can barely tell what all of these things are… What even is this…",
@@ -148,7 +149,7 @@ namespace Endabgabe {
           T0012: "Well, I don't know, but let's give it a go.",
           T0014: "…so, is it working?",
           T0017: "Well… I guess it did work after all…",
-          T0018: "No way that I will catch up to them. I hope we meet again though…"
+          T0018: "I hope we meet again. Maybe I should follow them and make sure everything is okay..."
         },
         Fox: {
           T0001: "Look at this. Who throws all of this away?",
@@ -196,7 +197,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0014);
 
-      ƒS.Sound.play(sound.emotion, 0.5, true);
+      ƒS.Sound.play(sound.spacesong, 0.5, true);
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Character.show(characters.june, characters.june.pose.neutral, ƒS.positions.bottomcenter);
@@ -210,7 +211,7 @@ namespace Endabgabe {
 
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0016);
 
-      await ƒS.Character.animate(characters.june, characters.june.pose.empty, animate("rightOut"));
+      await ƒS.Character.animate(characters.june, characters.june.pose.empty, animate("centerRightOut"));
 
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0017);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0018);

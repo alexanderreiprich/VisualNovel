@@ -52,6 +52,8 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.narrator, "The Bad Ending.");
     await ƒS.Speech.tell(characters.narrator, "You freed no animals.");
+    if (dataForSave.encounteredAnyAnimal == false)
+      await ƒS.Speech.tell(characters.narrator, "You didn't even meet any animals...");
     await ƒS.Speech.tell(characters.narrator, "Thank you for playing! <3");
 
     return "Empty";

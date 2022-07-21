@@ -17,7 +17,7 @@ namespace Endabgabe {
         T0006: "…hello? Did you just speak to me?",
         T0008: "Well… nice to meet you too, Olivia, I'm " + dataForSave.nameProtagonist + ". Do you know what happened here?",
         T0010: "Oh, okay, I thought as somebody that lives in the forest, you might know something.",
-        T0012: "I assume you were also once human?",
+        T0012: "I assume you were once human?",
         T0014: "I'm so sorry, I can't imagine what it is like to lose everything…",
         T0015: "You must have really enjoyed your job, if you miss it so much?",
         T0018: "I understand… well, now you have the freedom to do whatever you want! No more work or any other responsibilities.",
@@ -63,7 +63,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
 
     // await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.deer, text.Deer.T0004);
@@ -80,6 +80,8 @@ namespace Endabgabe {
   
       let name: string = await ƒS.Speech.getInput();
       dataForSave.nameProtagonist = name;
+
+      text.Protagonist.T0008 = "Well… nice to meet you too, Olivia, I'm " + dataForSave.nameProtagonist + ". Do you know what happened here?";
   
       document.getElementById("append").children[0].remove();
     }
@@ -91,7 +93,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);
 
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.sad, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.sad, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0013);
@@ -99,7 +101,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0015);
 
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0016);
@@ -109,7 +111,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0020);
 
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.happy, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.happy, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0021);
@@ -123,7 +125,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0024);
       
       await ƒS.Character.hide(characters.olivia);
-      await ƒS.Character.show(characters.olivia, characters.olivia.pose.curious, ƒS.positions.bottomcenter);
+      await ƒS.Character.show(characters.olivia, characters.olivia.pose.curious, newPositions.bottomcenter);
       await ƒS.update(0.2);
   
       await ƒS.Speech.tell(characters.olivia, text.Deer.T0025);
@@ -131,20 +133,20 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0027);
   
       await ƒS.Character.hide(characters.olivia);
-      await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, ƒS.positions.bottomcenter);
+      await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, newPositions.bottomcenter);
       await ƒS.update(0.2);
   
       await ƒS.Speech.tell(characters.olivia, text.Deer.T0028);
   
       await ƒS.Character.hide(characters.olivia);
-      await ƒS.Character.show(characters.olivia, characters.olivia.pose.happy, ƒS.positions.bottomcenter);
+      await ƒS.Character.show(characters.olivia, characters.olivia.pose.happy, newPositions.bottomcenter);
       await ƒS.update(0.2);
   
       await ƒS.Speech.tell(characters.olivia, text.Deer.T0029);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0030);
   
       await ƒS.Character.hide(characters.olivia);
-      await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, ƒS.positions.bottomcenter);
+      await ƒS.Character.show(characters.olivia, characters.olivia.pose.neutral, newPositions.bottomcenter);
       await ƒS.update(0.2);
   
       await ƒS.Speech.tell(characters.olivia, text.Deer.T0031);

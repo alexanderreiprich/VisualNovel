@@ -21,9 +21,9 @@ namespace Endabgabe {
     };
 
     let pages: string[] = [" - - - NEWSPAPER - - -", "- all the news you need for the day -", "", "", "Mysterious dust raining on earth", "", 
-    "Small particles raining from the sky this night…", "… scientists are not sure where if comes from…", "… no explanation what it is or what it does…",
+    "Small particles raining from the sky this night…", "… scientists are not sure where it comes from…", "… no explanation what it is or what it does…",
    "… citizens are advised to keep windows closed…"];
-
+   
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_bedroom);
     await ƒS.update(transitions.blink.duration, transitions.blink.alpha, transitions.blink.edge);

@@ -29,23 +29,29 @@ namespace Endabgabe {
       }
     };
 
-    ƒS.Speech.hide();
-    await ƒS.Location.show(locations.lake_evening);
-    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+    await ƒS.Location.show(locations.clearing_trees);
+    await ƒS.update();
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
 
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.curious, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.curious, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0002);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
+
+    await ƒS.Character.hide(characters.olivia);
+    await ƒS.update(0.2);
+    ƒS.Speech.hide();
+    await ƒS.Location.show(locations.lake_evening);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
 
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.surprised, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.surprised, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0006);
@@ -54,7 +60,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0009);
 
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.happy, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.happy, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.olivia, text.Deer.T0010);
@@ -62,16 +68,17 @@ namespace Endabgabe {
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0012);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
-    
+
     await ƒS.Character.hide(characters.olivia);
-    await ƒS.Character.show(characters.olivia, characters.olivia.pose.empty, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.olivia, characters.olivia.pose.empty, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0014);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0015);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0016);
 
-    await ƒS.Character.animate(characters.olivia, characters.olivia.pose.empty, animate("rightOut"));
+    await ƒS.Character.hide(characters.olivia);
+    await ƒS.Character.animate(characters.olivia, characters.olivia.pose.empty, animate("centerRightOut"));
     await ƒS.update(0.3);
 
     dataForSave.freedDeer = true;

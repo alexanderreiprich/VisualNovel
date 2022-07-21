@@ -221,6 +221,8 @@ var Endabgabe;
         midToLeft: "midToLeft",
         midToRight: "midToRight",
         rightOut: "rightOut",
+        centerRightOut: "centerRightOut",
+        centerLeftOut: "centerLeftOut",
         leftOut: "leftOut",
         outToLeft: "outToLeft"
     };
@@ -382,7 +384,11 @@ var Endabgabe;
         else
             curSong++;
         Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_scroll, 1);
-        window.setTimeout(() => { Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
+        document.getElementsByTagName("content")[0].innerHTML = "Changing cassette...";
+        window.setTimeout(() => {
+            Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5);
+            document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
+        }, 2000);
         console.log("SKIP");
     }
     function hndPrev(_event) {
@@ -393,7 +399,11 @@ var Endabgabe;
         else
             curSong--;
         Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_scroll, 1);
-        window.setTimeout(() => { Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
+        document.getElementsByTagName("content")[0].innerHTML = "Changing cassette...";
+        window.setTimeout(() => {
+            Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5);
+            document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
+        }, 2000);
         console.log("PREV");
     }
     function hndStop(_event) {
@@ -406,13 +416,10 @@ var Endabgabe;
     function hndPlay(_event) {
         _event.stopPropagation();
         Endabgabe.ƒS.Sound.play(Endabgabe.sound.cassette_in, 1);
+        document.getElementsByTagName("content")[0].innerHTML = "Putting in cassette...";
         window.setTimeout(() => {
             Endabgabe.ƒS.Sound.play(playlist[curSong], 0.5);
             document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
-            if (curSong == playlist.length - 1)
-                curSong = 0;
-            else
-                curSong++;
             console.log("PLAY");
         }, 4000);
     }
@@ -524,6 +531,20 @@ var Endabgabe;
                     duration: 1.5,
                     playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
                 };
+            case Endabgabe.animations.centerRightOut:
+                return {
+                    start: { translation: Endabgabe.newPositions.bottomcenter },
+                    end: { translation: Endabgabe.newPositions.rightout },
+                    duration: 1.5,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
+            case Endabgabe.animations.centerLeftOut:
+                return {
+                    start: { translation: Endabgabe.newPositions.bottomcenter },
+                    end: { translation: Endabgabe.newPositions.leftout },
+                    duration: 1.5,
+                    playmode: Endabgabe.ƒS.ANIMATION_PLAYMODE.PLAYONCE
+                };
             case Endabgabe.animations.leftOut:
                 return {
                     start: { translation: Endabgabe.newPositions.bottomleft },
@@ -562,7 +583,8 @@ var Endabgabe;
         freedDeer: false,
         freedAnimals: 0,
         travelWithCat: false,
-        groundAndObjectAnalyzed: false // Used to determine if player can go back to previous choices in DontEncounterDeer()
+        groundAndObjectAnalyzed: false,
+        foxTrustsProtagonist: false // Used to check if the player told the fox about the cat in Chapter 1
     };
     window.addEventListener("load", start);
     function start(_event) {
@@ -680,17 +702,17 @@ var Endabgabe;
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path_close);
         await Endabgabe.ƒS.update(1);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(1);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0009);
         let scene = document.getElementById("append");
@@ -701,7 +723,7 @@ var Endabgabe;
         Endabgabe.dataForSave.nameProtagonist = name;
         document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, name + text.Cat.T0010);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0011);
@@ -709,19 +731,19 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0015);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0016);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0017);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0018);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0019);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0020);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0021);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0022);
@@ -807,13 +829,13 @@ var Endabgabe;
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0004);
         let scene = document.getElementById("append");
@@ -823,13 +845,13 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.getInput();
         document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0005);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0006);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0007);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
@@ -846,13 +868,32 @@ var Endabgabe;
         gameMenu.open();
         let text = {
             Narrator: {
-                T0001: ""
+                T0002: "The cat has a disappointed look on its face. It seems like it waited for a long time to finally have a friend.",
+                T0004: "With a little hesitation, the cat turned around, looked at you one last time with their shiny eyes, and disappeared into the bushes. After a couple of seconds, everything goes quiet. You are alone again."
+            },
+            Protagonist: {
+                T0001: "Hey, I’m sorry but I really don’t want company right now. I’ve just finished my exams and I need to relax on my own for a while, okay? Maybe we some other day, okay? I mean you know where I live."
+            },
+            Cat: {
+                T0003: "Oh… okay, yeah, I understand. I’ll just go now."
             }
         };
-        Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_table);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path_close);
+        await Endabgabe.ƒS.update();
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.newPositions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0003);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomcenter);
+        await Endabgabe.ƒS.update(0.2);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("centerLeftOut"));
+        await Endabgabe.ƒS.update(0.3);
+        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
+        return "ForestAlone";
     }
     Endabgabe.TravelWithoutCat = TravelWithoutCat;
 })(Endabgabe || (Endabgabe = {}));
@@ -878,7 +919,7 @@ var Endabgabe;
             }
         };
         let pages = [" - - - NEWSPAPER - - -", "- all the news you need for the day -", "", "", "Mysterious dust raining on earth", "",
-            "Small particles raining from the sky this night…", "… scientists are not sure where if comes from…", "… no explanation what it is or what it does…",
+            "Small particles raining from the sky this night…", "… scientists are not sure where it comes from…", "… no explanation what it is or what it does…",
             "… citizens are advised to keep windows closed…"];
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_bedroom);
@@ -1179,6 +1220,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0034);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
+            Endabgabe.dataForSave.foxTrustsProtagonist = true;
             return "DeepForestAlone";
         }
     }
@@ -1237,6 +1279,7 @@ var Endabgabe;
         scene.appendChild(overlay);
         let name = await Endabgabe.ƒS.Speech.getInput();
         Endabgabe.dataForSave.nameProtagonist = name;
+        text.Protagonist.T0003 = "Umm, my name is " + Endabgabe.dataForSave.nameProtagonist + ". Who are you? And why can you talk? Is this some sort of prank?";
         document.getElementById("append").children[0].remove();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text.Fox.T0004);
@@ -1286,6 +1329,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0028);
         Endabgabe.dataForSave.encounteredAnyAnimal = true;
         Endabgabe.dataForSave.encounteredFox = true;
+        Endabgabe.dataForSave.foxTrustsProtagonist = true;
         return "DeepForestAlone";
     }
     Endabgabe.BefriendFoxFirstEncounter = BefriendFoxFirstEncounter;
@@ -1299,7 +1343,7 @@ var Endabgabe;
             gameMenu.open();
             let text = {
                 Narrator: {
-                    T0002: "The fox looks at you suspiciously, almost as if it knows that you are hiding something",
+                    T0002: "The fox looks at you suspiciously, almost as if it knows that you are hiding something.",
                     T0008: "You take a step back, snapping a small twig in half, that was laying on the floor.",
                     T0009: "The fox flinches from the sudden noise.",
                     T0012: "The fox stopped in the middle of the sentence, turning its head into the direction of a small family, that is approaching you.",
@@ -1356,7 +1400,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Location.show(Endabgabe.locations.forest_path_into);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.girl, text.Girl.T0014);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
@@ -1375,6 +1419,8 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0025);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0026);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text.Cat.T0027);
+            await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
+            await Endabgabe.ƒS.update(0.3);
             Endabgabe.dataForSave.encounteredAnyAnimal = true;
             Endabgabe.dataForSave.encounteredFox = true;
             return "EnterLake";
@@ -1581,7 +1627,7 @@ var Endabgabe;
                     T0003: "You crouch down and lift up a few branches. The blue eyes, that you saw earlier, watching your every move.",
                     T0004: "As you stretch out your arm to brush away some leaves, you suddenly hear a scream right in front of you.",
                     T0005: "Reflexively, you flinch and step back.",
-                    T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they green?",
+                    T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they blue?",
                     T0013: "You hear the sound of cracking of branches and rustling of leaves.",
                     T0014: "Slowly, you can see the eyes moving closer, and a scared fox appears from underneath the bush."
                 },
@@ -1631,7 +1677,7 @@ var Endabgabe;
                     T0003: "You crouch down and lift up a few branches. The blue eyes, that you saw earlier, watching your every move.",
                     T0004: "As you stretch out your arm to brush away some leaves, you suddenly hear a scream right in front of you.",
                     T0005: "Reflexively, you flinch and step back.",
-                    T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they green?",
+                    T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they blue?",
                     T0013: "You hear the sound of cracking of branches and rustling of leaves.",
                     T0014: "Slowly, you can see the eyes moving closer, and a scared fox appears from underneath the bush."
                 },
@@ -2013,7 +2059,7 @@ var Endabgabe;
                 T0003: "In the corner of your eye you notice a bigger, oddly shaped stone. Has it been there before?",
                 T0005: "As you lift it up, you notice how heavy it is, when suddenly…",
                 T0008: "You freeze. Have you gone insane or did this rock just talk to you?",
-                T0010: "You turn the stone around and you see a small head with bright yellow eyes poking out of the presumed rock. You just picked up a turtle.",
+                T0010: "You turn the stone around and you see a small head with bright yellow eyes poking out of the presumed rock. You just picked up a turtle."
             },
             Protagonist: {
                 T0001: "Well, there is nobody that cleans up nature, so I guess, I have to do this.",
@@ -2599,6 +2645,7 @@ var Endabgabe;
             },
             Fox: {
                 T0003: "Oh, it's you! I knew we would meet again.",
+                T0003a: "Oh, it's you. And... that's your friend you were playing with earlier I assume?",
                 T0007: "Nice to meet you, Tommy.",
                 T0011: "…",
                 T0013: "Well, I… um…",
@@ -2639,14 +2686,14 @@ var Endabgabe;
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0001);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.animate(Endabgabe.animations.midToLeft));
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.animate(Endabgabe.animations.midToRight));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.surprised, Endabgabe.animate(Endabgabe.animations.midToRight));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.animate(Endabgabe.animations.midToLeft));
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0002);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0003);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0004);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0005);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0006);
@@ -2654,13 +2701,13 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0008);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text2.Cat.T0009);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.happy, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0010);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text2.Protagonist.T0011);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.fox, text2.Fox.T0012);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
         }
         else {
@@ -2671,17 +2718,20 @@ var Endabgabe;
             await Endabgabe.ƒS.Location.show(Endabgabe.locations.deep_forest_split_bridge);
             await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
             Endabgabe.ƒS.Character.hideAll();
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.animate(Endabgabe.animations.midToLeft));
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.animate(Endabgabe.animations.midToRight));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.animate(Endabgabe.animations.midToRight));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.animate(Endabgabe.animations.midToLeft));
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.happy, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
-            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003);
+            if (!Endabgabe.dataForSave.foxTrustsProtagonist)
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003a);
+            else
+                await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0003);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomleft);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.curious, Endabgabe.newPositions.bottomright);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0004);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0005);
@@ -2689,16 +2739,16 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0007);
         }
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomleft);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.newPositions.bottomright);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0009);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.newPositions.bottomleft);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.neutral, Endabgabe.newPositions.bottomright);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text.Cat.T0010);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.newPositions.bottomright);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.uncomfortable, Endabgabe.newPositions.bottomleft);
         await Endabgabe.ƒS.update(0.3);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0011);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0012);
@@ -2714,7 +2764,7 @@ var Endabgabe;
             gameMenu.open();
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomright);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomleft);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text.Fox.T0019a);
             return "FreeFox";
@@ -2751,7 +2801,7 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text3.Fox.T0003);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.concerned, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.cat, text3.Cat.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text3.Narrator.T0005);
@@ -2773,7 +2823,7 @@ var Endabgabe;
                     };
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text4.Protagonist.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text4.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text4.Narrator.T0003);
@@ -2807,18 +2857,18 @@ var Endabgabe;
                     };
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0001);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.surprised, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0002);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0003);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0004);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0005);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0006);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.newPositions.bottomright);
+                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.angry, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0007);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0008);
@@ -2826,8 +2876,8 @@ var Endabgabe;
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.june, text5.Fox.T0010);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text5.Narrator.T0011);
                     await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
+                    await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
                     await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.animate(Endabgabe.animations.leftToMid));
-                    await Endabgabe.ƒS.Character.show(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.angry, Endabgabe.newPositions.bottomleft);
                     await Endabgabe.ƒS.update(0.3);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.tommy, text5.Cat.T0012);
                     await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text5.Protagonist.T0013);
@@ -2979,7 +3029,7 @@ var Endabgabe;
                             T0004: "You turn back into the forest and after a few minutes, you both reach the lake."
                         },
                         Protagonist: {
-                            T0001: "Yeah, I heard about it. It's disgusting",
+                            T0001: "Yeah, I heard about it. It's disgusting.",
                             T0003: "Hmm… I think I know a short cut, follow me!"
                         },
                         Fox: {
@@ -3216,8 +3266,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("rightOut"));
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.tommy, Endabgabe.characters.tommy.pose.sad, Endabgabe.animate("leftToMid"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("centerRightOut"));
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
@@ -3304,7 +3353,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0016);
-            Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
+            Endabgabe.ƒS.Sound.play(Endabgabe.sound.spacesong, 0.5, true);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.tommy);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.newPositions.bottomright);
@@ -3344,7 +3393,8 @@ var Endabgabe;
                     T0010: "Suddenly the fox stops in front of one tape with an almost completely burgundy red cover image.",
                     T0013: "You lay the tape into the player and put the headphones over the fox's ears.",
                     T0015: "You get no response. Instead you see the fox staring blankly at nothing, completely sunken into the sounds coming from the headphones. Slowly, the previously bright shining blue eyes fade into black.",
-                    T0016: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest."
+                    T0016: "After around 10 seconds, the fox seems surprised, as if it doesn't recognize you, shakes the head, and runs away into the forest.",
+                    T0019: "You make your way through the forest, trying to keep up with the fox, when you arrive at a small path."
                 },
                 Protagonist: {
                     T0003: "Yeah, you are right… This is disgusting. It's been so long in here that I can barely tell what all of these things are… What even is this…",
@@ -3352,7 +3402,7 @@ var Endabgabe;
                     T0012: "Well, I don't know, but let's give it a go.",
                     T0014: "…so, is it working?",
                     T0017: "Well… I guess it did work after all…",
-                    T0018: "No way that I will catch up to them. I hope we meet again though…"
+                    T0018: "I hope we meet again. Maybe I should follow them and make sure everything is okay..."
                 },
                 Fox: {
                     T0001: "Look at this. Who throws all of this away?",
@@ -3390,7 +3440,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
-            Endabgabe.ƒS.Sound.play(Endabgabe.sound.emotion, 0.5, true);
+            Endabgabe.ƒS.Sound.play(Endabgabe.sound.spacesong, 0.5, true);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.june);
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
@@ -3399,7 +3449,7 @@ var Endabgabe;
             await Endabgabe.ƒS.Character.show(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.3);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
-            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("rightOut"));
+            await Endabgabe.ƒS.Character.animate(Endabgabe.characters.june, Endabgabe.characters.june.pose.empty, Endabgabe.animate("centerRightOut"));
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0017);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0018);
             Endabgabe.dataForSave.freedFox = true;
@@ -3655,7 +3705,7 @@ var Endabgabe;
                 T0006: "…hello? Did you just speak to me?",
                 T0008: "Well… nice to meet you too, Olivia, I'm " + Endabgabe.dataForSave.nameProtagonist + ". Do you know what happened here?",
                 T0010: "Oh, okay, I thought as somebody that lives in the forest, you might know something.",
-                T0012: "I assume you were also once human?",
+                T0012: "I assume you were once human?",
                 T0014: "I'm so sorry, I can't imagine what it is like to lose everything…",
                 T0015: "You must have really enjoyed your job, if you miss it so much?",
                 T0018: "I understand… well, now you have the freedom to do whatever you want! No more work or any other responsibilities.",
@@ -3698,7 +3748,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
         // await ƒS.Character.hide(characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.deer, text.Deer.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
@@ -3712,6 +3762,7 @@ var Endabgabe;
             scene.appendChild(overlay);
             let name = await Endabgabe.ƒS.Speech.getInput();
             Endabgabe.dataForSave.nameProtagonist = name;
+            text.Protagonist.T0008 = "Well… nice to meet you too, Olivia, I'm " + Endabgabe.dataForSave.nameProtagonist + ". Do you know what happened here?";
             document.getElementById("append").children[0].remove();
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
@@ -3720,13 +3771,13 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0011);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.sad, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.sad, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0013);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0014);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0015);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0016);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0017);
@@ -3734,7 +3785,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0019);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0020);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0021);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0022);
@@ -3743,22 +3794,22 @@ var Endabgabe;
             console.log("- - - Scene 27: The mysterious dust - - -");
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0024);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.curious, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.2);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0025);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0026);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0027);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.2);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0028);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.happy, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.2);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0029);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0030);
             await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.ƒS.positions.bottomcenter);
+            await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.neutral, Endabgabe.newPositions.bottomcenter);
             await Endabgabe.ƒS.update(0.2);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0031);
             await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0032);
@@ -3811,38 +3862,43 @@ var Endabgabe;
                 T0011: "Thank you so much…"
             }
         };
-        Endabgabe.ƒS.Speech.hide();
-        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_evening);
-        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.clearing_trees);
+        await Endabgabe.ƒS.update();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.curious, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0003);
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
+        await Endabgabe.ƒS.update(0.2);
+        Endabgabe.ƒS.Speech.hide();
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.lake_evening);
+        await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0005);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.surprised, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.surprised, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0006);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0009);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.happy, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.happy, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0010);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.olivia, text.Deer.T0011);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0012);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0013);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
-        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.empty, Endabgabe.ƒS.positions.bottomcenter);
+        await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.empty, Endabgabe.newPositions.bottomcenter);
         await Endabgabe.ƒS.update(0.2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0014);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0015);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0016);
-        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.empty, Endabgabe.animate("rightOut"));
+        await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
+        await Endabgabe.ƒS.Character.animate(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.empty, Endabgabe.animate("centerRightOut"));
         await Endabgabe.ƒS.update(0.3);
         Endabgabe.dataForSave.freedDeer = true;
         Endabgabe.dataForSave.freedAnimals++;
@@ -3895,6 +3951,8 @@ var Endabgabe;
                 T0022: "Thank you so much, " + Endabgabe.dataForSave.nameProtagonist + ". I haven’t been so happy in a long time…"
             }
         };
+        await Endabgabe.ƒS.Location.show(Endabgabe.locations.clearing_trees);
+        await Endabgabe.ƒS.update();
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.protagonist, text.Protagonist.T0001);
         await Endabgabe.ƒS.Character.hide(Endabgabe.characters.olivia);
         await Endabgabe.ƒS.Character.show(Endabgabe.characters.olivia, Endabgabe.characters.olivia.pose.curious, Endabgabe.ƒS.positions.bottomcenter);
@@ -4010,6 +4068,8 @@ var Endabgabe;
         }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "The Bad Ending.");
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "You freed no animals.");
+        if (Endabgabe.dataForSave.encounteredAnyAnimal == false)
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "You didn't even meet any animals...");
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, "Thank you for playing! <3");
         return "Empty";
     }

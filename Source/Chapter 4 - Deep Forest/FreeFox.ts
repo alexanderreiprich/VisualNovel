@@ -180,8 +180,7 @@ namespace Endabgabe {
 
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0013);
 
-      await ƒS.Character.animate(characters.june, characters.june.pose.empty, animate("rightOut"));
-      await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate("leftToMid"));
+      await ƒS.Character.animate(characters.june, characters.june.pose.empty, animate("centerRightOut"));
       await ƒS.Character.hide(characters.june);
       await ƒS.update(0.3);
 

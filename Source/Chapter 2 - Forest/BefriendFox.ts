@@ -290,6 +290,7 @@ namespace Endabgabe {
     
       dataForSave.encounteredAnyAnimal = true;
       dataForSave.encounteredFox = true;
+      dataForSave.foxTrustsProtagonist = true;
 
       return "DeepForestAlone";
     }

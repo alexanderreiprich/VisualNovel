@@ -26,7 +26,7 @@ namespace Endabgabe {
     await ƒS.Location.show(locations.home_path);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, newPositions.bottomcenter);
     await ƒS.update(0.2);
 
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
@@ -34,7 +34,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003);
 
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.curious, newPositions.bottomcenter);
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0004);
 
@@ -48,14 +48,14 @@ namespace Endabgabe {
     document.getElementById("append").children[0].remove();
 
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, newPositions.bottomcenter);
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0005);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0007);
 
     await ƒS.Character.hide(characters.tommy);
-    await ƒS.Character.show(characters.tommy, characters.tommy.pose.neutral, ƒS.positions.bottomcenter);
+    await ƒS.Character.show(characters.tommy, characters.tommy.pose.neutral, newPositions.bottomcenter);
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.tommy, text.Cat.T0008);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0009);

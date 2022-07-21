@@ -220,6 +220,8 @@ namespace Endabgabe {
     midToLeft: "midToLeft",
     midToRight: "midToRight",
     rightOut: "rightOut",
+    centerRightOut: "centerRightOut",
+    centerLeftOut: "centerLeftOut", 
     leftOut: "leftOut",
     outToLeft: "outToLeft"
   };
@@ -390,7 +392,11 @@ namespace Endabgabe {
       curSong++;
 
     ƒS.Sound.play(sound.cassette_scroll, 1);
-    window.setTimeout((): void => { ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
+    document.getElementsByTagName("content")[0].innerHTML = "Changing cassette...";
+    window.setTimeout((): void => { 
+      ƒS.Sound.play(playlist[curSong], 0.5);
+      document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
+    },                2000);
     console.log("SKIP");
   }
 
@@ -401,8 +407,13 @@ namespace Endabgabe {
       curSong = playlist.length - 1;
     else
       curSong--;
+
     ƒS.Sound.play(sound.cassette_scroll, 1);
-    window.setTimeout((): void => { ƒS.Sound.play(playlist[curSong], 0.5); }, 2000);
+    document.getElementsByTagName("content")[0].innerHTML = "Changing cassette...";
+    window.setTimeout((): void => { 
+      ƒS.Sound.play(playlist[curSong], 0.5);
+      document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
+    },                2000);
     console.log("PREV");
   }
 
@@ -417,13 +428,10 @@ namespace Endabgabe {
   function hndPlay(_event: Event): void {
     _event.stopPropagation();
     ƒS.Sound.play(sound.cassette_in, 1);
+    document.getElementsByTagName("content")[0].innerHTML = "Putting in cassette...";
     window.setTimeout((): void => {
       ƒS.Sound.play(playlist[curSong], 0.5);
       document.getElementsByTagName("content")[0].innerHTML = "Now Playing: " + playlist[curSong];
-      if (curSong == playlist.length - 1)
-        curSong = 0;
-      else
-        curSong++;
       console.log("PLAY");
     },                4000);
 
@@ -556,6 +564,22 @@ namespace Endabgabe {
           duration: 1.5,
           playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
         };
+      
+      case animations.centerRightOut:
+        return {
+          start: { translation: newPositions.bottomcenter },
+          end: { translation: newPositions.rightout },
+          duration: 1.5,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
+      
+      case animations.centerLeftOut: 
+        return {
+          start: { translation: newPositions.bottomcenter },
+          end: { translation: newPositions.leftout },
+          duration: 1.5,
+          playmode: ƒS.ANIMATION_PLAYMODE.PLAYONCE
+        };
 
       case animations.leftOut:
         return {
@@ -598,7 +622,8 @@ namespace Endabgabe {
     freedDeer: false,
     freedAnimals: 0,
     travelWithCat: false,
-    groundAndObjectAnalyzed: false // Used to determine if player can go back to previous choices in DontEncounterDeer()
+    groundAndObjectAnalyzed: false, // Used to determine if player can go back to previous choices in DontEncounterDeer()
+    foxTrustsProtagonist: false // Used to check if the player told the fox about the cat in Chapter 1
   };
 
   window.addEventListener("load", start);

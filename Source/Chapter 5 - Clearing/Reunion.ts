@@ -44,6 +44,9 @@ namespace Endabgabe {
       }
     };
 
+    await ƒS.Location.show(locations.clearing_trees);
+    await ƒS.update();
+
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0001);
 
     await ƒS.Character.hide(characters.olivia);

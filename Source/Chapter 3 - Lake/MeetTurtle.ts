@@ -10,7 +10,7 @@ namespace Endabgabe {
         T0003: "In the corner of your eye you notice a bigger, oddly shaped stone. Has it been there before?",
         T0005: "As you lift it up, you notice how heavy it is, when suddenly…",
         T0008: "You freeze. Have you gone insane or did this rock just talk to you?",
-        T0010: "You turn the stone around and you see a small head with bright yellow eyes poking out of the presumed rock. You just picked up a turtle.",
+        T0010: "You turn the stone around and you see a small head with bright yellow eyes poking out of the presumed rock. You just picked up a turtle."
 
       },
       Protagonist: {

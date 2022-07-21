@@ -175,7 +175,7 @@ namespace Endabgabe {
               T0004: "You turn back into the forest and after a few minutes, you both reach the lake."
             },
             Protagonist: {
-              T0001: "Yeah, I heard about it. It's disgusting",
+              T0001: "Yeah, I heard about it. It's disgusting.",
               T0003: "Hmm… I think I know a short cut, follow me!"
             },
             Fox: {

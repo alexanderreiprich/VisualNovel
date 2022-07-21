@@ -12,7 +12,7 @@ namespace Endabgabe {
           T0003: "You crouch down and lift up a few branches. The blue eyes, that you saw earlier, watching your every move.",
           T0004: "As you stretch out your arm to brush away some leaves, you suddenly hear a scream right in front of you.",
           T0005: "Reflexively, you flinch and step back.",
-          T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they green?",
+          T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they blue?",
           T0013: "You hear the sound of cracking of branches and rustling of leaves.",
           T0014: "Slowly, you can see the eyes moving closer, and a scared fox appears from underneath the bush."
         },
@@ -68,7 +68,7 @@ namespace Endabgabe {
           T0003: "You crouch down and lift up a few branches. The blue eyes, that you saw earlier, watching your every move.",
           T0004: "As you stretch out your arm to brush away some leaves, you suddenly hear a scream right in front of you.",
           T0005: "Reflexively, you flinch and step back.",
-          T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they green?",
+          T0010: "Thoroughly confused, you stand up. Suddenly you remember the eyes. The cat also had those shiny eyes, but were they blue?",
           T0013: "You hear the sound of cracking of branches and rustling of leaves.",
           T0014: "Slowly, you can see the eyes moving closer, and a scared fox appears from underneath the bush."
         },

@@ -209,6 +209,8 @@ declare namespace Endabgabe {
         midToLeft: string;
         midToRight: string;
         rightOut: string;
+        centerRightOut: string;
+        centerLeftOut: string;
         leftOut: string;
         outToLeft: string;
     };
@@ -335,6 +337,7 @@ declare namespace Endabgabe {
         freedAnimals: number;
         travelWithCat: boolean;
         groundAndObjectAnalyzed: boolean;
+        foxTrustsProtagonist: boolean;
     };
 }
 declare namespace Endabgabe {

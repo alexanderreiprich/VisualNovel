@@ -55,9 +55,6 @@ canvas {
 }
 
 input {
-  position: absolute;
-  top: -300px;
-  left: 40%;
   border: none;
   background-color: rgba(224, 224, 224, 0.9);
   border-style: solid;
@@ -67,6 +64,7 @@ input {
   width: 200px;
   height: 40px;
   font-size: large;
+  margin-left: 10px;
 }
 
 .decision {
