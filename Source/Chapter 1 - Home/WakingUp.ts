@@ -61,6 +61,8 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0008);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0009);
 
+    ƒS.Sound.play(sound.background_music, 0.7, true);
+    
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_door);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);

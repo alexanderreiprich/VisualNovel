@@ -83,7 +83,8 @@ namespace Endabgabe {
     emotion: "Audio/Songs/emotion.mp3",
     righthere: "Audio/Songs/righthere.mp3",
     spacesong: "Audio/Songs/spacesong.mp3",
-    icanthandlechange: "Audio/Songs/icanthandlechange.mp3"
+    icanthandlechange: "Audio/Songs/icanthandlechange.mp3",
+    background_music: "Audio/Songs/background_music.mp3"
   };
 
   export let locations = {

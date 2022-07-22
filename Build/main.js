@@ -86,7 +86,8 @@ var Endabgabe;
         emotion: "Audio/Songs/emotion.mp3",
         righthere: "Audio/Songs/righthere.mp3",
         spacesong: "Audio/Songs/spacesong.mp3",
-        icanthandlechange: "Audio/Songs/icanthandlechange.mp3"
+        icanthandlechange: "Audio/Songs/icanthandlechange.mp3",
+        background_music: "Audio/Songs/background_music.mp3"
     };
     Endabgabe.locations = {
         home_bedroom: {
@@ -718,6 +719,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_path);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swipe.duration, Endabgabe.transitions.swipe.alpha, Endabgabe.transitions.swipe.edge);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        Endabgabe.ƒS.Sound.fade(Endabgabe.sound.background_music, 0, 2);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
         Endabgabe.ƒS.Sound.play(Endabgabe.sound.rustle_1, 0.3);
@@ -973,6 +975,7 @@ var Endabgabe;
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0007);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0008);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0009);
+        Endabgabe.ƒS.Sound.play(Endabgabe.sound.background_music, 0.7, true);
         Endabgabe.ƒS.Speech.hide();
         await Endabgabe.ƒS.Location.show(Endabgabe.locations.home_door);
         await Endabgabe.ƒS.update(Endabgabe.transitions.swoosh.duration, Endabgabe.transitions.swoosh.alpha, Endabgabe.transitions.swoosh.edge);
@@ -1468,6 +1471,8 @@ var Endabgabe;
         let text = {
             Narrator: {
                 T0001: "You reach the beginning of the forest. Large trees grow left and right of the small road that leads deeper into the forest.",
+                T0001a: "Just as you reach the beginning of the forest, the music suddenly stops - …you forgot to charge your Bluetooth headphones.",
+                T0001b: "However, the beautiful scenary overshadows the lack of music: Large trees grow left and right of the small road that leads deeper into the forest.",
                 T0002: "The large shadows that are casted from the treetops provide a cool shade despite the sun being high up in the sky.",
                 T0003: "As you hear the birds singing you remember why you used to come here so often. This forest seems so magical, but you can't exactly explain why.",
                 T0004: "You can see a squirrel, peacefully collecting some nuts near an old tree stump. As soon as it sees you, it freezes and watches you carefully.",
@@ -1482,7 +1487,14 @@ var Endabgabe;
         Endabgabe.ƒS.Sound.fade(Endabgabe.sound.forest_ambience_2, 0, 2, false);
         Endabgabe.ƒS.Sound.fade(Endabgabe.sound.forest_bird, 0, 2, true);
         Endabgabe.ƒS.Sound.play(Endabgabe.sound.forest_ambience_1, 0.3, true);
-        await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        if (!Endabgabe.dataForSave.encounteredCat) {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001a);
+            Endabgabe.ƒS.Sound.fade(Endabgabe.sound.background_music, 0, 2);
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001b);
+        }
+        else {
+            await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0001);
+        }
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0002);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0003);
         await Endabgabe.ƒS.Speech.tell(Endabgabe.characters.narrator, text.Narrator.T0004);

@@ -75,6 +75,7 @@ declare namespace Endabgabe {
         righthere: string;
         spacesong: string;
         icanthandlechange: string;
+        background_music: string;
     };
     let locations: {
         home_bedroom: {

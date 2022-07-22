@@ -45,6 +45,7 @@ namespace Endabgabe {
     await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+    ƒS.Sound.fade(sound.background_music, 0, 2);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
     ƒS.Sound.play(sound.rustle_1, 0.3);

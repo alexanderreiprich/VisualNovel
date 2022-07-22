@@ -7,6 +7,8 @@ namespace Endabgabe {
     let text = {
       Narrator: {
         T0001: "You reach the beginning of the forest. Large trees grow left and right of the small road that leads deeper into the forest.",
+        T0001a: "Just as you reach the beginning of the forest, the music suddenly stops - …you forgot to charge your Bluetooth headphones.",
+        T0001b: "However, the beautiful scenary overshadows the lack of music: Large trees grow left and right of the small road that leads deeper into the forest.",
         T0002: "The large shadows that are casted from the treetops provide a cool shade despite the sun being high up in the sky.",
         T0003: "As you hear the birds singing you remember why you used to come here so often. This forest seems so magical, but you can't exactly explain why.",
         T0004: "You can see a squirrel, peacefully collecting some nuts near an old tree stump. As soon as it sees you, it freezes and watches you carefully.",
@@ -23,7 +25,14 @@ namespace Endabgabe {
     ƒS.Sound.fade(sound.forest_bird, 0, 2, true);
     ƒS.Sound.play(sound.forest_ambience_1, 0.3, true);
   
-    await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+    if (!dataForSave.encounteredCat) {
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
+      ƒS.Sound.fade(sound.background_music, 0, 2);
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001b);
+    }
+    else {
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
+    }
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
