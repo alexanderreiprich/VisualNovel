@@ -156,7 +156,7 @@ dialog[type=splash] {
   height: 100%;
 }
 dialog[type=splash]>img#FudgeStoryLogo {
-  margin-top: 47%;
+  margin-top: 0;
   margin-left: 67%;
   width: 30%;
 }
