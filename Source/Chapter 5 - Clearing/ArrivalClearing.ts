@@ -19,6 +19,7 @@ namespace Endabgabe {
     ƒS.Character.hideAll();
     ƒS.update(0.2);
     ƒS.Sound.fade(sound.forest_ambience_1, 0, 2, false);
+    ƒS.Sound.fade(sound.lake, 0, 2, false);
     ƒS.Sound.play(sound.clearing_ambience, 0.3);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);

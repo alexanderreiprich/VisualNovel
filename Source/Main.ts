@@ -4,7 +4,7 @@ namespace Endabgabe {
 
   console.log("- - - Starting: An Unpolished Gem with a Tragic Backstory - - -");
 
-  // alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) to get the best playing experience!\n\nHave fun! <3");
+  alert("Hi!\nWelcome to my Visual Novel.\nPlease use the option to view this window in fullscreen (F11) and use headphones to get the best playing experience!\nAlso, please keep in mind that some features might not work on all browsers. Using Google Chrome is advised.\n\nHave fun! <3");
 
   // define transitions
   export let transitions = {
@@ -64,6 +64,7 @@ namespace Endabgabe {
     newspaper: "Audio/SFX/newspaper.mp3",
     purr: "Audio/SFX/purr.mp3",
     cat_slurp: "Audio/SFX/cat_slurp.mp3",
+    fox_scream: "Audio/SFX/fox_scream.mp3",
     crickets: "Audio/SFX/crickets.mp3",
     grasshoppers: "Audio/SFX/grasshoppers.mp3",
     bird_flying: "Audio/SFX/bird_flying.mp3",

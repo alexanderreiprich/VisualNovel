@@ -32,11 +32,11 @@ namespace Endabgabe {
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, newPositions.bottomcenter);
     await ƒS.update(0.2);
-
+    ƒS.Sound.play(sound.rustle_2, 0.3);
     await ƒS.Character.hide(characters.tommy);
     await ƒS.Character.animate(characters.tommy, characters.tommy.pose.sad, animate("centerLeftOut"));
     await ƒS.update(0.3);
-
+    
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
 
     return "ForestAlone";

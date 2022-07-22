@@ -38,6 +38,10 @@ namespace Endabgabe {
         }
       };
 
+      ƒS.Sound.fade(sound.forest_ambience_1, 0, 3, false);
+      ƒS.Sound.play(sound.lake, 0.6);
+      ƒS.Sound.play(sound.crickets, 0.4);
+
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
@@ -103,6 +107,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0020);
 
       await ƒS.Character.hide(characters.tommy);
+      ƒS.Sound.fade(sound.spacesong, 0, 2, false);
 
       if (ƒS.Inventory.getAmount(items.bag) == 0)
         ƒS.Inventory.add(items.bag);
@@ -141,6 +146,10 @@ namespace Endabgabe {
           T0008: "Hey, does the Walkman still work?"
         }
       };
+
+      ƒS.Sound.fade(sound.forest_ambience_1, 0, 3, false);
+      ƒS.Sound.play(sound.lake, 0.6);
+      ƒS.Sound.play(sound.crickets, 0.4);
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);

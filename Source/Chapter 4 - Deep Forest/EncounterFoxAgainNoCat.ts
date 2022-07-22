@@ -193,7 +193,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.protagonist, text3.Protagonist.T0003);
 
           await ƒS.Speech.tell(characters.narrator, text3.Narrator.T0004);
-
+          await ƒS.Character.hide(characters.june);
           return "RevisitLake";
 
         case agreeWithFoxChoiceAnswer.disagree:
@@ -220,7 +220,7 @@ namespace Endabgabe {
           await ƒS.Speech.tell(characters.narrator, text4.Narrator.T0003);
           await ƒS.Speech.tell(characters.june, text4.Fox.T0004);
           await ƒS.Speech.tell(characters.narrator, text4.Narrator.T0005);
-
+          await ƒS.Character.hide(characters.june);
           return "RevisitLake";
 
         case agreeWithFoxChoiceAnswer.complain:

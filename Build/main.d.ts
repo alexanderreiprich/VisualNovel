@@ -57,6 +57,7 @@ declare namespace Endabgabe {
         newspaper: string;
         purr: string;
         cat_slurp: string;
+        fox_scream: string;
         crickets: string;
         grasshoppers: string;
         bird_flying: string;

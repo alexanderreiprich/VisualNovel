@@ -14,11 +14,14 @@ namespace Endabgabe {
 
     let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(2)]);
     
+    ƒS.Sound.fade(sound.clearing_ambience, 0, 2, false);
+    ƒS.Sound.fade(sound.forest_ambience_1, 0, 2, false);
     ƒS.Sound.play(sound.emotion, 0.5, false);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_bedroom_night);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
+    ƒS.Sound.play(sound.meow, 0.3);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);

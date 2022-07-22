@@ -20,6 +20,7 @@ namespace Endabgabe {
     await ƒS.Location.show(locations.forest_path_into);
     await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
     ƒS.Sound.fade(sound.forest_ambience_2, 0, 2, false);
+    ƒS.Sound.fade(sound.forest_bird, 0, 2, true);
     ƒS.Sound.play(sound.forest_ambience_1, 0.3, true);
   
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);

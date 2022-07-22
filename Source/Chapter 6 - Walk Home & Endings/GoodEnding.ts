@@ -16,6 +16,7 @@ namespace Endabgabe {
 
     let delay: ƒS.Signal = ƒS.Progress.defineSignal([() => ƒS.Progress.delay(1)]);
 
+    ƒS.Sound.fade(sound.forest_ambience_1, 0, 2, false);
     ƒS.Sound.play(sound.emotion, 0.5, false);
     ƒS.Speech.hide();
     await ƒS.Location.show(locations.home_bedroom_night);

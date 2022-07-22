@@ -183,6 +183,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0009);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0010);
       await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0011);
+      ƒS.Sound.play(sound.fox_scream, 0.3);
       await ƒS.Speech.tell(characters.tommy, text2.Cat.T0012);
 
       await ƒS.Character.hide(characters.tommy);

@@ -37,6 +37,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
+      ƒS.Sound.play(sound.fox_scream, 0.3);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0006);
       await ƒS.Speech.tell(characters.questionmark, text.Fox.T0007);
@@ -96,6 +97,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
+      ƒS.Sound.play(sound.fox_scream, 0.3);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0006);
       await ƒS.Speech.tell(characters.questionmark, text.Fox.T0007);

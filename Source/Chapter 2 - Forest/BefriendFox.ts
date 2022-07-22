@@ -129,6 +129,7 @@ namespace Endabgabe {
       await ƒS.update(0.3);
 
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0029);
+      ƒS.Sound.play(sound.rustle_2, 0.3);
       await ƒS.Character.hide(characters.june);
       await ƒS.Location.show(locations.forest_path_into);
       await ƒS.update(0.3);
@@ -280,6 +281,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.june, text.Fox.T0029);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0030);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0031);
+      ƒS.Sound.play(sound.rustle_2, 0.3);
 
       await ƒS.Character.hide(characters.june);
       await ƒS.Location.show(locations.forest_path_into);

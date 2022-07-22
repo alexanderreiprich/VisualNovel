@@ -21,26 +21,74 @@ namespace Endabgabe {
       }
     };
 
+    ƒS.Speech.hide();
+    await ƒS.Location.show(locations.evening_walk);
+    await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
+
+    ƒS.Sound.fade(sound.forest_ambience_1, 0, 2, false);
+    ƒS.Sound.fade(sound.clearing_ambience, 0, 2, false);
+    ƒS.Sound.fade(sound.lake, 0, 2, false);
+
+    if (dataForSave.travelWithCat && !dataForSave.freedCat) {
+      let text2 = {
+        Protagonist: {
+          T0002: "Hey, Tommy, do you want to come with me? I think I still have some space in my room for a cat.",
+          T0005: "Yep, sounds like just the thing you need. I'll visit you though!",
+          T0007: "I will definitely do that. But I think I will go home now. See you soon!",
+          T0010: "And be careful out there!"
+        },
+        Cat: {
+          T0003: "*yawns*",
+          T0004: "Thank you very much, but I think I like it more outside. There is just so much more to explore!",
+          T0006: "Yes please! That would be so cool!",
+          T0008: "Goodbye! Love you!",
+          T0011: "Yes, yes, of course!"
+        },
+        Narrator: {
+          T0009: "As a sign of farewell, the cat licks a couple of times over your face and jumps to the ground.",
+          T0012: "And with these words, the cat vanished in one of the nearby bushes. You are now alone again."
+        }
+      };
+
+      await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
+      await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0002);
+
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.yawning, ƒS.positions.bottomcenter);
+      await ƒS.update(0.2);
+
+      await ƒS.Speech.tell(characters.tommy, text2.Cat.T0003);
+
+      await ƒS.Character.hide(characters.tommy);
+      await ƒS.Character.show(characters.tommy, characters.tommy.pose.happy, ƒS.positions.bottomcenter);
+      await ƒS.update(0.2);
+
+      await ƒS.Speech.tell(characters.tommy, text2.Cat.T0004);
+
+      await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0005);
+      await ƒS.Speech.tell(characters.tommy, text2.Cat.T0006);
+      await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0007);
+      await ƒS.Speech.tell(characters.tommy, text2.Cat.T0008);
+      await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0009);
+      await ƒS.Speech.tell(characters.protagonist, text2.Protagonist.T0010);
+      await ƒS.Speech.tell(characters.tommy, text2.Cat.T0011);
+
+      await ƒS.Character.hide(characters.tommy);
+      await ƒS.Character.animate(characters.tommy, characters.tommy.pose.happy, animate(animations.centerRightOut));
+      await ƒS.update(0.2);
+
+
+      ƒS.Sound.play(sound.rustle_2, 0.4);
+      await ƒS.Speech.tell(characters.narrator, text2.Narrator.T0012);
+    }
+
     if (dataForSave.freedAnimals == 0) {
-      ƒS.Speech.hide();
-      await ƒS.Location.show(locations.evening_walk);
-      await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
-
-      if (dataForSave.travelWithCat)
-        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
-      else 
-        await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
-
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002a);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0003a);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006a);
+      ƒS.Sound.fade(sound.crickets, 0, 2, false);
       return "BadEnding";
     }
     else {
-      ƒS.Speech.hide();
-      await ƒS.Location.show(locations.evening_walk);
-      await ƒS.update(transitions.swipe.duration, transitions.swipe.alpha, transitions.swipe.edge);
-
       if (dataForSave.travelWithCat && !dataForSave.freedCat)
         await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001a);
       else 
@@ -51,6 +99,7 @@ namespace Endabgabe {
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0004);
       await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0005);
       await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
+      ƒS.Sound.fade(sound.crickets, 0, 2, false);
       if (dataForSave.freedAnimals == 4) {
         return "GoodEnding";
       }

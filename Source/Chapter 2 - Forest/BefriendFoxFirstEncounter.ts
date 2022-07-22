@@ -119,6 +119,7 @@ namespace Endabgabe {
     await ƒS.update(0.3);
 
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0025);
+    ƒS.Sound.play(sound.rustle_2, 0.3);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0026);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0027);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0028);

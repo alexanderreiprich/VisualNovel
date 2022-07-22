@@ -37,6 +37,7 @@ namespace Endabgabe {
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0001);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0002);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0003);
+    ƒS.Sound.play(sound.rustle_1, 0.4);
 
     await ƒS.Character.show(characters.tommy, characters.tommy.pose.sad, ƒS.positions.bottomcenter);
     await ƒS.update(0.2);

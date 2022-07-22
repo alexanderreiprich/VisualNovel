@@ -47,6 +47,10 @@ namespace Endabgabe {
     await ƒS.Location.show(locations.lake_evening);
     await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
+    ƒS.Sound.fade(sound.clearing_ambience, 0, 2, false);
+    ƒS.Sound.play(sound.lake, 0.3);
+    ƒS.Sound.play(sound.crickets, 0.3);
+
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0004);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
 

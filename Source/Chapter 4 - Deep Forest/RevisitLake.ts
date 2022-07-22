@@ -41,8 +41,8 @@ namespace Endabgabe {
         }
       };
       ƒS.Sound.fade(sound.forest_ambience_1, 0, 3, false);
-      ƒS.Sound.play(sound.lake, 0.3);
-      ƒS.Sound.play(sound.crickets, 0.3);
+      ƒS.Sound.play(sound.lake, 0.6);
+      ƒS.Sound.play(sound.crickets, 0.4);
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);
@@ -120,11 +120,11 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
       ƒS.Inventory.add(items.bag);
-
+      ƒS.Sound.fade(sound.spacesong, 0, 2, false);
       ƒS.Speech.hide();
       await ƒS.Progress.delay(2);
       await ƒS.Speech.tell(characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");
-
+      
       await ƒS.Character.hide(characters.tommy);
       return "ArrivalClearing";
     }
@@ -162,14 +162,14 @@ namespace Endabgabe {
         }
       };
 
-      ƒS.Sound.play(sound.lake, 0.3);
-      ƒS.Sound.play(sound.crickets, 0.3);
+      ƒS.Sound.fade(sound.forest_ambience_1, 0, 3, false);
+      ƒS.Sound.play(sound.lake, 0.6);
+      ƒS.Sound.play(sound.crickets, 0.4);
 
       ƒS.Speech.hide();
       await ƒS.Location.show(locations.lake_polluted_water);
       await ƒS.update(transitions.swoosh.duration, transitions.swoosh.alpha, transitions.swoosh.edge);
 
-      await ƒS.Character.hide(characters.june);
       await ƒS.Character.show(characters.june, characters.june.pose.angry, ƒS.positions.bottomcenter);
       await ƒS.update(0.3);
 
@@ -225,6 +225,7 @@ namespace Endabgabe {
       dataForSave.freedFox = true;
       dataForSave.freedAnimals++;
       ƒS.Inventory.add(items.bag);
+      ƒS.Sound.fade(sound.spacesong, 0, 2, false);
       ƒS.Speech.hide();
       await ƒS.Progress.delay(2);
       await ƒS.Speech.tell(characters.narrator, "You picked up the bag with the walkman. Listen to the cassettes by pressing 'M'.");

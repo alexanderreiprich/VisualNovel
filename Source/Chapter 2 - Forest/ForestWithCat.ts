@@ -45,6 +45,7 @@ namespace Endabgabe {
     await ƒS.Character.hide(characters.tommy);
     await ƒS.update(0.2);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0005);
+    ƒS.Sound.play(sound.bird_flying, 0.3);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0006);
     await ƒS.Speech.tell(characters.protagonist, text.Protagonist.T0007);
     await ƒS.Speech.tell(characters.narrator, text.Narrator.T0008);
