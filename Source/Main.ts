@@ -529,16 +529,16 @@ namespace Endabgabe {
         }
         break;
       case ƒ.KEYBOARD_CODE.M:
-        // if (ƒS.Inventory.getAmount(items.bag) != 0) {
-        if (!musicOpen) {
-          hndMusicPlayer();
-          musicOpen = true;
+        if (ƒS.Inventory.getAmount(items.bag) != 0) {
+          if (!musicOpen) {
+            hndMusicPlayer();
+            musicOpen = true;
+          }
+          else {
+            hndMusicPlayer();
+            musicOpen = false;
+          }
         }
-        else {
-          hndMusicPlayer();
-          musicOpen = false;
-        }
-        // }
         break;
     }
   }
